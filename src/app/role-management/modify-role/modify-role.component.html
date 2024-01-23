@@ -1,0 +1,293 @@
+
+<div>
+  <div class="header">
+      <h6 class="headOne" >
+       {{response}}
+      </h6>
+      <h6 class="headAlt">
+       {{validationResponse}}
+       <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+       </h6>
+      <h4 class="headTwo">
+          Modify Role
+      </h4>
+    </div>
+  <div class="line"></div>
+  <form #Role = "ngForm" (ngSubmit)="modifyRole(Role.value)">
+    <table align="center" cellpadding="8" cellspacing="8">
+      <tr hidden>
+        <td >Role Ref</td>
+      <td>
+            <input type="text" name="roleRef" readonly ngModel #roleRef [(ngModel)]="roleObject.roleRef" >
+          </td>
+        </tr> 
+        <tr hidden>
+            <td><b>roleType</b></td>
+            <td>
+              <input type="text" name="roleType"  ngModel #roleType  [(ngModel)]="roleObject.roleType" >
+            </td>
+          </tr>
+          <tr hidden>
+            <td><b>Auth Status</b></td>
+            <td>
+              <input type="text" name="authStatus"  ngModel #authStatus  [(ngModel)]="roleObject.authStatus" >
+            </td>
+          </tr>
+           <tr hidden>
+            <td><b>Auth By</b></td>
+            <td>
+              <input type="text" name="authBy"  ngModel #authBy  [(ngModel)]="roleObject.authBy" >
+            </td> 
+          </tr>
+          <tr hidden>
+            <td><b>Auth Date</b></td>
+            <td>
+              <input type="text" name="authDate"  ngModel #authDate  [(ngModel)]="roleObject.authDate">
+            </td> 
+          </tr>
+          <tr hidden>
+            <td><b>Version No</b></td>
+            <td>
+              <input type="text" name="versionNo"  ngModel #versionNo  [(ngModel)]="roleObject.versionNo" >
+            </td>
+          </tr>
+      <tr>
+        <td><b>Role ID</b></td>
+         
+        <td>
+          <input type="text" name="roleId" readonly ngModel #roleId [(ngModel)]="roleObject.roleId">
+        </td>
+      </tr>
+      <tr>
+        <td><b>Role Description</b></td>
+        <td>
+          <input type="text" name="roleDesc" ngModel #roleDesc [(ngModel)]="roleObject.roleDesc" upperCase>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Active Status</b></td>
+        <td>
+          <select name="activeStatus" ngModel #activeStatus  [(ngModel)]="roleObject.activeStatus">
+              <option value="{{roleObject.activeStatus}}" *ngIf="roleObject.activeStatus=='Y'">Enable</option>
+              <option value="{{roleObject.activeStatus}}" *ngIf="roleObject.activeStatus=='N'">Disable</option>
+              <option  value="Y" *ngIf="roleObject.activeStatus=='N'">Enable</option>
+              <option value="N" *ngIf="roleObject.activeStatus=='Y'">Disable</option>
+            </select>
+        </td>
+      </tr>
+    </table>
+  
+    <br>
+    <br>
+    <table align="center" cellpadding="8" cellspacing="8" *ngIf="selected.indexOf('A') > -1" width="400px">
+      <tr>
+          <td><h5>User Management</h5></td>
+      </tr>
+      <tr>
+       <td><b>Create User</b></td>
+        <td>
+          <input type="checkbox" value="UMCU" [checked]="funcId.indexOf('UMCU') > -1" (click)="getFid('UMCU')"></td>
+      </tr>
+      <tr>
+        <td><b>View User</b></td>
+        <td>
+          <input type="checkbox" value="UMVU" [checked]="funcId.indexOf('UMVU') > -1" (click)="getFid('UMVU')"></td>
+        </tr>
+        <tr>
+          <td><b>Modify User</b></td>
+        <td>
+          <input type="checkbox" value="UMMU" *ngIf="funcId.indexOf('UMVU') > -1" [checked]="funcId.indexOf('UMMU') > -1" (click)="getFid('UMMU')"></td>
+        </tr>
+        <tr>
+          <td><b>Auth User</b></td>
+        <td>
+          <input type="checkbox" value="UMAU" [checked]="funcId.indexOf('UMAU') > -1" (click)="getFid('UMAU')"></td>
+      </tr>
+      <tr>
+          <td><h5>Role Management</h5></td>
+      </tr>
+      <tr>
+        <td><b>Create Role</b></td>
+        <td>
+          <input type="checkbox" value="RMCR" [checked]="funcId.indexOf('RMCR') > -1" (click)="getFid('RMCR')"></td>
+      </tr>
+      <tr>
+        <td><b>View Role</b></td>
+        <td>
+          <input type="checkbox" value="RMVR" [checked]="funcId.indexOf('RMVR') > -1" (click)="getFid('RMVR')"></td>
+        </tr>
+        <tr>
+          <td><b>Modify Role</b></td>
+        <td>
+          <input type="checkbox" value="RMMR" *ngIf="funcId.indexOf('RMVR') > -1" [checked]="funcId.indexOf('RMMR') > -1" (click)="getFid('RMMR')"></td>
+        </tr>
+        <tr>
+          <td><b>Auth Role</b></td>
+        <td>
+          <input type="checkbox" value="RMAR" [checked]="funcId.indexOf('RMAR') > -1" (click)="getFid('RMAR')"></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="btn-effcts">
+            <button type="submit" class="hvr-push">Submit</button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="button" class="hvr-push" (click)="reset()">Cancel</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- <table align="center" cellpadding="8" cellspacing="8" *ngIf="selected.indexOf('N') > -1"> -->
+        <!-- <tr *ngIf="selected.indexOf('N') > -1">
+        
+        </tr>
+        <tr *ngIf="selected.indexOf('N') > -1">
+          <td><b>Risk</b></td>
+          <td>
+            <input type="checkbox" name=""><b>Refresh</b></td>
+  
+          <td>
+            <input type="checkbox" name=""><b>Manual Values Input</b></td>
+  
+          <td>
+            <input type="checkbox" name=""><b>Risk Maintenance</b></td>
+  
+          <td>
+            <input type="checkbox" name=""><b>Car Maintenance</b></td>
+            <td>
+                <input type="checkbox" name=""><b>Adjustment Value</b></td>
+                <td>
+                    <input type="checkbox" name=""><b>Sf Investment Filter</b></td>
+        </tr>
+      </table> -->
+    <!-- <br>
+    <br>
+    <table align="center" cellpadding="8" cellspacing="8">
+        <tr *ngIf="selected.indexOf('N') > -1">
+          <th>List of funcId</th>
+          <th>Role Rights</th>
+        </tr>
+        <tr *ngIf="selected.indexOf('N') > -1">
+          <td><b>IB-Capital</b></td>
+          <td>
+            <input type="checkbox" name=""><b>File Upload</b></td>
+  
+          <td>
+            <input type="checkbox" name=""><b>Refresh</b></td>
+  
+        </tr>
+      </table> -->
+      <br>
+      <br>
+    <table align="center" cellpadding="8" cellspacing="8" *ngIf="selected.indexOf('N') > -1">
+ <!--       <tr>
+            <td><h5>Datamart Refresh</h5></td>
+        </tr>
+        <tr>
+          <td><b>Staging</b></td>
+          <td>
+            <input type="checkbox" [checked]="funcId.indexOf('DRS') > -1" (click)="getFid('DRS')"></td>
+        </tr>
+        <tr>
+          <td><b>Master</b></td>
+          <td>
+            <input type="checkbox" [checked]="funcId.indexOf('DRM') > -1" (click)="getFid('DRM')"></td>
+          </tr>
+         
+          <tr>
+              <td><b>Eod Refresh</b></td>
+              <td><input type="checkbox" [checked]="funcId.indexOf('DRERR') > -1" (click)="getFid('DRERR')"></td>
+          </tr>
+          <tr>
+              <td><b>Maintenance</b></td>
+            <td>
+              <input type="checkbox" [checked]="funcId.indexOf('DRMS') > -1" (click)="getFid('DRMS')"></td>
+          </tr> 
+          <tr>
+            <td><b>Error</b></td>
+          <td>
+            <input type="checkbox" [checked]="funcId.indexOf('DRE') > -1" (click)="getFid('DRE')"></td>
+        </tr>
+        <tr>
+            <td><h5>Reports</h5></td>
+         </tr>
+         <tr>
+            <td><b>MIS-Refresh</b></td>
+        <td>
+          
+          <input type="checkbox" [checked]="funcId.indexOf('DRRR') > -1" (click)="getFid('DRRR')"></td>
+        </tr>
+       
+     <tr>
+        <td><h5>File Processing</h5></td>
+     </tr>
+        <tr>
+          <td><b>Upload</b></td>
+          <td>
+            <input type="checkbox" [checked]="funcId.indexOf('FUM') > -1" (click)="getFid('FUM')"></td>
+            </tr>
+            <tr>
+              <td><b>Download</b></td>
+          <td>
+            <input type="checkbox" [checked]="funcId.indexOf('FDM') > -1" (click)="getFid('FDM')"></td>
+        </tr>
+    
+        <tr>
+            <td><h5>Adjustment Screen</h5></td>
+          </tr>
+          <tr>
+              <td><b>Adjustment Value</b></td>
+              <td> <input type="checkbox" [checked]="funcId.indexOf('FAV') > -1" (click)="getFid('FAV')"></td>
+            </tr> -->
+        <tr>
+          <td><h5>MDA</h5></td>
+        </tr>
+        <tr>
+          <td><b>Fetching</b></td>
+          <td> <input type="checkbox" [checked]="funcId.indexOf('MDAF') > -1" (click)="getFid('MDAF')"></td>
+        </tr>
+        <tr>
+          <td><b>Modification Process</b></td>
+          <td><input type="checkbox" [checked]="funcId.indexOf('MDAM') > -1" (click)="getFid('MDAM')"></td>
+        </tr>
+        <tr>
+          <td><b>Verification</b></td>
+          <td><input type="checkbox" [checked]="funcId.indexOf('MDAV') > -1" (click)="getFid('MDAV')"></td>
+        </tr>
+        <tr>
+          <td><h5>IFRS</h5></td>
+        </tr>
+        <tr>
+          <td><b>IFRS-Fetching</b></td>
+          <td> <input type="checkbox" [checked]="funcId.indexOf('IFRSF') > -1" (click)="getFid('IFRSF')"></td>
+        </tr>
+        <tr>
+          <td><b>IFRS-Process</b></td>
+          <td><input type="checkbox" [checked]="funcId.indexOf('IFRSP') > -1" (click)="getFid('IFRSP')"></td>
+        </tr>
+        <tr>
+          <td><b>Verification Finance</b></td>
+          <td><input type="checkbox" [checked]="funcId.indexOf('IFRSVF') > -1" (click)="getFid('IFRSVF')"></td>
+        </tr>
+        <tr>
+          <td><b>Verification Credit</b></td>
+          <td><input type="checkbox" [checked]="funcId.indexOf('IFRSVC') > -1" (click)="getFid('IFRSVC')"></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="btn-effcts">
+              <button type="submit" class="hvr-push btn btn-success" [disabled]="disabledButtonFlag">Submit</button>
+            </div>
+          </td>
+          <td>
+            <div class="btn-effcts">
+              <button type="reset"  class="hvr-push btn btn-danger"  (click)="reset()">cancel</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+</div>

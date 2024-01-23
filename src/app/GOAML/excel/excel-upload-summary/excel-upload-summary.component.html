@@ -1,0 +1,151 @@
+
+<app-home></app-home>
+<div class="header">
+  <h6 class="headOne" >
+   <!-- {{downloadMsg}} -->
+  </h6>
+  <h6 class="headAlt">
+   <!-- {{validationResponse}} -->
+   <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+   </h6>
+   <h4 class="headTwo">
+    Excel Processing Summary
+  </h4>
+</div>
+<div class="line"></div>
+<mat-card style="background-color: transparent;" class="bxshdwborder bxshdw">
+    <!-- <mat-card-title>
+      Excel Processing Summary
+    </mat-card-title> -->
+
+   
+      <!-- <mat-form-field class="full-width" >
+        <mat-label>Report Name*</mat-label>
+
+        <mat-select [(ngModel)]="extsysClass.extSysName" #extname (selectionChange)="
+getAllProcessNameBasedOnExternalSystem(extname.value)" [ngModelOptions]="{ standalone: true }">
+          <mat-option *ngFor="let extSysNameList of extSysCodeArray" [value]="extSysNameList">
+            {{ extSysNameList.extSysName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+   
+&nbsp;
+   
+      <mat-form-field class="full-width" >
+        <mat-label>Section*</mat-label>
+
+        <mat-select [(ngModel)]="extsysClass.processCode" [ngModelOptions]="{ standalone: true }" #processcd>
+          <mat-option required *ngFor="let processCodeList of processNames" [value]="processCodeList">
+            {{ processCodeList }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      &nbsp;
+      <mat-form-field class="full-width" >
+          <mat-label>Execution Date</mat-label>
+        <input matInput [matDatepicker]="pickerExcecution" placeholder="Execution date"
+          [(ngModel)]="executionDate" #exedate>
+        <mat-datepicker-toggle matSuffix [for]="pickerExcecution"></mat-datepicker-toggle>
+        <mat-datepicker #pickerExcecution></mat-datepicker>
+      </mat-form-field> -->
+      &nbsp;
+      <mat-form-field class="full-width">
+          <mat-label>Upload Date</mat-label>
+        <input class="mat-field-flex" matInput [matDatepicker]="pickerUpload" placeholder="Upload date" [(ngModel)]="uploadDate" #update>
+        <mat-datepicker-toggle matSuffix [for]="pickerUpload"></mat-datepicker-toggle>
+        <mat-datepicker #pickerUpload></mat-datepicker>
+      </mat-form-field>
+      &nbsp;
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <button mat-raised-button color="primary"
+      (click)="getDataOnDate(update.value)">Query</button>&nbsp;
+    <!-- <button mat-raised-button color="red" (click)="extname.value=''||update.value='' ||processcd.value='' ||uploadDate.value=''" >Reset</button> -->
+    <!-- &nbsp; <button mat-raised-button color="primary"
+     (click)="getSummary()" >GetAllSummary</button>&nbsp; -->
+    </div>
+  </mat-card>
+<div class="mat-elevation-z8 bxshdwborder bxshdw pad10" style="background-color: transparent;" >
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+  <table mat-table 
+  [dataSource]="dataSource" matSort style="background-color: transparent;" >
+    <ng-container matColumnDef="extSysName">
+      <th mat-header-cell *matHeaderCellDef> External System Name </th>
+      <td mat-cell *matCellDef="let element ;let i=index;"> {{element.extSysName}} </td>
+    </ng-container>
+    
+  <ng-container matColumnDef="processName">
+            <th mat-header-cell *matHeaderCellDef> Process Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.processName}} </td>
+          </ng-container>  
+    <!-- <ng-container matColumnDef="version">
+      <th mat-header-cell *matHeaderCellDef> Version </th>
+      <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+    </ng-container> -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+    <ng-container matColumnDef="filename">
+        <th mat-header-cell *matHeaderCellDef> Filename </th>
+        <td mat-cell *matCellDef="let element"> {{element.filename}} </td>
+      </ng-container>
+      <!-- <ng-container matColumnDef="executionDate">
+          <th mat-header-cell *matHeaderCellDef> Upload Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.executionDate }} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="uploadTime">
+          <th mat-header-cell *matHeaderCellDef> Upload Date and Time </th>
+          <td mat-cell *matCellDef="let element"> {{element.uploadTime | date:'short':'IST'}} </td>
+        </ng-container>
+        <!-- date:'short':'IST' -->
+        <!-- date:'longTime' -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons style="background-color: transparent;"></mat-paginator>
+</div>
+
+
+<div class="mat-elevation-z8 bxshdwborder bxshdw" *ngIf="showingtable1" style="background-color: transparent;">
+  <mat-card-title>
+    Summary Based on the Date
+  </mat-card-title>
+  <table mat-table mat-table 
+  [dataSource]="dataSource1" matSort style="background-color: transparent;;">
+    <ng-container matColumnDef="extSysName">
+      <th mat-header-cell *matHeaderCellDef> External System Name </th>
+      <td mat-cell *matCellDef="let element ;let i=index;"> {{element.extSysName}} </td>
+    </ng-container>
+    
+  <ng-container matColumnDef="processName">
+            <th mat-header-cell *matHeaderCellDef> Process Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.processName}} </td>
+          </ng-container>  
+   
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+    <ng-container matColumnDef="filename">
+        <th mat-header-cell *matHeaderCellDef> Filename </th>
+        <td mat-cell *matCellDef="let element"> {{element.filename}} </td>
+      </ng-container>
+      <!-- <ng-container matColumnDef="executionDate">
+          <th mat-header-cell *matHeaderCellDef> Upload Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.executionDate}} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="uploadTime">
+          <th mat-header-cell *matHeaderCellDef> Upload Date and Time </th>
+          <td mat-cell *matCellDef="let element"> {{element.uploadTime | date:'short':'IST'}} </td>
+        </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+ 
+</div>

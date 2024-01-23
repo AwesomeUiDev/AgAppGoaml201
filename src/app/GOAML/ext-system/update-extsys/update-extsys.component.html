@@ -1,0 +1,352 @@
+<app-home></app-home>
+
+<div class="card bg-transparent border-0 ">
+  <div class="card bg-transparent border-0 media" id="auth">
+    <!-- <div class="card-header col-sm-6 text-md-center bg-transparent ">
+      Modify External System
+    </div> -->
+    <div class="header">
+      <h6 class="headOne" >
+      </h6>
+      <h6 class="headAlt">
+       
+       </h6>
+       <h4 class="headTwo">
+        Modify External System
+      </h4>
+    </div>
+    <div class="line"></div>
+
+
+    <div class="card bg-transparent border-0 col-sm-10">
+      <div class="card-body table-bordered  border-0 col-sm-8 ">
+        <form #ExtSys="ngForm"  style="font-size:13px;">
+          <!-- <h3>{{responseError}}</h3> -->
+
+          <div>
+            <div class="row">
+              <div>
+                <div class="form-group" style="text-align: center;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="serif" for="extSysCode">External System Code</label>&nbsp;
+ 
+                  <mat-form-field>
+
+                    <input type="text" id="extSysCode" class=" mat-field-flex text-md-center" [(ngModel)]="modifyRoleObject.extSysCode" name="extSysCode"
+                      matInput [disabled]=is_edit1>
+
+                  </mat-form-field>
+
+                </div>
+                <div class="form-group">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="serif" for="extSysName">External system name</label>
+                  &nbsp;
+                  <mat-form-field>
+                    <!-- <mat-label>External System Name</mat-label> -->
+                    <input type="text" id="extSysName" class=" mat-field-flex text-md-center" [(ngModel)]="modifyRoleObject.extSysName" name="extSysName"
+                      matInput [disabled]=is_edit1>
+
+                  </mat-form-field>
+
+                </div>
+
+                <div class="form-group">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="serif" for="processCode">Process code</label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <mat-form-field>
+                    <!-- <mat-label>Process code</mat-label> -->
+                    <input type="text" id="processCode" class=" mat-field-flex text-md-center" [(ngModel)]="modifyRoleObject.processCode" name="processCode"
+                      [disabled]=is_edit matInput>
+                  </mat-form-field>
+
+                </div>
+
+              </div>
+
+
+
+            </div>
+
+            <div style="text-align: center;">
+            <button type="submit" class="btn-md text-white save-btn hvr-push btn" 
+              *ngIf="editFunction" (click)="modifyExt(ExtSys.value)">Update</button>&nbsp;
+            <!-- <button type="reset" class="btn-md text-white" style="background: #A93226;">Reset</button>&nbsp; -->
+            <button class="btn-md hvr-push btn text-white exit-btn" 
+              [routerLink]="'/externalsystemlist'">Exit</button>&nbsp;
+            <button type="text" id="5" class="btn-md hvr-push btn text-white edit-btn" 
+              (click)="changeStatus()" *ngIf="poovar">Edit</button>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+        <!-- audit log-->
+        <div fxLayout="row">
+          <div fxFlex></div>
+          <div fxFlex="95">
+             <mat-card>
+              <mat-card-title>
+        
+              </mat-card-title>
+              <mat-card-content>
+                <div fxLayout="row">
+        
+                  <table id="audittrail">
+                    <tr>
+                      <th>Created By:</th>
+                      <td>
+                          <mat-chip>{{modifyRoleObject.creatorId}}</mat-chip>
+                      </td>
+                      <th>Creation Date:</th>
+                      <td>
+                          <mat-chip>{{modifyRoleObject.creatorDtStamp | date:'short'}}</mat-chip>
+                      </td>                     
+                    </tr>
+                    <tr>
+                      <th>Verified Id:</th>
+                      <td>
+                          <mat-chip>{{modifyRoleObject.verifierId}}</mat-chip>
+                      </td>
+                      <th>Verified Date:</th>
+                      <td>
+                          <mat-chip>{{modifyRoleObject.verifierDtStamp | date:'short'}}</mat-chip>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Modification No:</th>
+                      <td>
+                          <mat-chip>{{modifyRoleObject.versionNo}}</mat-chip>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </mat-card-content>
+            </mat-card> 
+          </div>
+          <div fxFlex></div>
+        </div>
+      
+        <!--end of audit log-->
+   
+</div>
+
+<!-- <form #ExtSys="ngForm" (ngSubmit)="modifyExt(ExtSys.value)">
+
+
+    <div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="extSysCode">External System Code</label>
+                <input type="text" id="extSysCode" [(ngModel)]="modifyRoleObject.extSysCode"
+                  style="float: right; " name="extSysCode" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="extSysName">External system name</label>
+                <input type="text" id="extSysName" [(ngModel)]="modifyRoleObject.extSysName"
+                  style="float: right; " name="extSysName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="moduleCode">Module code</label>
+                <input type="text" id="moduleCode" [(ngModel)]="modifyRoleObject.moduleCode"
+                  style="float: right; " name="moduleCode" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="serviceCode">Service code</label>
+                <input type="text" id="serviceCode" [(ngModel)]="modifyRoleObject.serviceCode"
+                  style="float: right; " name="serviceCode" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="processCode">Process code</label>
+                <input type="text" id="processCode" [(ngModel)]="modifyRoleObject.processCode"
+                  style="float: right;" name="processCode" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" name="destination" [(ngModel)]="modifyRoleObject.destination"
+                  style="float: right; " [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="action">Action</label>
+                <input type="text" id="action" name="action" [(ngModel)]="modifyRoleObject.action"
+                  style="float: right; " [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="extSysTag">External system tag</label>
+                <input type="text" id="extSysTag" name="extSysTag" [(ngModel)]="modifyRoleObject.extSysTag"
+                  style="float: right; " [disabled]=is_edit>
+              </div>
+              <div class="form-group " >
+                <label for="isExtSysNode">Is external system node ?</label>
+            
+                <input style="width: 40px;" type="checkbox" id="isExtSysNode" name="isExtSysNode"
+                  [(ngModel)]="modifyRoleObject.isExtSysNode" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="moduleTag">Module tag</label>
+                <input type="text" id="moduleTag" name="moduleTag" [(ngModel)]="modifyRoleObject.moduleTag"
+                  style="float: right; " [disabled]=is_edit>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group ">
+                <label class="form-check-label" for="isModuleNode">Is module node ?</label>
+              
+                <input type="checkbox" style="width: 70px;" class="form-check-input" id="isModuleNode" name="isModuleNode"
+                  [(ngModel)]="modifyRoleObject.isModuleNode" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="serviceTag">Service tag</label>
+                <input type="text" id="serviceTag" name="serviceTag" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.serviceTag" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="processTag">Process tag</label>
+                <input type="text" id="processTag" name="processTag" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.processTag" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="isProcessNode">Is process node?</label>
+                
+                <input type="checkbox" style="width: 20px;" [(ngModel)]="modifyRoleObject.isProcessNode" id="isProcessNode"
+                  name="isProcessNode" [disabled]=is_edit>
+
+              </div>
+              <div class="form-group">
+                <label for="destinationTag">Destination tag</label>
+                <input type="text"  id="destinationTag" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.destinationTag" name="destinationTag" [disabled]=is_edit>
+              </div>
+              <div class="form-group ">
+                <label class="form-check-label" for="isDestNode">Is destination node?</label>
+               
+                <input type="checkbox" style="width: 20px;" id="isDestNode" 
+                  [(ngModel)]="modifyRoleObject.isDestNode" name="isDestNode" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="messageType">Message type</label>
+                <input type="text" id="messageType" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.messageType" name="messageType" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="requestTag">Request tag</label>
+                <input type="text" id="requestTag" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.requestTag" name="requestTag" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="msgDuplication">Message duplication</label>
+                <input type="text" id="msgDuplication" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.msgDuplication" name="msgDuplication" [disabled]=is_edit>
+              </div>
+            
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="formatType">Format type</label>
+                <input type="text" id="formatType" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.formatType" name="formatType" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="reqSchemaName">Request schema name</label>
+                <input type="text" id="reqSchemaName" style="float: right; " [(ngModel)]="modifyRoleObject.reqSchemaName"
+                  name="reqSchemaName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="respSchemaName">Resp schema name</label>
+                <input type="text" id="respSchemaName" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.respSchemaName" name="respSchemaName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="errSchemaName">Error schema name</label>
+                <input type="text" id="errSchemaName" style="float: right; " [(ngModel)]="modifyRoleObject.errSchemaName"
+                  name="errSchemaName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="reqQueueName">Request queue name</label>
+                <input type="text" id="reqQueueName" style="float: right;"
+                  [(ngModel)]="modifyRoleObject.reqQueueName" name="reqQueueName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="respQueueName">Response queue name</label>
+                <input type="text" id="respQueueName" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.respQueueName" name="respQueueName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="errQueueName">Error queue name</label>
+                <input type="text" id="errQueueName" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.errQueueName" name="errQueueName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="reqDirectoryName">Request directory name</label>
+                <input type="text" id="reqDirectoryName" style="float: right;"
+                  [(ngModel)]="modifyRoleObject.reqDirectoryName" name="reqDirectoryName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="respDirectoryName">Response directory name</label>
+                <input type="text" id="respDirectoryName" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.respDirectoryName" name="respDirectoryName" [disabled]=is_edit>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="errDirectoryName">Error directory name</label>
+                <input type="text" id="errDirectoryName" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.errDirectoryName" name="errDirectoryName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="reqXsltName">Request xslt name</label>
+                <input type="text" id="reqXsltName" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.reqXsltName" name="reqXsltName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="respXsltName">Response xslt name</label>
+                <input type="text" id="respXsltName" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.respXsltName" name="respXsltName" [disabled]=is_edit>
+              </div>
+              <div class="form-group">
+                <label for="errXsltName">Error xslt name</label>
+                <input type="text" id="errXsltName" name="errXsltName" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.errXsltName" [disabled]=is_edit>
+              </div>
+
+              <div class="form-group">
+                <label for="latestAmendNo">Latest amend number</label>
+                <input type="text" id="latestAmendNo" name="latestAmendNo" style="float: right; "
+                  [(ngModel)]="modifyRoleObject.latestAmendNo" [disabled]=is_edit>
+              </div>
+
+              <div class="form-group">
+                <label for="xsdFile">Xsd file</label>
+                <input type="file" id="xsdFile" name="xsdFile" [(ngModel)]="modifyRoleObject.xsdFile">
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <button type="submit" class="btn-md text-white" style="background: #229954;" *ngIf="editFunction">Update</button>
+    <button class="btn-md text-white"  style="background: #1A5276;" [routerLink]="'/externalsystemlist'">Exit</button>
+    <button type="text" id="5" class="btn-md text-white" style="background:  #424949   ;" (click)="changeStatus()">Edit</button>
+
+
+  </form> -->

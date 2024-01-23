@@ -1,0 +1,229 @@
+<form #modifyRoleObjects="ngForm">
+  <div class="header">
+    <h6 class="headOne"></h6>
+    <h6 class="headAlt"></h6>
+     <h4 class="headTwo"> Update Role</h4>
+  </div>
+  
+  <div class="line"></div>
+  <div></div>
+  <div fxLayout="row">
+    <span fxFlex></span>
+    <div fxFlex="38">
+      <mat-card>
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+          <div fxFlex="100">
+            <div class="pb-1">
+              <mat-form-field class="full-width ">
+                <label class="font-weight-bold">Role Name</label>
+                <input class="mat-field-flex" matInput type="text" required [(ngModel)]="modifyRoleObject.roleName" name="roleName" readonly>
+              </mat-form-field>
+            </div>
+
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <label class="font-weight-bold">Role Description</label>
+                <input (keyup)="keyPress($event)" class="mat-field-flex" matInput type="text" [(ngModel)]="modifyRoleObject.roleDesc" name="roleDesc" [disabled]=is_edit>
+              </mat-form-field>
+            </div>
+
+            <div class="pb-1">
+              <button id='defaultele' (click)="defaulttoggle()"></button>
+              <mat-button-toggle-group name="fontStyle" [value]="selectedtab">
+                <mat-button-toggle   *ngFor="let col of newRolestabsdata.tabslist;let i = index" [value]=col.tabname (click)="rolestype(i)">{{col.tabname}}</mat-button-toggle>
+              </mat-button-toggle-group> 
+            <!--  <mat-button-toggle-group name="fontStyle" value="admin">
+                <mat-button-toggle  value="admin" (click)="changeAdmin()">Admin</mat-button-toggle>
+                <mat-button-toggle  value="fms" (click)="changeFms()">FMS</mat-button-toggle>
+                <mat-button-toggle  value="monitor" (click)="changeFmsMonitoring()">FMS Monitoring</mat-button-toggle>
+              </mat-button-toggle-group> -->
+            </div>
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+    <span fxFlex></span>
+  </div>
+
+
+  <div class="margin-333">
+
+      <mat-toolbar>
+          <div class='btn-group' fxLayout="row" fxFlex="1 1 0%" fxLayoutAlign="center center" fxLayoutGap="5px">
+
+              <button type="submit" color="primary" class='btn save-btn' (click)="modifyRoles()"  *ngIf="editFunction"  [disabled]="enablesave" style="background-color: #28a745;">Save</button>
+              <button type="text" color="warn" class='btn exit-btn'  routerLink="/roles/summary" style="float:right; background-color: red;" >Exit</button>
+              <button type="text" class="9 btn hvr-push new-btn text-white"  routerLink="/roles/create"
+                *ngIf="roleCodes.new && editFunction2">{{roleCodes.new.labelDescription}}</button>
+              <button type="text" id="5" color="primary"   class="edit-btn btn"  (click)="changeStatus()"
+                *ngIf="roleCodes.edit && editFunction2" >{{roleCodes.edit.labelDescription}}</button>
+                <button type="button" color="warn" class="delete-btn btn"   (click)="deleteRole(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.delete && modifyRoleObject.firstTimeAuth=='NO' && editFunction2" style="background-color: #e83e8c;">{{roleCodes.delete.labelDescription}}</button>
+              <!-- <button type="text" id="2" color="primary" class="open-btn btn"   (click)="closelockRecord(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.close  && modifyRoleObject.recordStatus == 'OPEN' && editFunction2 && modifyRoleObject.authStatus=='A'" style="background-color: #20c997;">{{roleCodes.close.labelDescription}}</button> -->
+                <!-- <button type="text" id="2" color="primary" class="open-btn btn"   (click)="closelockRecord(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.close  && modifyRoleObject.recordStatus == 'OPEN' && modifyRoleObject.authStatus=='AUTHORISED'|| modifyRoleObject.authStatus=='A' || modifyRoleObject.recordStatus == 'O' && editFunction2 && modifyRoleObject.authStatus=='AUTHORISED'|| modifyRoleObject.authStatus=='A'" style="background-color: #20c997;">{{roleCodes.close.labelDescription}}</button>
+                <button type="text" id="4" color="primary"  mat-raised-button (click)="reopenRecord(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.reopen  &&  modifyRoleObject.recordStatus == 'CLOSE' || modifyRoleObject.recordStatus == 'C' && editFunction2 && modifyRoleObject.authStatus=='AUTHORISED' || editFunction2 && modifyRoleObject.authStatus=='A'">{{roleCodes.reopen.labelDescription}}</button> -->
+              
+                <!-- <button type="text" id="4" color="primary" class="close-btn btn"   (click)="reopenRecord(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.reopen  &&  modifyRoleObject.recordStatus == 'CLOSE'  ||  modifyRoleObject.recordStatus == 'C' && modifyRoleObject.authStatus=='UNAUTHORISED' || modifyRoleObject.authStatus=='U' &&  editFunction2 && button">{{roleCodes.reopen.labelDescription}}</button> -->
+               <!-- ----------------------------21-10-20------------------------------------------------------ -->
+                <!-- <button type="text" id="2" color="primary" class="open-btn btn"   (click)="closelockRecord(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.close && modifyRoleObject.recordStatus=='OPEN' && modifyRoleObject.authStatus=='AUTHORISED'|| modifyRoleObject.authStatus=='U'|| modifyRoleObject.recordStatus=='O' && modifyRoleObject.authStatus=='AUTHORISED'|| modifyRoleObject.authStatus=='U' && editFunction2" style="background-color: #20c997;">{{roleCodes.close.labelDescription}}</button>
+               
+                <button type="text" id="4" color="primary" class="close-btn btn"   (click)="reopenRecord(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.reopen  &&  modifyRoleObject.recordStatus == 'CLOSE'  ||  modifyRoleObject.recordStatus == 'C' && modifyRoleObject.authStatus=='AUTHORISED' || modifyRoleObject.authStatus=='A' &&  editFunction2 ">{{roleCodes.reopen.labelDescription}}</button> 
+                
+
+                <button type="text" id="7" color="primary"  class="auth-btn btn"  (click)="verifyRole(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.auth  && modifyRoleObject.authStatus=='UNAUTHORISED' || modifyRoleObject.authStatus=='U' && editFunction2" style="background-color: green;">{{roleCodes.auth.labelDescription}}</button> -->
+              <!-- --------------------------------21-10-20----------------------------------------------------- -->
+        
+              <!--  fmos refer-->
+              <button type="text" id="2" class="open-btn btn" color="primary"   mat-raised-button (click)="closelockRecord(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.close  && modifyRoleObject.authStatus=='A'  &&  modifyRoleObject.recordStatus == 'O' && editFunction2  ">{{roleCodes.close.labelDescription}}</button>
+              <button type="text" id="4" class="close-btn btn" color="primary"   mat-raised-button (click)="reopenRecord(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.reopen && enableopen && editFunction2 ">{{roleCodes.reopen.labelDescription}}</button>
+              <button type="text" id="7" class="auth-btn btn" color="primary"   mat-raised-button (click)="verifyRole(modifyRoleObject.roleName)"
+                *ngIf="roleCodes.auth  && modifyRoleObject.authStatus=='UNAUTHORISED'||modifyRoleObject.authStatus=='U' && editFunction2">{{roleCodes.auth.labelDescription}}</button>
+        <!-- fmos refer -->
+            </div>
+      </mat-toolbar>
+
+    <h4>{{responseError}}</h4>
+ 
+    <!-- roles table-->
+       <!--roles tab-->
+       <!--end of roles tab-->
+         <div class="margin-333">
+       <mat-table  [dataSource]="datasource.list" class='dyntable bxshdw'>
+        <ng-container [matColumnDef]="column" *ngFor="let column of displayedcolumns;let i = index;"> 
+            <span *ngIf="i === 1">
+              <mat-header-cell *matHeaderCellDef class='mathead'>
+                <mat-checkbox (change)="$event ? masterToggle(i) : null;enablebuttonevent()"
+                              [checked]="selection.hasValue(i) && isAllSelected(i)"
+                              [indeterminate]="selection.hasValue(i) && !isAllSelected(i)"
+                              [aria-label]="checkboxLabel(i)" [disabled]=is_edit>Select All
+                </mat-checkbox> 
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row;let matIndex = index;"> 
+                <mat-checkbox (click)="$event.stopPropagation(i)" id='checkbox_{{matIndex}}'
+                              (change)="$event ? selection.toggle(row, i) : null;selectrow($event, matIndex, i);enablebuttonevent()"
+                              [checked]="selection.isSelected(row, i)"
+                              [aria-label]="checkboxLabel(row, i)" [disabled]=is_edit>
+                </mat-checkbox>
+              </mat-cell>
+            </span>
+            <span *ngIf="i !== 1">
+              <mat-header-cell  *matHeaderCellDef>
+              {{column}}
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element;let rIndex = index;">
+                <mat-checkbox *ngIf="element[column] == '0' || element[column] == '1'"  [checked]="checkedvalue(checkedlist[rIndex][i].value, rIndex, i)"  (change)="onChange($event, rIndex, i, element[column]);enablebuttonevent()" name="element[column]" [disabled]=is_edit></mat-checkbox> 
+                <span  *ngIf="element[column] != '0' && element[column] != '1' ">{{element[column]}} </span>
+              </mat-cell>
+            </span>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedcolumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns:displayedcolumns;"></mat-row> 
+      </mat-table>
+         </div>
+  </div>
+
+ <!-- <div class="margin-333 pad20">
+      
+      <table class="default-table default-bg mat-elevation-z1 bxshdw" style="width: 100%;background-color: white;">
+
+        <tbody>
+          <tr>
+
+            <td>
+              <p>Maker : <span>{{modifyRoleObject.maker}}</span></p>
+            </td>
+            <td>
+              <p>Checker : <span>{{modifyRoleObject.verifierId}}</span></p>
+            </td>
+            <td>
+              <p>Auth Status : <span>{{modifyRoleObject.authStatus}}</span></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Maker Time Stamp : <span>{{modifyRoleObject.makerDtStamp | date: 'M/d/yy, h:mm a'}}</span></p>
+            </td>
+            <td>
+              <p>Checker Time Stamp : <span>{{modifyRoleObject.checkerDtStamp | date: 'M/d/yy, h:mm a'}}</span></p>
+            </td>
+            <td>
+              <p> First Time Auth : <span>{{modifyRoleObject.firstTimeAuth}}</span></p>
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              <p> Record Status: <span>{{modifyRoleObject.recordStatus}}</span></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div> -->
+   <!-- audit log-->
+   <div fxLayout="row">
+    <div fxFlex></div>
+    <div fxFlex="95" style="margin-top:30px;">
+       <mat-card>
+        <mat-card-title>
+  
+        </mat-card-title>
+        <mat-card-content>
+          <div fxLayout="row">
+  
+            <table id="audittrail">
+              <tr>
+                <th>Created By:</th>
+                <td>
+                    <mat-chip>{{modifyRoleObject.maker}}</mat-chip>
+                </td>
+<th>Creation Date:</th>
+                <td>
+                    <mat-chip>{{modifyRoleObject.makerDtStamp | date: 'M/d/yy, h:mm a'}}</mat-chip>
+                </td>
+ <th>AuthStatus:</th>
+                <td>
+                    <mat-chip>{{modifyRoleObject.authStatus}}</mat-chip>
+                </td>
+                        <!--   <th>First Time Auth:</th>
+                <td>
+                    <mat-chip>{{modifyRoleObject.firstTimeAuth}}</mat-chip>
+                </td>    -->       
+              </tr>
+              <tr>
+<th>Verified Id:</th>
+                <td>
+                    <mat-chip>{{modifyRoleObject.checkerId}}</mat-chip>
+                </td> 
+                <th>Verified Date:</th>
+                <td>
+                    <mat-chip>{{modifyRoleObject.checkerDtStamp | date: 'M/d/yy, h:mm a'}}</mat-chip>
+                </td>
+              
+                <th>Record Status:</th>
+                <td>
+                    <mat-chip>{{modifyRoleObject.recordStatus}}</mat-chip>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card> 
+    </div>
+    <div fxFlex></div>
+  </div>
+
+  <!--end of audit log-->
+
+</form>

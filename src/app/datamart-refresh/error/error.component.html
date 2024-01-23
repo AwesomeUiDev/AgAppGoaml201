@@ -1,0 +1,77 @@
+
+<div>
+  <div class="header">
+    <h6 class="headOne" >
+     {{response}}
+    </h6>
+    <h6 class="headAlt">
+     {{validationResponse}}
+     <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+     </h6>
+    <h4 class="headTwo">
+      Exceptions
+    </h4>
+  </div>
+  <div class="line"></div>
+  <form (ngSubmit)="fetchDatamartRefreshLog(exec_date.value,process.value)">
+    <table align="center" cellpadding="8" cellspacing="8">
+      <tr>
+        <th>Process</th>
+        <th>Execution Date</th>
+      </tr>
+      <tr>
+        <td>
+          <select name="process" #process ngModel>
+            <option value="">Select</option>
+            <option value="STG">Staging</option>
+            <option value="MAS">Master</option>
+          </select>
+        </td>
+        <td>
+          <input type="date" name="exec_date" #exec_date ngModel>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="submit" class="hvr-push btn btn-success">Search</button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="reset" class="hvr-push btn btn-danger" (click)="reset()">Reset</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <table align="center">
+      <tr>
+        <td>{{response}}</td>
+      </tr>
+    </table>
+    <br>
+    <table align="center" cellpadding="8" cellspacing="5" class="TableColor">
+      <tr *ngIf="log">
+        <!-- <th >Serial</th> -->
+        <th>Execution Date</th>
+        <!-- <th>Type</th> -->
+        <!-- <th>Process</th> -->
+        <th>Package Name</th>
+        <th>Exception Desc</th>
+        <th>Timestamp</th>
+        <!-- <th>Stage</th> -->
+      </tr>
+      <tr *ngFor="let logs of log">
+        <!-- <td>{{logs.serial}}</td> -->
+        <td>{{logs.exec_date | date:formatsDateTest[0]}}</td>
+        <!-- <td>{{logs.type}}</td> -->
+        <!-- <td>{{logs.process}}</td> -->
+        <td>{{logs.package_name}}</td>
+        <td>{{logs.exception_desc}}</td>
+        <td>{{logs.log_timestamp | date: formatDate}}</td>
+        <!-- <td>{{logs.stage}}</td> -->
+      </tr>
+    </table>
+  </form>
+  <br>
+  
+</div>

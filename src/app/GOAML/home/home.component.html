@@ -1,0 +1,113 @@
+<!-- <div class="card bg-transparent">
+  <div class="card-header bg-transparent">
+    <div class="clearfix media">
+      <div class="float-left  media-body col-1 text-right" id="#lefttop">
+        <img src="assets/img/DTBLogo.png" alt="" srcset="">
+      </div>
+      <div class="float-sm-right  media-body text-sm-right" id="#righttop">
+        <p class="text-black font-weight-bold"> Logged in as: <small class=" font-weight-bold"
+            style="font-size: 20px;color:  #A93226;">{{userId}}</small></p>
+        <a (click)="logout()"><button class="btn-md text-white" style="background-color: #17202A">Log Out</button></a>
+      </div>
+    </div>
+  </div>
+
+
+</div> -->
+
+
+<!-- <nav class="navbar navbar-expand" style="background-color: #A93226;"> -->
+
+  <!-- Links -->
+  <!-- *ngIf="role=='U'" 1-->
+  <!-- <ul class="navbar-nav">
+      <li class="nav-item" >
+          <a class="nav-link" [routerLink]="'/dataext'">Data Extraction</a>
+        </li> -->
+        <!-- *ngIf="role=='U'" 1-->
+    <!-- <li class="nav-item" >
+      <a class="nav-link" [routerLink]="'/generateXml'">Generate XML</a>
+    </li> -->
+    <!-- *ngIf="role=='V'" 1-->
+    <!-- <li class="nav-item" >
+      <a class="nav-link" [routerLink]="'/authorizeXml'">Authorize XML</a>
+    </li> -->
+
+  <!-- *ngIf="role=='U' || role=='V'" 1 -->
+    <!-- <li class="nav-item" >
+      <a class="nav-link" [routerLink]="'/message'">({{countForMessage}})
+        Message</a>
+    </li> -->
+   
+   <!-- *ngIf="role=='I'" 1 -->
+    <!-- <li class="nav-item dropdown" >
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        User Maintenance
+      </a>
+      <div class="dropdown-menu">
+        <a class="nav-link" [routerLink]="'/user'">Register User</a>
+        <a class="nav-link" [routerLink]="'/forgetpassword'">Change User Password</a>
+      </div>
+    </li> -->
+<!-- *ngIf="role=='I'" 1 -->
+    <!-- <li class="nav-item dropdown" >
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Admin
+      </a>
+      <div class="dropdown-menu">
+        <a class="nav-link" [routerLink]="'/systemConfig'">System Configuration</a>
+        <a class="nav-link" [routerLink]="'/reportingMaintenance'">Reporting Maintenance</a>
+        <a class="nav-link" [routerLink]="'/errorstack'">Error Monitoring</a>
+      </div>
+    </li> -->
+  
+    <!-- <li class="nav-item dropdown"  *ngIf="role=='A'">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Excel
+      </a>
+      <div class="dropdown-menu" >
+        <a class="nav-link" [routerLink]="'/excelMapping'" *ngIf="role=='A'">Excel Mapping</a>
+    
+        <a class="nav-link" [routerLink]="'/excelUploading'" >Excel Upload</a>
+      </div>
+    </li> -->
+    <!-- *ngIf="role=='I'" 1-->
+    <!-- <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        MTS Maintenance
+      </a>
+      <div class="dropdown-menu">
+        
+          <a class="nav-link" [routerLink]="'/externalsystemlist'">External System Maintenance</a>
+        <a class="nav-link" [routerLink]="'/excelExtSysSummary'">External System Summary</a>
+        <a class="nav-link" [routerLink]="'/excelMapping'">Excel Mapping</a>
+      </div>
+    </li> -->
+    <!-- *ngIf="role=='U'" 1-->
+    <!-- <li class="nav-item dropdown"  >
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          MTS
+        </a>
+        <div class="dropdown-menu">
+            <a class="nav-link" [routerLink]="'/excelUploading'">MTS Upload</a>
+          <a class="nav-link" [routerLink]="'/excelsummary'">Mts Upload Summary</a>
+        </div>
+      </li>
+   -->
+   <!-- *ngIf="role=='U'" 1 -->
+    <!-- <li class="nav-item"  >
+        <a class="nav-link" [routerLink]="'/str'">STR</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link" [routerLink]="'/userforgotpassword'">
+          Reset Password</a>
+      </li>
+  </ul>
+
+</nav> -->
+
+
+
+<router-outlet>
+    <app-loader></app-loader>
+</router-outlet>

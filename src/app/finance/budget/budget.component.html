@@ -1,0 +1,48 @@
+
+<div>
+    <div class="header">
+        <h6 class="headOne" >
+         {{responseMsg}}
+        </h6>
+        <h6 class="headAlt">
+         {{responseError}}
+         <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+         </h6>
+        <h4 class="headTwo">
+            Budget
+        </h4>
+      </div>
+      <div class="line"></div>
+  <form>
+    <table align="center" cellpadding="8" cellspacing="8">
+      <tr>
+        <td><b>Execution Date</b></td>
+        <td>
+          <input type="date" name="">
+        </td>
+      </tr>
+      <tr>
+        <td><b>Report name</b></td>
+        <td>
+          <select name="">
+            <option disabled>Select</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="btn-effcts">
+            <button type="submit" class="hvr-push btn btn-success">Upload</button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="reset" class="hvr-push btn btn-danger">Cancel</button>
+          </div>
+        </td>
+        <br>
+        <br>
+      </tr>
+    </table>
+  </form>
+</div>

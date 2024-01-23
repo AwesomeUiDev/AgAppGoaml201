@@ -1,0 +1,205 @@
+
+<div>
+  <div class="header">
+    <h6 class="headOne" >
+     {{downloadMsg}}
+    </h6>
+    <h6 class="headAlt">
+     {{validationResponse}}
+     <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+     </h6>
+    <h4 class="headTwo">
+      Fetching
+    </h4>
+  </div>
+  <div class="line"></div>
+  <form  (ngSubmit)="getFields(d_mis_date.value)" >
+    <table align="center"  class="bxshdwborder bxshdw" cellpadding="8" cellspacing="8" width="400px"  >
+      <tr >
+        <td class="serif">MIS Date</td>
+        <td>
+          <input class="serif" type="date" name="d_mis_date" ngModel #d_mis_date required="required"/>
+        </td>
+      </tr>
+      <!-- <tr >
+        <td ><b>Fields</b></td>
+
+        <td >
+        <ng-multiselect-dropdown
+        
+  [placeholder]="'Select'"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  [settings]="dropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+  (onDeSelect)="onItemDeSelect($event)"
+ [ngModelOptions]="{standalone: true}"
+>
+
+</ng-multiselect-dropdown></td>
+      </tr>  -->
+     <!-- <tr>
+        <td>
+          <div class="btn-effcts">
+            <button type="submit" class="hvr-push btn btn-success" id="show">Apply</button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="reset" class="hvr-push btn btn-danger" (click)="reset()" id="hide">Reset</button>
+          </div>
+        </td>
+      </tr>  -->
+      <tr >
+        <td class="text-center align-middle" style="text-align: center;background-color:white;">
+          <div  class="btn-group" style="margin-left:65%;">
+            <button type="submit" class="hvr-push btn btn-success apply-btn" id="show">Apply</button> 
+            <button type="reset" class="hvr-push btn btn-danger reset-btn" (click)="reset()" id="hide">Reset</button>
+          </div>
+        </td>
+      </tr> 
+    </table>
+    <br>
+
+  
+ <br>
+ 
+ 
+  <br>
+  <!-- <br|async>{{fieldArray}} -->
+
+  <table align="center" class="table TableColor bordebxshdwr bxshdw" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="50" id="DataTable" *ngIf="data">
+
+    <thead>
+        <tr>
+            <td colspan="4">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100,250]"></mfBootstrapPaginator>
+                
+            </td>
+        </tr>
+  <tr *ngIf="data">
+    
+    <th style="width: 20%"> <mfDefaultSorter by="d_mis_date">Mis Date</mfDefaultSorter></th>
+    <th style="width: 20%"><mfDefaultSorter by="acc_number">Account No</mfDefaultSorter></th>
+    <th style="width: 20%"><mfDefaultSorter by="customer_name1">Customer Name</mfDefaultSorter></th>
+    <th style="width: 20%"><mfDefaultSorter by="liab_number">Liab No</mfDefaultSorter></th>
+    <th style="width: 20%"><mfDefaultSorter by="customer_number">Customer No</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Credit Class') > -1"> <mfDefaultSorter by="credit_class">Credit Class</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Econ Sect') > -1"><mfDefaultSorter by="econ_sect">Econ Sect</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Facility') > -1"><mfDefaultSorter by="facility">Facility</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Branch Code') > -1"><mfDefaultSorter by="branch_code">Branch Code</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Cod Inst Id') > -1"><mfDefaultSorter by="cod_inst_id">Cod Inst Id</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Today') > -1"><mfDefaultSorter by="today">Today</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Alt Acc No') > -1"><mfDefaultSorter by="alt_acc_no">Alt Acc No</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Acc Type') > -1"><mfDefaultSorter by="acc_type">Acc Type</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Country') > -1"><mfDefaultSorter by="country">Country</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('System Class') > -1"><mfDefaultSorter by="system_class">System Class</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Mgt Status') > -1"><mfDefaultSorter by="mgt_status">Mgt Status</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Ccy') > -1"><mfDefaultSorter by="ccy">Ccy</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Product') > -1"><mfDefaultSorter by="product">Product</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Amount Disbursed') > -1"><mfDefaultSorter by="amount_disbursed">Amount Disbursed</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Principal Gl Code') > -1"><mfDefaultSorter by="principal_gl_code">Principal Gl Code</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Main Int Gl Code') > -1"><mfDefaultSorter by="main_int_gl_code">Main Int Gl Code</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Penal Int Gl Code') > -1"><mfDefaultSorter by="penal_int_gl_code">Penal Int Gl Code</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Penal Prin Gl Code') > -1"><mfDefaultSorter by="penal_prin_gl_code">Penal Prin Gl Code</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Due Days') > -1"><mfDefaultSorter by="due_days">Due Days</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Int Rate') > -1"><mfDefaultSorter by="int_rate">Int Rate</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Exch Rate') > -1"><mfDefaultSorter by="exch_rate">Exch Rate</mfDefaultSorter></th>
+    <th  *ngIf="selected.indexOf('Interest Overdue') > -1"><mfDefaultSorter by="interest_overdue">Interest Overdue</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Penal Interest Overdue') > -1"><mfDefaultSorter by="penal_interest_overdue">Penal Interest Overdue</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Penal Principal Overdue') > -1"><mfDefaultSorter by="penal_principal_overdue">Penal Principal Overdue</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Total Outstanding Accural') > -1"><mfDefaultSorter by="total_outstanding_accural">Total Outstanding Accural</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Principal Outs Bal') > -1"><mfDefaultSorter by="principal_outs_bal">Principal Outs Bal</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Principal Outs Bal Lcy') > -1"><mfDefaultSorter by="principal_outs_bal_lcy">Principal Outs Bal Lcy</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Total Out Lcy') > -1"><mfDefaultSorter by="total_out_lcy">Total Out Lcy</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Book Date') > -1"><mfDefaultSorter by="book_date">Book Date</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Value Date') > -1"><mfDefaultSorter by="value_date">Value Date</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Maturity Date') > -1"><mfDefaultSorter by="maturity_date">Maturity Date</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Security Details') > -1"><mfDefaultSorter by="security_details">Security Details</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Unit') > -1"><mfDefaultSorter by="unit">Unit</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Liab Status') > -1"><mfDefaultSorter by="liab_status">Liab Status</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Tflag') > -1"><mfDefaultSorter by="tflag">Tflag</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Customer Type') > -1"><mfDefaultSorter by="customer_type">Customer Type</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Debit Int Oddays') > -1"><mfDefaultSorter by="debit_int_oddays">Debit Int Oddays</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Msme') > -1"><mfDefaultSorter by="msme">Msme</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Prd2') > -1"><mfDefaultSorter by="prd2">Prd2</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Remarks') > -1"><mfDefaultSorter by="remarks">Remarks</mfDefaultSorter></th>
+    <!-- <th *ngIf="selected.indexOf('Prev Month') > -1"><mfDefaultSorter by="prev_month">Prev Month</mfDefaultSorter></th> -->
+   
+   
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let credits of mf.data">
+    <td >{{credits.d_mis_date}}</td>
+    <td >{{credits.acc_number}}</td>
+    <td >{{credits.customer_name1}}</td>
+    <td >{{credits.liab_number}}</td>
+    <td>{{credits.customer_number}}</td>
+    <td *ngIf="selected.indexOf('Credit Class') > -1">{{credits.credit_class}}</td>
+    <td *ngIf="selected.indexOf('Econ Sect') > -1">{{credits.econ_sect}}</td>
+    <td *ngIf="selected.indexOf('Facility') > -1">{{credits.facility}}</td>
+    <td *ngIf="selected.indexOf('Branch Code') > -1">{{credits.branch_code}}</td> 
+    <td *ngIf="selected.indexOf('Cod Inst Id') > -1">{{credits.cod_inst_id}}</td>     
+    <td *ngIf="selected.indexOf('Today') > -1">{{credits.today}}</td> 
+    <td *ngIf="selected.indexOf('Alt Acc No') > -1">{{credits.alt_acc_no}}</td> 
+    <td *ngIf="selected.indexOf('Acc Type') > -1">{{credits.acc_type}}</td> 
+    <td *ngIf="selected.indexOf('Country') > -1">{{credits.country}}</td> 
+    <td *ngIf="selected.indexOf('System Class') > -1">{{credits.system_class}}</td> 
+    <td *ngIf="selected.indexOf('Mgt Status') > -1">{{credits.mgt_status}}</td> 
+    <td *ngIf="selected.indexOf('Ccy') > -1">{{credits.ccy}}</td> 
+    <td *ngIf="selected.indexOf('Product') > -1">{{credits.product}}</td> 
+    <td *ngIf="selected.indexOf('Amount Disbursed') > -1">{{credits.amount_disbursed}}</td> 
+    <td *ngIf="selected.indexOf('Principal Gl Code') > -1">{{credits.principal_gl_code}}</td> 
+    <td *ngIf="selected.indexOf('Main Int Gl Code') > -1">{{credits.main_int_gl_code}}</td> 
+    <td *ngIf="selected.indexOf('Penal Int Gl Code') > -1">{{credits.penal_int_gl_code}}</td> 
+    <td *ngIf="selected.indexOf('Penal Prin Gl Code') > -1">{{credits.penal_prin_gl_code}}</td> 
+    <td *ngIf="selected.indexOf('Due Days') > -1">{{credits.due_days}}</td> 
+    <td *ngIf="selected.indexOf('Int Rate') > -1">{{credits.int_rate}}</td> 
+    <td *ngIf="selected.indexOf('Exch Rate') > -1">{{credits.exch_rate}}</td> 
+    <td *ngIf="selected.indexOf('Interest Overdue') > -1">{{credits.interest_overdue}}</td> 
+    <td *ngIf="selected.indexOf('Penal Interest Overdue') > -1">{{credits.penal_interest_overdue}}</td> 
+    <td *ngIf="selected.indexOf('Penal Principal Overdue') > -1">{{credits.penal_principal_overdue}}</td> 
+    <td *ngIf="selected.indexOf('Total Outstanding Accural') > -1">{{credits.total_outstanding_accural}}</td> 
+    <td *ngIf="selected.indexOf('Principal Outs Bal') > -1">{{credits.principal_outs_bal}}</td> 
+    <td *ngIf="selected.indexOf('Principal Outs Bal Lcy') > -1">{{credits.principal_outs_bal_lcy}}</td> 
+    <td *ngIf="selected.indexOf('Total Out Lcy') > -1">{{credits.total_out_lcy}}</td>
+    <td *ngIf="selected.indexOf('Book Date') > -1">{{credits.book_date}}</td>
+    <td *ngIf="selected.indexOf('Value Date') > -1">{{credits.value_date}}</td>
+    <td *ngIf="selected.indexOf('Maturity Date') > -1">{{credits.maturity_date}}</td>
+    <td *ngIf="selected.indexOf('Security Details') > -1">{{credits.security_details}}</td>
+    <td *ngIf="selected.indexOf('Unit') > -1">{{credits.unit}}</td>
+    <td *ngIf="selected.indexOf('Liab Status') > -1">{{credits.liab_status}}</td>
+    <td *ngIf="selected.indexOf('Tflag') > -1">{{credits.tflag}}</td>
+    <td *ngIf="selected.indexOf('Customer Type') > -1">{{credits.customer_type}}</td>
+    <td *ngIf="selected.indexOf('Debit Int Oddays') > -1">{{credits.debit_int_oddays}}</td>
+    <td *ngIf="selected.indexOf('Msme') > -1">{{credits.msme}}</td>
+    <td *ngIf="selected.indexOf('Prd2') > -1">{{credits.prd2}}</td>
+   <td *ngIf="selected.indexOf('Remarks') > -1">{{credits.remarks}}</td>
+   <!-- <td *ngIf="selected.indexOf('Prev Month') > -1">{{credits.prev_month}}</td> -->
+  </tr> 
+</tbody>
+<tfoot>
+    <tr>
+        <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100,250]"></mfBootstrapPaginator>
+            
+        </td>
+    </tr>
+  </tfoot>
+</table>
+
+
+  
+</form>
+  <table align="center" >
+    <tr>
+        
+<!-- <td> <button class="hvr-push" id="btnExport" style="display:none">Download</button></td> -->
+<td *ngIf="data"> <div class="btn-effcts"> <button (click)="exportAsExcelFile(data,'FctCreditBalance')" class="hrv-push btn btn-success download-btn">Download</button></div></td>
+</tr>
+</table>
+
+</div>
+

@@ -1,0 +1,274 @@
+<app-home></app-home>
+<div class="card bg-transparent border-0 ">
+  <div class="card bg-transparent border-0 media" id="auth">
+    <!-- <div class="card-header col-sm-6 text-md-center bg-transparent">
+      System Configuration
+    </div> -->
+    <!-- <h4 class="headTwo">
+      System Configuration
+    </h4> -->
+
+    <div class="header">
+      <h6 class="headOne" >
+       <!-- {{downloadMsg}} -->
+      </h6>
+      <h6 class="headAlt">
+       <!-- {{validationResponse}} -->
+       <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+       </h6>
+       <h4 class="headTwo">
+        System Configuration
+      </h4>
+    </div>
+    <div class="line"></div>
+    <!-- <div >
+      <p *ngIf="button3" style="color:red;margin-left: 20px;"> Updating System Configuration <b style="color:blue;">{{ this.configuration.rentityId}}</b> <b style="color:blue;">{{this.configuration.reportType}}</b>. </p>
+    </div> -->
+
+
+    <div class="card bg-transparent border-0 col-sm-12">
+      <div class="card-body table-bordered  border-0 col-sm-10 bxshdwborder bxshdw">
+        <form #myForm="ngForm">
+          <table align="center" class="tbl border-0">
+            <div class="card border-0 bg-transparent">
+              <tr class="border-0">
+                <td>
+                  <div class="form-group " [class.has-error]="submissionCode.invalid&&submissionCode.touched"
+                    [class.has-success]="submissionCode.valid">
+                    <label class="serif" for="submissionCode">Submission Code<span class='manfield'>*</span></label>
+
+                    <input type="text" required name="submissionCode" id="rentityId" class="form-control "
+                      [(ngModel)]="configuration.submissionCode" #submissionCode="ngModel" [readonly]="is_edit">
+                     
+                    <span class="alert alert-danger " *ngIf="submissionCode.touched&&submissionCode.invalid">
+                      submissionCode is required
+                    </span>
+                   <!-- <mat-hint >submissionCode should be single digit</mat-hint> -->
+                  </div>
+
+                </td>
+
+                <td>
+                  <div class="form-group " [class.has-error]="rentityId.invalid&&rentityId.touched"
+                    [class.has-success]="rentityId.valid">
+                    <label class="serif" class="serif" for="rentityId">Rentity ID<span class='manfield'>*</span></label>
+                    <input type="text" required name="rentityId" id="rentityId" class="form-control "
+                      [(ngModel)]="configuration.rentityId" #rentityId="ngModel" [readonly]="is_edit">
+                     
+                    <span class="alert alert-danger " *ngIf="rentityId.touched&&rentityId.invalid">
+                      RentityId is required
+                    </span>
+                   <!-- <mat-hint >RentityId should be single digit</mat-hint> -->
+                  </div>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <div class="form-group" [class.has-error]="reportType.invalid&&reportType.touched"
+                    [class.has-success]="reportType.valid">
+                  <label class="serif" for="reportType">Type Of Report<span class='manfield'>*</span></label>
+                  <input type="text" name="reporType" id="reporType" class="form-control" 
+                   [(ngModel)]="configuration.reportType" #reportType="ngModel" required [readonly]="is_edit">
+                   <span class="alert alert-danger" *ngIf="reportType.touched&&reportType.invalid">
+                      ReportType is required
+                    </span>
+                  </div>
+                  <!-- <select id="lctr" name="reportType" [(ngModel)]="configuration.reportType" #reportType="ngModel"> -->
+                  <!-- <option>--Select--</option> -->
+                  <!-- <option *ngFor="let report of list" value="{{report}}">{{report}}</option> -->
+                  <!-- <option value="str">{{report.reportType}}</option>
+                    <option value="ALCTR">{{report.reportType}}</option> -->
+                  <!-- </select> -->
+                </td>
+
+                <td>
+                  <div class="form-group" [class.has-error]="fileLocation.invalid&&fileLocation.touched"
+                    [class.has-success]="fileLocation.valid">
+                    <label  class="serif" for="fileLocation">File Location<span class='manfield'>*</span></label>
+                    <input type="text" name="fileLocation" required id="fileLocation" class="form-control"
+                      [(ngModel)]="configuration.fileLocation" #fileLocation="ngModel" [readonly]="is_edit">
+                    <span class="alert alert-danger" *ngIf="fileLocation.touched&&fileLocation.invalid">
+                      FileLocation is required
+                    </span>
+                  </div>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group" [class.has-error]="maximumTransaction.touched&&maximumTransaction.invalid"
+                    [class.has-success]="maximumTransaction.valid">
+                    <label class="serif" for="maximumTransaction">Maximum Transaction Per Report<span class='manfield'>*</span></label>
+                    <input type="number" name="maximumTransaction" required id="maximumTransaction" class="form-control"
+                      [(ngModel)]="configuration.maximumTransaction" #maximumTransaction="ngModel"
+                      [ngModelOptions]="{standalone: true}" [readonly]="is_edit">
+                    <span class="alert alert-danger" *ngIf="maximumTransaction.touched&&maximumTransaction.invalid" >
+                      MaximumTransaction is required
+                    </span>
+                  </div>
+
+                </td>
+
+                <td>
+                  <label class="serif" for="reportingFrequency">Reporting Frequency<span class='manfield'>*</span></label>
+                  <!-- <input type="text" name="reportingFrequency" id="reportingFrequency" class="form-control"> -->
+                  <select id="lctr" name="reportingFrequency" [(ngModel)]="configuration.reportingFrequency" #reportingFrequency="ngModel"
+                    class="custom-select form-control" [disabled]="is_edit">
+                    <!-- <option value="lctr">List Of Values</option> -->
+                    <option selected disabled>--Select--</option>
+                    <option value="1">Daily</option>
+                    <option value="8">Weekly </option>
+                    <option value="30">Monthly </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group" [class.has-error]="reportingCurrrency.invalid&&reportingCurrrency.touched"
+                    [class.has-success]="reportingCurrrency.valid">
+                    <label class="serif" for="reportingCurrrency">Reporting Currency<span class='manfield'>*</span></label>
+                    <input type="text" name="reportingCurrrency" required id="reportingCurrrency" class="form-control "
+                      [(ngModel)]="configuration.reportingCurrrency" #reportingCurrrency="ngModel" [readonly]="is_edit">
+                    <span class="alert alert-danger" *ngIf="reportingCurrrency.touched&&reportingCurrrency.invalid">
+                      ReportingCurrrency is required
+                    </span>
+
+                  </div>
+                </td>
+
+                <td>
+                  <div class="form-group" [class.has-error]="rentityBranch.invalid&&rentityBranch.touched"
+                    [class.has-success]="rentityBranch.valid">
+                    <label class="serif" for="rentityBranch">Rentity Branch<span class='manfield'>*</span></label>
+                    <input type="text" required name="rentityBranch" id="rentityBranch" class="form-control"
+                      [(ngModel)]="configuration.rentityBranch" #rentityBranch="ngModel" [readonly]="is_edit">
+                    <span class="alert alert-danger" *ngIf="rentityBranch.touched&&rentityBranch.invalid">
+                      RentityBranch is required
+                    </span>
+                  </div>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="form-group" [class.has-error]="reason.invalid&&reason.touched"
+                    [class.has-success]="reason.valid">
+                    <label class="serif" for="reason">Reason<span class='manfield'>*</span></label>
+                    <input type="text" required name="reason" id="reason" class="form-control "
+                      [(ngModel)]="configuration.reason" #reason="ngModel" [readonly]="is_edit">
+                    <span class="alert alert-danger" *ngIf="reason.touched&&reason.invalid">
+                      Reason is required
+                    </span>
+
+                  </div>
+                </td>
+
+                <td>
+                  <div class="form-group" [class.has-error]="action.invalid&&action.touched"
+                    [class.has-success]="action.valid">
+                    <label class="serif" for="action">Action<span class='manfield'>*</span></label>
+                    <input type="text" name="action" required id="action" class=" form-control"
+                      [(ngModel)]="configuration.action" #action="ngModel" [readonly]="is_edit">
+                    <span class="alert alert-danger" *ngIf="action.touched&&action.invalid">
+                      Action is required
+                    </span>
+                  </div>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group" [class.has-error]="threshouldAmount.invalid&&threshouldAmount.touched"
+                    [class.has-success]="threshouldAmount.valid">
+                    <label class="serif" for="threshouldAmount">Threshold Amount<span class='manfield'>*</span></label>
+                    <input type="number" required name="threshouldAmount" id="threshouldAmount" class="form-control "
+                      [(ngModel)]="configuration.threshouldAmount" #threshouldAmount="ngModel" [readonly]="is_edit">
+                    <span class="alert alert-danger" *ngIf="threshouldAmount.touched&&threshouldAmount.invalid">
+                      threshouldAmount is required
+                    </span>
+
+                  </div>
+                </td>
+              </tr>
+             
+              <tr>
+
+                <td>
+                  <!-- <div class="form-group" style="text-align: center">
+
+                    <button type="button" (click)="saveDataOFSystemConfigToDb()"
+                      class="hvr-push btn btn-success text-white" style="background: #229954;"> Save </button>&nbsp;&nbsp;
+                      <button class="hvr-push btn btn-danger text-white" type="reset" > Reset</button>
+                  </div> -->
+                  <!-- </td> -->
+                </td>
+              </tr>
+            </div>
+            <div class="form-group" style="text-align: center">
+
+              <button type="button" (click)="saveDataOFSystemConfigToDb()"
+                class="hvr-push btn btn-success text-white save-btn" *ngIf="!enablesummarybutton"> Submit </button>&nbsp;&nbsp;
+                <button class="hvr-push btn btn-danger text-white reset-btn" #resetSubmitbtn type="reset" > Reset</button>&nbsp;&nbsp;
+                <button class="hvr-push btn btn-danger text-white save-btn"  *ngIf="enablesummarybutton"  (click)="onUpdate()" > Save</button>&nbsp;&nbsp;&nbsp;
+                <button class="hvr-push btn text-white exit-btn"  color="accent" style="margin-left: -11px;  width: 77px;"  routerLink="/SystemconfigurationSummary">Exit</button>&nbsp;&nbsp;
+                <button type="text" id="5" color="primary"   class=" text-white edit-btn btn btnwdth"  (click)="changeStatus()"
+                *ngIf="enablesummarybutton">Edit</button>&nbsp;&nbsp; 
+                <!-- <button class="hvr-push btn btn-danger text-white" (click)="onClickOfSummary()" > Summary</button> -->
+            </div>
+          </table>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- audit log-->
+<div fxLayout="row">
+  <div fxFlex></div>
+  <div fxFlex="95">
+     <mat-card class="audit" *ngIf="enablesummarybutton">
+      <mat-card-title>
+
+      </mat-card-title>
+      <mat-card-content>
+        <div fxLayout="row" >
+
+          <table id="audittrail">
+            <tr>
+              <th>Created By:</th>
+              <td>
+               
+                  <mat-chip *ngIf=' formresponse && formresponse.creatorId'>{{formresponse.creatorId}}</mat-chip>
+                  <mat-chip *ngIf='!formresponse || !formresponse.creatorId'>-</mat-chip>
+              </td>
+              <th>Creation Date:</th>
+              <td>
+                  <mat-chip *ngIf='formresponse && formresponse.creatorDtStamp'>{{formresponse.creatorDtStamp | date:'short'}}</mat-chip>
+                  <mat-chip *ngIf='!formresponse || !formresponse.creatorDtStamp'>-</mat-chip>
+              </td>                     
+            </tr>
+            <tr>
+              <th>Modified By:</th>
+              <td>
+                  <mat-chip *ngIf='formresponse && formresponse.verifierId'>{{formresponse.verifierId}}</mat-chip>
+                  <mat-chip *ngIf='!formresponse || !formresponse.verifierId'>-</mat-chip>
+              </td>
+              <th>Modified Date:</th>
+              <td>
+                  <mat-chip *ngIf='formresponse && formresponse.verifierDtStamp'>{{formresponse.verifierDtStamp | date:'short'}}</mat-chip>
+                  <mat-chip *ngIf='!formresponse || !formresponse.verifierDtStamp'>-</mat-chip>
+              </td>                     
+            </tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card> 
+  </div>
+  <div fxFlex></div>
+</div>
+
+<!--end of audit log-->

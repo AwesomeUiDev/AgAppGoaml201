@@ -1,0 +1,221 @@
+<app-home></app-home>
+
+
+<div class="card bg-transparent border-0 col-sm-12">
+  <div class="card-body table-bordered  border-0 col-sm-10 bxshdwborder bxshdw ">
+
+    <form >
+      <mat-form-field class="align">&nbsp;&nbsp;
+        <label>External System</label>&nbsp;&nbsp;
+        <mat-select class="mat-field-flex" name="ext" #extSysName (selectionChange)="getProcess(extSysName.value)">
+          <mat-option *ngFor="let topping of extSysData1" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field >&nbsp;&nbsp;
+        <label>Process Code</label>&nbsp;&nbsp;
+        <mat-select class="mat-field-flex" #processCode>
+          <mat-option *ngFor="let topping of processName" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button  class="hvr-push btn btn-sucess submit-btn" mat-raised-button
+        (click)="getAllMapping(extSysName.value,processCode.value)">
+        Fetch
+      </button> &nbsp;
+      <button class="hvr-push btn btn-danger exit-btn text-white" mat-raised-button [routerLink]="'/excelMapping'" >Exit</button>
+    </form>
+
+    <mat-card *ngIf="formdata && addForm" style="margin-right: 5px; border: 1px solid #1B2631;" class="bg-transparent wdth-align">
+      <mat-card-title></mat-card-title>
+      <mat-card-content class="bg-transparent ">
+
+        <form [formGroup]="addForm">
+          <div fxLayout="row">
+            <div fxFlex="30">
+              <div class="pb-1" class="pr-1">
+                <mat-form-field class="full-width">
+                  <label>Data Starting Row</label>
+                  <input matInput value="0" [(ngModel)]="starting" name="startRow"
+                    [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+              <!-- </div>
+            </div>
+            <div fxFlex="25">
+              <div class="pb-1"> -->
+                <mat-checkbox [(ngModel)]="isChecked" name="isHeader" [ngModelOptions]="{standalone: true}">
+                  isHeaderPresent</mat-checkbox>
+
+              </div>
+            </div>
+
+            <div fxFlex="45"></div>
+          </div>
+          <table class="default-bg">
+            <div formArrayName="excelMapping">
+              <thead>
+                <tr>
+                  <!-- <th>Name</th>
+                    <th>Datatype </th>
+                    <th>Mandatory</th>
+                    <th>Header Name</th>
+                    <th>Date Format</th>
+                    <th>Mapping Column </th> -->
+                </tr>
+              </thead>
+              <!-- loop throught units -->
+
+              <div *ngFor="let item of addForm.controls.excelMapping.controls; let i=index">
+
+                <tbody>
+                  <div [formGroupName]="i">
+                    <tr>
+
+                      <td>
+                        <mat-form-field >
+                          <label>Name</label>
+                          <input matInput formControlName="columnnName">
+                          <!-- input field error -->
+                        </mat-form-field>
+                      </td>
+
+                      <td>
+
+                        <mat-form-field >
+                          <label>dataType</label>
+                          <!-- <input matInput formControlName="dataType"> -->
+                          <!-- (selectionChange)="checkTypeStatus(i)" -->
+                          <mat-select formControlName="dataType">
+                            <mat-option *ngFor="let item of dataTypes" [value]="item.type">{{item.type}}</mat-option>
+                          </mat-select>
+                          <!-- input field error -->
+
+                        </mat-form-field>
+                      </td>
+
+                      <td>
+                        <mat-checkbox formControlName="mandatory">isMandatory</mat-checkbox>
+                      </td>
+
+                      <td>
+                        <mat-form-field >
+                          <label>headerName</label>
+                          <input matInput formControlName="headerName">
+                          <!-- input field error -->
+                          <mat-error></mat-error>
+                        </mat-form-field>
+                      </td>
+
+                      <td>
+
+                        <mat-form-field >
+                          <label>dateFormat</label>
+                          <input matInput formControlName="dateFormat">
+                          <!-- [disabled]="getSubArrayFormGroup(i).dataType == 'Date' ? false :true"> -->
+                          <!-- input field error -->
+
+
+                        </mat-form-field>
+
+                      </td>
+
+
+
+                      <td>
+
+                        <mat-form-field >
+                          <label>excelMappingColumn</label>
+                          <!-- appUppercase -->
+                          <input matInput formControlName="excelMappingColumn">
+                          <!-- input field error -->
+
+
+
+                        </mat-form-field>
+
+                      </td>
+                      <td>
+                        <button mat-icon-button color="warn" (click)="removeSubArray(i,item)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </td>
+
+                    </tr>
+                  </div>
+
+                </tbody>
+              </div>
+            </div>
+          </table>
+
+
+
+
+          <div fxLayout="row" fxLayoutAlign="end end" class="m-333">
+            <button mat-raised-button color="primary" (click)="addSubArray()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+
+          <br>
+          <div fxLayout="row" fxLayoutAlign="end end" class="m-333">
+            <button mat-raised-button class="text-center" color="primary" 
+            (click)="updateMappingData(addForm.value, addForm.valid, extSysName.value,processCode.value,starting,isChecked)">Update</button>
+  
+          </div>
+
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
+<!-- audit log-->
+ <div fxLayout="row">
+  <div fxFlex></div>
+  <div fxFlex="95">
+     <mat-card>
+      <mat-card-title>
+
+      </mat-card-title>
+      <mat-card-content>
+        <div fxLayout="row">
+
+          <table id="audittrail">
+            <tr>
+              <th>Created By:</th>
+              <td>
+                  <mat-chip>{{modifyRoleObject.creatorId}}</mat-chip>
+              </td>
+              <th>Creation Date:</th>
+              <td>
+                  <mat-chip>{{modifyRoleObject.creatorDtStamp | date:'short'}}</mat-chip>
+              </td>                     
+            </tr>
+            <tr>
+              <th>Verified Id:</th>
+              <td>
+                  <mat-chip>{{modifyRoleObject.verifierId}}</mat-chip>
+              </td>
+              <th>Verified Date:</th>
+              <td>
+                  <mat-chip>{{modifyRoleObject.verifierDtStamp | date:'short'}}</mat-chip>
+              </td>
+              </tr>
+              <tr>
+                <th>Modification No:</th>
+              <td>
+                  <mat-chip>{{modifyRoleObject.versionNo}}</mat-chip>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card> 
+  </div>
+  <div fxFlex></div>
+</div> 
+
+<!--end of audit log-->

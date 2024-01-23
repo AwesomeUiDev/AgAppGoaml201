@@ -1,0 +1,68 @@
+.card-header {
+  font-size: 30px;
+  letter-spacing: 1px;
+  font-weight: 900 bold;
+  color: #DC143C;
+  border-bottom: 3px solid #DC143C;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.border-bottom-black{
+  border-bottom: 1px solid black;
+}
+th {
+  border: 0px;
+  /* box-shadow: 5px 10px 15px black; */
+  width: 900px;
+
+  background-color: #1B2631;
+
+  letter-spacing: 2px;
+}
+
+td {
+  border: 0px solid black;
+}
+
+tr {
+  border: 0px solid black;
+}
+
+.btn-md {
+  width: 100px;
+  height: 30px;
+  /* margin-right: 15px; */
+  /* box-shadow: 5px 10px 15px black; */
+}
+
+.btn-lg {
+  height: 40px;
+  /* box-shadow: 5px 1px 15px black; */
+}
+
+.card-body {
+  margin: auto;
+  top: 20px;
+  left: auto;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 5px 10px 15px black;
+}
+.card-body1{
+  margin: auto;
+  top: 20px;
+  left: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+table {
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+#auth {
+  margin-bottom: 50px;
+}

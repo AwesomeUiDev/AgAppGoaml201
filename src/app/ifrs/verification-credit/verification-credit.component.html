@@ -1,0 +1,215 @@
+
+<div>
+  <div class="header">
+    <h6 class="headOne" >
+     {{downloadMsg}}
+    </h6>
+    <h6 class="headAlt">
+     {{validationResponse}}
+     <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+     </h6>
+    <h4 class="headTwo">
+      Verification Credit
+    </h4>
+  </div>
+  <div class="line"></div>
+  <form  (ngSubmit)="fetchAllVerificationCredit(exec_date.value,lib_no.value)" >
+    <table align="center"  class="bxshdwborder bxshdw" cellpadding="8" cellspacing="8" width="400px"  >
+      <tr >
+        <td class="serif">MIS Date</td>
+        <td>
+          <input class="serif" type="date" name="exec_date" ngModel #exec_date required="required"/>
+        </td>
+        
+      </tr>
+      <tr>
+        <td class="serif">Liab No</td>
+        <td><input class="serif" type="text" name="lib_no" ngModel #lib_no placeholder="** Blank For All Liabilities"></td>
+        
+      </tr>
+      <!-- <tr >
+        <td ><b>Fields</b></td>
+
+        <td >
+        <ng-multiselect-dropdown
+        
+  [placeholder]="'Select'"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  [settings]="dropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+  (onDeSelect)="onItemDeSelect($event)"
+ [ngModelOptions]="{standalone: true}"
+>
+
+</ng-multiselect-dropdown></td>
+      </tr>  -->
+      <tr>
+        <td>
+          <!-- <div class="btn-effcts">
+            <button type="submit" class="hvr-push btn btn-success" id="show">Apply</button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="reset" class="hvr-push btn btn-danger" (click)="reset()" id="hide">Reset</button>
+          </div> -->
+        </td>
+      </tr> 
+      <tr >
+        <td class="text-center align-middle" style="text-align: center;background-color:white;">
+          <div  class="btn-group" style="margin-left:65%;">
+            <button type="submit" class="hvr-push btn btn-success apply-btn" id="show">Apply</button> 
+            <button type="reset" class="hvr-push btn btn-danger reset-btn" (click)="reset()" id="hide">Reset</button>
+          </div>
+        </td>
+      </tr>  
+    </table>
+   <!-- <div class="form" style="text-align: center;">
+      <button type="submit" class="hvr-push btn btn-success" id="show">Apply</button>
+      <button type="reset" class="hvr-push btn btn-danger" (click)="reset()" id="hide">Reset</button>
+    </div> -->
+    <br>
+
+  
+ <br>
+ 
+ 
+  <br>
+  <!-- <br|async>{{fieldArray}} -->
+
+  <table align="center" class="table TableColor bxshdwborder bxshdw" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="50" id="DataTable" *ngIf="data">
+
+    <thead>
+        <tr>
+            <td colspan="4">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100,250]"></mfBootstrapPaginator>
+                
+            </td>
+        </tr>
+  <tr *ngIf="data">
+    
+    <th style="width: 20%"> <mfDefaultSorter by="exec_date">Mis Date</mfDefaultSorter></th>
+    <th style="width: 20%"><mfDefaultSorter by="facility">Facility</mfDefaultSorter></th>
+    <th style="width: 20%"><mfDefaultSorter by="account_number">Account Number</mfDefaultSorter></th>
+    <th style="width: 20%"><mfDefaultSorter by="customer_name1">Customer Name</mfDefaultSorter></th>
+    <th style="width: 20%"><mfDefaultSorter by="lib_no">Liab No</mfDefaultSorter></th>
+    <th > <mfDefaultSorter by="customer_no">Customer Number</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="acc_type">Acc Type</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="ccy">Ccy</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="product">Product</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="amount_disbursed_lcy_000">Amount Disbursed Lcy</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="unutilized_amount_lcy_000">UnUtilized Amount Lcy</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="econ_sect">Econ Sect</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="due_days">Due Days</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="int_rate">Int Rate</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="irr">Irr</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="total_out_lcy_000">Total Out Lcy</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="dis_out_lcy_000">Dis Out Lcy</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="value_date">Value Date</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="maturity_date">Maturity Date</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="security_details">Security Details</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="tot_lib_collat_000">Tot Lib Collat 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="collateral_deb_000">Collateral Deb 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="tot_lib_col_exc_deb_000">Tot Lib Col Exc Deb 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="tot_liab_exposure_000">Tot Liab Exposure 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="tot_cif_exposure_000">Tot Cif Exposure 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="collateral_code">Collateral Code</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="basis_of_valuation">Basis of Valuation</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="collateral_amt_000">Collateral Amt 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="collateral_allocation_000">Collateral Allocation 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="unit">Unit</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="liab_status">Liab Status</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="prd2">Prd2</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="appr_fee_000">Appr Fee 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="appriasal_fee_os_000">Appriasal Fee Os 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="emi_000">Emi_000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="suspen_int_000">Suspen Int 000</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="frequency_unit">Frequency Unit</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="tenor_days">Tenor Days</mfDefaultSorter></th>
+    <!-- <th ><mfDefaultSorter by="liab_status">Liab Status</mfDefaultSorter></th>
+    <th ><mfDefaultSorter by="tflag">Tflag</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Customer Type') > -1"><mfDefaultSorter by="customer_type">Customer Type</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Debit Int Oddays') > -1"><mfDefaultSorter by="debit_int_oddays">Debit Int Oddays</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Msme') > -1"><mfDefaultSorter by="msme">Msme</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Prd2') > -1"><mfDefaultSorter by="prd2">Prd2</mfDefaultSorter></th>
+    <th *ngIf="selected.indexOf('Remarks') > -1"><mfDefaultSorter by="remarks">Remarks</mfDefaultSorter></th> -->
+    <!-- <th *ngIf="selected.indexOf('Prev Month') > -1"><mfDefaultSorter by="prev_month">Prev Month</mfDefaultSorter></th> -->
+   
+   
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let credits of mf.data">
+    <td >{{credits.exec_date}}</td>
+    <td >{{credits.facility}}</td>
+    <td >{{credits.account_number}}</td>
+    <td >{{credits.customer_name1}}</td>
+    <td>{{credits.lib_no}}</td>
+    <td >{{credits.customer_no}}</td>
+    <td >{{credits.acc_type}}</td>
+    <td >{{credits.ccy}}</td>
+    <td >{{credits.product}}</td> 
+    <td >{{credits.amount_disbursed_lcy_000}}</td>     
+    <td >{{credits.unutilized_amount_lcy_000}}</td> 
+    <td >{{credits.econ_sect}}</td> 
+    <td >{{credits.due_days}}</td> 
+    <td >{{credits.int_rate}}</td> 
+    <td >{{credits.irr}}</td> 
+    <td >{{credits.total_out_lcy_000}}</td> 
+    <td >{{credits.dis_out_lcy_000}}</td> 
+    <td >{{credits.value_date}}</td> 
+    <td >{{credits.maturity_date}}</td> 
+    <td >{{credits.security_details}}</td> 
+    <td >{{credits.tot_lib_collat_000}}</td> 
+    <td >{{credits.collateral_deb_000}}</td> 
+    <td >{{credits.tot_lib_col_exc_deb_000}}</td> 
+    <td >{{credits.tot_liab_exposure_000}}</td> 
+    <td >{{credits.tot_cif_exposure_000}}</td> 
+    <td >{{credits.collateral_code}}</td> 
+    <td >{{credits.basis_of_valuation}}</td> 
+    <td >{{credits.collateral_amt_000}}</td> 
+    <td >{{credits.collateral_allocation_000}}</td> 
+    <td >{{credits.unit}}</td> 
+    <td >{{credits.liab_status}}</td> 
+    <td >{{credits.prd2}}</td> 
+    <td >{{credits.appr_fee_000}}</td>
+    <td >{{credits.appriasal_fee_os_000}}</td>
+    <td >{{credits.emi_000}}</td>
+    <td >{{credits.suspen_int_000}}</td>
+    <td >{{credits.frequency_unit}}</td>
+    <td >{{credits.tenor_days}}</td>
+    <!-- <td >{{credits.liab_status}}</td>
+    <td >{{credits.tflag}}</td>
+    <td >{{credits.customer_type}}</td>
+    <td >{{credits.debit_int_oddays}}</td>
+    <td >{{credits.msme}}</td>
+    <td >{{credits.prd2}}</td>
+   <td >{{credits.remarks}}</td> -->
+   <!-- <td *ngIf="selected.indexOf('Prev Month') > -1">{{credits.prev_month}}</td> -->
+  </tr> 
+</tbody>
+<tfoot>
+    <tr>
+        <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100,250]"></mfBootstrapPaginator>
+            
+        </td>
+    </tr>
+  </tfoot>
+</table>
+
+
+  
+</form>
+  <table align="center" >
+    <tr>
+        
+<td> <button class="hvr-push download-btn" id="btnExport" style="display:none">Download</button></td>
+<td *ngIf="data"> <div class="btn-effcts"> <button (click)="exportAsExcelFile(data,'FctCreditBalance')" class="hrv-push btn btn-success download-btn">Download</button></div></td>
+</tr>
+</table>
+
+</div>
+

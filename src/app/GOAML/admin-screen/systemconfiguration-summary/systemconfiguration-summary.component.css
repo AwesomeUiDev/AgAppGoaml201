@@ -1,0 +1,28 @@
+.bckbtn
+{
+  background-color: #2D323E;
+  background-color: #2D323E;
+  width:100px;
+  color:white;
+  box-shadow: none;
+}
+.btn-lg {
+  /* width: 100%; */
+  letter-spacing: 1px;
+  font-size: 13px;
+  box-shadow: 5px 10px 15px black;
+}
+.rw {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+}
+.algn{
+  margin-left: auto;
+    height: fit-content;
+}
+.filterip{
+  height: 8px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}

@@ -1,0 +1,54 @@
+import { DatePipe } from "@angular/common";
+
+export class FctCreditBalance
+{
+	d_mis_date:Date;
+	acc_number:string;
+	customer_name1:string;
+	liab_number:string;
+	customer_number:string;
+	credit_class:string;
+	econ_sect:string;
+	facility:string;
+	branch_code:string;
+	cod_inst_id:string;
+	today:Date;
+	alt_acc_no:string;
+	acc_type:string;
+	country:string;
+	system_class:string;
+	mgt_status:string;
+	ccy:string;
+	product:string;
+	amount_disbursed:number;
+	principal_gl_code:string;
+	main_int_gl_code:string;
+	penal_int_gl_code:string;
+	penal_prin_gl_code:string;
+	due_days:number;
+    int_rate:number;
+	exch_rate:number;
+	interest_overdue:number;
+	penal_interest_overdue:number;
+    penal_principal_overdue:number;
+	total_outstanding_accural:number;
+	principal_outs_bal:number;
+	principal_outs_bal_lcy:number;
+	total_out_lcy:number;
+	book_date:string;
+	value_date:string;
+	maturity_date:string;
+	security_details:string;
+	unit:string;
+	liab_status:string;
+	tflag:string;
+	customer_type:string;
+	debit_int_oddays:number;
+	msme:string;
+	prd2:string;
+	remarks:string;
+	//prev_month:string;
+	prfortwo:string;
+	prvLiabStatus:string;
+	prvRemarks: string;
+}

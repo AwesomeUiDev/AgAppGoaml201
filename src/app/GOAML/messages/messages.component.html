@@ -1,0 +1,84 @@
+<app-home></app-home>
+<div class="card bg-transparent border-0 ">
+  <div class="card bg-transparent border-0 media" id="auth">
+    <!-- <div class="card-header col-sm-6 text-md-center bg-transparent ">
+      Messages
+    </div> -->
+    <!-- <h4 class="headTwo">
+      Messages
+    </h4> -->
+
+
+    <div class="header">
+      <h6 class="headOne" >
+       <!-- {{downloadMsg}} -->
+      </h6>
+      <h6 class="headAlt">
+       <!-- {{validationResponse}} -->
+       <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+       </h6>
+       <h4 class="headTwo">
+        Messages
+      </h4>
+    </div>
+    <div class="line"></div>
+
+    <div class="card bg-transparent border-0 col-sm-12">
+      <!-- <div class="card-body bg-transparent border-0 col-sm-10 "> -->
+        <mat-card class="bg-transparent border-0 col-sm-10 bxshdwborder bxshdw">
+          <table mat-table [dataSource]="dataSource" class="bg-transparent border-0 col-sm-12">
+
+            <ng-container matColumnDef="msgId" *ngIf>
+              <th mat-header-cell *matHeaderCellDef
+                class="text-md-center font-weight-bold text-white border-bottom-0 col-sm-5" style="width:150px;"> msgId
+              </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center ">
+                <a>{{element.msgId}}</a>
+
+              </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="msgSubject">
+              <th mat-header-cell *matHeaderCellDef
+                class="text-md-center font-weight-bold text-black border-bottom-0 col-sm-4" style="width:400px;">
+                Subject</th>
+              <td mat-cell *matCellDef="let element" class="text-md-center ">
+                <a *ngIf="element.msgType=='R'" (click)=getPopUp(element.msgId)>{{element.msgSubject}}</a>
+                <a *ngIf="element.msgStatus=='U' && element.msgType=='G' "
+                  [routerLink]="'/authorizeXml'">{{element.msgSubject}}</a>
+                  <!-- <a *ngIf="element.msgStatus=='U' && element.msgType=='G' "
+                  [routerLink]="'/authorizeXml'">{{element.msgSubject}}</a> -->
+
+              </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="msgFrom">
+              <th mat-header-cell *matHeaderCellDef
+                class="text-md-center font-weight-bold text-black border-bottom-0 col-sm-4" style="width:230px;"> Sender
+              </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.msgFrom}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="msgDate">
+              <th mat-header-cell *matHeaderCellDef
+                class="text-md-center font-weight-bold text-black border-bottom-0 col-sm-4" style="width:150px;"> Date
+              </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.msgDate | date: 'M/d/yy'}} </td>
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-card>
+      <!-- </div> -->
+    </div>
+
+  </div>
+
+</div>
+

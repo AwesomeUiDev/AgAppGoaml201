@@ -1,0 +1,223 @@
+<div class="header">
+  <h6 class="headOne">
+   {{response}}
+  </h6>
+  <h6 class="headAlt">
+   {{validationResponse}}
+   <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+   </h6>
+   <h4 class="headTwo">
+    Security Policy
+  </h4>
+  
+</div>
+<div class="line"></div>
+<div class="dataone"fxLayout="row" fxLayoutAlign="center center"style="flex-direction: row;box-sizing: border-box;display: flex;max-height: 100%;place-content: center;align-items: center;">
+    <div fxFlex fxFlexFill></div>
+    <div class="data"fxFlex="55%" fxFlexFill style="height: 100%; width: 100%; flex: 1 1 100%; box-sizing: border-box; max-width: 55%;">
+      <mat-card class="p-0">
+        <mat-card-title class="">
+          <!-- <div class="card-title-text">Secur</div> -->
+          <mat-divider></mat-divider>
+        </mat-card-title>
+        <mat-card-content>
+          <form>
+            <div fxLayout="row" fxLayoutAlign="center center" >
+              <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1"style="flex: 1 1 100%;box-sizing: border-box;max-width: 50%;">
+  
+                <div class="pb-1">
+                  <mat-form-field class="full-width scrpl ">
+                    <label><b>Maximum Invalid Logins</b></label>
+                    <!-- <input matInput type="number"
+                      name="MaxLogins" required
+                      onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                      [(ngModel)]="security.max_inv_logins" 
+                      #MaxLogins="ngModel"
+                    > -->
+                    <input matInput type="number" [disabled]="!editFalg" required name="MaxLogins" 
+                    class="form-control mat-field-flex" 
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                      [(ngModel)]="security.max_inv_logins" 
+                      #MaxLogins="ngModel">
+                    <!-- <mat-error [hidden]="appName.valid || appName.pristine">
+                      Please Choose Application name
+                  </mat-error> -->
+                  </mat-form-field>
+                </div>
+  
+                <div class="pb-1">
+                    <mat-form-field class="full-width scrpl">
+                        <label><b>Maximum Password Length</b></label>
+                        <!-- <input matInput type="number"
+                          name="maxPasswordLength" required 
+                          maxlength="99"
+                          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                          [(ngModel)]="security.max_pswd_length" #max_pswd_length="ngModel"
+                        > -->
+                        <input matInput type="number" required [disabled]="!editFalg" name="maxPasswordLength" 
+                         class="form-control mat-field-flex" 
+                         onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                         [(ngModel)]="security.max_pswd_length" #max_pswd_length="ngModel">
+                      </mat-form-field>
+                </div>
+  
+                <div class="pb-1">
+                  <mat-form-field class="full-width scrpl">
+                    <label><b>Minimum Password Length</b></label>
+                    <!-- <input matInput type="number" 
+                      name="minPasswordLength" required 
+                      maxlength="99"
+                      onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                      [(ngModel)]="security.min_pswd_length" #min_pswd_length="ngModel"
+                    > -->
+                    <input matInput type="number" required [disabled]="!editFalg" name="minPasswordLength" 
+                    class="form-control mat-field-flex"  
+                         onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                         [(ngModel)]="security.min_pswd_length" #min_pswd_length="ngModel">
+                    <mat-error [hidden]="max_pswd_length <= min_pswd_length">
+                      Minimum Password Length should not be greater than Maximum Password Length.
+                  </mat-error>
+                  </mat-form-field>
+                </div>
+                <!-- ---------- Password Policy Implementation (BEGIN) ---------- -->
+                <div class="pb-1">
+                  <mat-form-field class="full-width scrpl">
+                    <label><b>Password expiry (In days)</b></label>
+                    <!-- <input matInput type="number" 
+                      name="passwordExpiry" required 
+                      onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                      [(ngModel)]="security.pswd_expiry" #PasswordExpiry="ngModel"
+                    > -->
+                    <input matInput type="number" required [disabled]="!editFalg" name="passwordExpiry" 
+                    class="form-control mat-field-flex"  
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                    [(ngModel)]="security.pswd_expiry" #PasswordExpiry="ngModel">
+                  </mat-form-field>
+                </div>
+
+                <div class="pb-1">
+                  <mat-form-field class="full-width scrpl">
+                    <label><b>Notification on Password expiry (In Days)</b></label>
+                    <!-- <input matInput type="number" 
+                      name="pwdExpiryWarning" required 
+                      onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                      [(ngModel)]="security.notify_password_expiry_in_days" #pwdExpiryWarning="ngModel"
+                    > -->
+                    <input matInput type="number" required 
+                    class="form-control mat-field-flex" [disabled]="!editFalg"
+                    name="pwdExpiryWarning" required 
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                    [(ngModel)]="security.notify_password_expiry_in_days" #pwdExpiryWarning="ngModel">
+                  </mat-form-field>
+                </div>
+
+                <div class="pb-1">
+                  <mat-form-field class="full-width scrpl">
+                    <label><b>Password Resuse After (total attempts)</b></label>
+                    <!-- <input matInput type="number" 
+                      name="resusePasswordAfter" required 
+                      onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                      [(ngModel)]="security.pswd_reuse_aft" #resusePasswordAfter="ngModel"
+                    > -->
+                    <input matInput type="number" required [readonly]="!editFalg" name="resusePasswordAfter" 
+                    class="form-control mat-field-flex"  
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                      [(ngModel)]="security.pswd_reuse_aft" #resusePasswordAfter="ngModel">
+                  </mat-form-field>
+                </div>
+
+                <div class="pb-1">
+                    <mat-label><b>Password Complexity</b></mat-label>
+                    <section name="pwdComplexity" style="text-align: initial;">
+                      <mat-checkbox color="primary" [disabled]="!editFalg" name="pswd_complex_ucase" 
+                        (change)="buttonState($event)"
+                        [(ngModel)]="security.pswd_complex_ucase"[disabled]="!editFalg"  #pswd_complex_ucase="ngModel" 
+                        class="cb-style">Require atleast one Uppercase (A-Z)</mat-checkbox>
+                      <mat-checkbox color="primary" name="pswd_complex_lcase" 
+                        (change)="buttonState($event)"
+                        [(ngModel)]="security.pswd_complex_lcase"[disabled]="!editFalg" #pswd_complex_lcase="ngModel" 
+                        class="cb-style">Require atleast one Lowercase (a-z)</mat-checkbox>
+                      <mat-checkbox color="primary" name="pswd_complex_num"
+                        (change)="buttonState($event)"
+                        [(ngModel)]="security.pswd_complex_num"[disabled]="!editFalg"  #pswd_complex_num="ngModel" 
+                        class="cb-style">Require atleast one Number (0-9)</mat-checkbox>
+                         <mat-checkbox color="primary" name="pswd_complex_splc" 
+                        (change)="buttonState($event)"
+                        [(ngModel)]="security.pswd_complex_splc"[disabled]="!editFalg" #pswd_complex_splc="ngModel" 
+                        class="cb-style">Require atleast one Special Characters (@,:;'"$#%^&*!?...)</mat-checkbox><br/>
+
+                      <!-- <mat-checkbox color="primary" name="items.db" class="cb-style"
+                        *ngFor="let items of checkboxes;" [value]="items.name"
+                        (change)="buttonState($event)"
+                        [(ngModel)]="security.db" #items.db="ngModel"
+                      > 
+                        {{ items.name}}
+                      </mat-checkbox> -->
+                    </section>
+                </div>
+                <!-- ---------- Password Policy Implementation (END) ---------- -->
+              </div>
+            </div>
+        
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px"style="flex-direction: row;box-sizing: border-box;display: flex;max-height: 100%;place-content: center;align-items: center;">
+              <button class="hvr-push btn btn-sucess edit-btn" 
+              (click)="editOfSecurityPolicy()" *ngIf="editbut" style="margin-right: 10px; width: 88px !important;">Edit</button>
+              <button class="hvr-push btn btn-sucess submit-btn" 
+              (click)="onsaveEditOfSecurityPolicy()"  *ngIf="savbut" style="margin-right: 10px; width: 88px !important;">Save</button>
+              <button class="hvr-push btn btn-danger reset-btn" style="margin-right: 10px; width: 88px !important;"  (click)="onCancelSecurityPlocyEdit()" >Cancel</button>
+              <button class="hvr-push btn btn-danger submit-btn authbtn" *ngIf="auth" (click)="ViewUnAuthReocrds()" type="submit" >Auth Queue</button>
+              <!-- <button mat-raised-button color="warn" class="text-center full-width" (click)="cancelData()">Reset</button> -->
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex fxFlexFill></div>
+  </div>
+
+  <div fxLayout="row">
+    <div fxFlex></div>
+    <div fxFlex="95">
+       <mat-card>
+        <mat-card-title>
+  
+        </mat-card-title>
+        <mat-card-content>
+          <div fxLayout="row">
+  
+            <table id="audittrail">
+              <tr>
+                <th>Status:</th>
+                <td>
+                  <mat-chip>{{security.auth_status}}</mat-chip>
+                 </td>
+                <th>Created By:</th>
+                <td>
+                    <mat-chip>{{security.modified_by}}</mat-chip>
+                </td>
+                <th>Authorized By:</th>
+                <td>
+                    <mat-chip>{{security.authorized_by}}</mat-chip>
+                </td>
+              </tr>
+              <tr>
+                <th>Modification No:</th>
+                <td>
+                    <mat-chip>{{security.version}}</mat-chip>
+                </td>
+                <th>Creation Date:</th>
+                <td>
+                    <mat-chip>{{security.modified_time | date:'short'}}</mat-chip>
+                </td>
+                <th>Authorization Date:</th>
+                <td>
+                    <mat-chip>{{security.authorized_time | date:'short'}}</mat-chip>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card> 
+    </div>
+    <div fxFlex></div>
+  </div>

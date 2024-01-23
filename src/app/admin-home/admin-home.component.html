@@ -1,0 +1,112 @@
+<div class="wrapper">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar">
+      <div class="sidebar-header">
+          <h3><b><i>DATAMART</i></b></h3>
+      </div>
+
+      <ul class="list-unstyled components">
+          <!-- <p>Dashboard</p> -->
+          <li class="">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Role Management</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                  <li>
+                      <a [routerLink]="'/createRole'">Create Role</a>
+                  </li>
+                  <li>
+                      <a [routerLink]="'/viewRole'">View Role</a>
+                  </li>
+              </ul>
+          </li>
+          &nbsp; &nbsp; &nbsp;
+          <li>
+              
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">User Management</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                  <li>
+                      <a [routerLink]="'/createUser'">Create User</a>
+                  </li>
+                  <li>
+                      <a [routerLink]="'/viewUser'">View User</a>
+                  </li>
+              </ul>
+          </li>
+          &nbsp; &nbsp; &nbsp;
+          <li>
+            <a href="#Mda" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">MDA</a>
+            <ul class="collapse list-unstyled" id="Mda">
+                <li>
+                    <a [routerLink]="'/mdaFetching'">Fetching</a>
+                </li>
+                <li>
+                    <a [routerLink]="'/mdaModificationProcess'">Modification Process</a>
+                </li>
+                <li>
+                    <a [routerLink]="'/mdaVerification'">Verification</a>
+                </li>
+            </ul>
+          </li>
+      </ul>
+
+      <!-- <ul class="list-unstyled CTAs">
+          <li>
+              <a href="" class="download">Download source</a>
+          </li>
+          <li>
+              <a href="" class="article">Back to article</a>
+          </li>
+      </ul> -->
+  </nav>
+
+  <!-- Page Content Holder -->
+  <div id="content">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+
+              <button type="button" id="sidebarCollapse" class="navbar-btn">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </button>
+              <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="fas fa-align-justify"></i>
+                  
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="nav navbar-nav ml-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" id="navBarFont" href="#"><b>Home</b></a>
+                      </li>
+                      &nbsp; &nbsp; &nbsp;
+                      <li class="nav-item">
+                          <a class="nav-link" id="navBarFont" [routerLink]="'/changePassword'"><b>Change Password</b></a>
+                      </li>
+                      &nbsp; &nbsp; &nbsp;
+                      <li class="nav-item">
+                          <a class="nav-link" id="navBarFont" href="#"><b>Logout</b></a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+      
+      <!-- <h2>{{title}}</h2>
+     
+      <div class="line"></div> -->
+      <router-outlet></router-outlet>
+      <!-- <h2>Lorem Ipsum Dolor</h2> -->
+      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+
+      <!-- <div class="line"></div> -->
+
+      <!-- <h2>Lorem Ipsum Dolor</h2> -->
+      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+
+      <!-- <div class="line"></div> -->
+
+      <!-- <h3>Lorem Ipsum Dolor</h3> -->
+      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+  </div>
+</div>

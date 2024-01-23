@@ -1,0 +1,64 @@
+<div>
+    <div class="header">
+      <h6 class="headOne" >
+       {{responseMsg}}
+      </h6>
+      <h6 class="headAlt">
+       {{responseError}}
+       <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+       </h6>
+      <h4 class="headTwo">
+        Download
+      </h4>
+    </div>
+    <div class="line"></div>
+    <form #reportName="ngForm" >
+      <table align="center" cellpadding="8" cellspacing="8">
+          <tr >
+              <td><b>MIS Date</b></td>
+              <td>
+                <input type="date" name="Exec_Date" ngModel #Exec_Date required="required"/>
+              </td>
+            </tr>
+            <tr>
+                <td><b>Department</b></td>
+                  <td>
+                      <!-- <input type="text" name="dept" ngModel #dept readonly value="{{userDept}}"/> -->
+                      <select ngModel name="dept" #dept (change)="reportNameList(dept.value)">
+                        <option aria-readonly="true" value="">Select Dept</option>
+                        <option *ngFor="let list of deptList">{{list}}</option>
+                      </select>
+                    </td>
+              </tr>
+        <tr>
+          <td>
+            <b>Report name</b>
+          </td>
+          <td>
+            <select ngModel name="reportName" #reportName>
+              <option aria-readonly="true" value="">Select Report</option>
+              <option *ngFor="let list of rList">{{list}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="btn-effcts">
+              <button type="submit" class="hvr-push btn btn-success" (click)="financeDownload(Exec_Date.value,reportName.value)">Download</button>
+            </div>
+          </td>
+          <td>
+            <div class="btn-effcts">
+              <button type="reset" class="hvr-push btn btn-danger" (click)="reset()">Cancel</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <!-- <table align="center" cellpadding="8" cellspacing="8">
+            <tr *ngFor="let obj of objectArr">
+               <td>{{obj | json}}</td>
+               <td>{{obj.value}}</td> 
+            </tr>
+      </table> -->
+    </form>
+  </div>

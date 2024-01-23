@@ -1,0 +1,81 @@
+<!-- <div class="header">
+  <h6 class="headOne"></h6>
+  <h6 class="headAlt"></h6>
+   <h4 class="headTwo"> Role Management</h4>
+</div> -->
+
+<div class="header">
+  <h6 class="headOne"></h6>
+  <h6 class="headAlt"></h6>
+   <h4 class="headTwo"> Role Summary </h4>
+</div>
+<div class="line"></div>
+<div>
+<mat-card>
+    <!-- <mat-card-title>Role Management</mat-card-title> -->
+  <mat-card-content>
+    <div fxLayout="row">
+      <div fxFlex="30">
+        <div class="mt-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" class='btn-group' fxFlex="1 1 0%" fxLayoutAlign="end center" fxLayoutGap="5px">
+          <!-- *ngIf="roleCodes.new2 == 'true'" *ngIf="mapToSearch.hasOwnProperty(keyToFind)" -->
+          <button  class='new-btn btn btn-success'  routerLink="/roles/create" *ngIf="roleCodes.new"
+          >{{roleCodes.new.labelDescription}}</button>
+          <!-- <button mat-raised-button color="primary" routerLink="/roles/create" 
+          >new</button> -->
+     <button  color="warn" class='exit-btn btn btn-success' routerLink="/about">Exit</button>
+        
+      </div>
+    </div>
+
+    <div class="margin-333">
+      <div>
+        <table mat-table [dataSource]="dataSource">
+          <!-- Position Column -->
+          <ng-container matColumnDef="roleName">
+            <th mat-header-cell *matHeaderCellDef>Role Name</th>
+            <td mat-cell *matCellDef="let element; let i=index;"><a routerLink=""
+                (click)="getRole(element)">{{element.roleName}}</a> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="roleDesc">
+            <th mat-header-cell *matHeaderCellDef>Role Description</th>
+            <td mat-cell *matCellDef="let element"> {{element.roleDesc}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="authStatus">
+            <th mat-header-cell *matHeaderCellDef>Auth Status</th>
+            <td mat-cell *matCellDef="let element"> {{element.authStatus}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="recordStatus">
+            <th mat-header-cell *matHeaderCellDef>Record Status</th>
+            <td mat-cell *matCellDef="let element"> {{element.recordStatus}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator (page)='onPaginateChange($event)' [pageSize]='pageSize' [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons>
+        </mat-paginator>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />

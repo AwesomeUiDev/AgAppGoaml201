@@ -1,0 +1,36 @@
+
+.btn-md{
+  width: 120px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  border-radius: 60%;
+}
+  .float-left {
+    padding: 10px;
+    
+  } 
+  .float-right{
+    font-size: 0.7em;
+    color: #CD5C5C;
+    /* font-family: 'Shojumaru', cursive; */
+  }
+  .float-sm-left{
+    font-size: 0.9em;
+    /* font-family: 'Shojumaru', cursive; */
+  }
+ /* .navbar{
+    background: #DC143C;
+    color: aliceblue;
+    font-size: 14px;
+    font-weight: 900;
+    margin: 0%;
+    height: 37px;
+  } */
+  .mb-1.navbar, a{
+    color: aliceblue;
+    letter-spacing: 1.5px;
+  }
+  .nav-item{
+    border-right: 2.5px solid white;
+  }
+  a.active.nav-link{background-color: #17a2b8!important;}

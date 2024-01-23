@@ -1,0 +1,85 @@
+  <app-home></app-home>
+  <div class="card bg-transparent border-0 ">
+    <div class="card bg-transparent border-0 media" id="auth">
+      <!-- <div class="card-header col-sm-6 text-md-center bg-transparent ">
+        External System
+      </div> -->
+      <!-- <h4 class="headTwo">
+        External System 
+      </h4> -->
+
+      <div class="header">
+        <h6 class="headOne" >
+        <!-- {{downloadMsg}} -->
+        </h6>
+        <h6 class="headAlt">
+        <!-- {{validationResponse}} -->
+        <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+        </h6>
+        <h4 class="headTwo">
+          External System 
+        </h4>
+      </div>
+      <div class="line"></div>
+
+      <div class="card bg-transparent border-0 col-sm-12">
+        <div class="card-body bg-transparent border-0 col-sm-10 bxshdwborder bxshdw">
+          &nbsp;&nbsp;  
+          <div style="text-align: right;">
+            <button *ngIf="roleCodes.new" mat-raised-button type="text" color="primary" class="hvr-push btn btn-success text-white new-btn" [routerLink]="'/excelExtSys'" 
+            >{{roleCodes.new.labelDescription}}</button>
+          <!-- <mat-card class="bg-transparent border-0 col-sm-12"> -->
+          </div>  
+            <div class="mat-elevation-z8" class="bg-transparent border-0">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput class="mat-form-field" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+              </mat-form-field>
+              <table mat-table [dataSource]="dataSource" class="bg-transparent border-0">
+
+                <!-- <ng-container matColumnDef="id" hidden>
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-white ">Id </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.id}} </td>
+                </ng-container> -->
+
+                
+
+                <ng-container matColumnDef="extSysCode">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black ">External Sys
+                    Code </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center " style="color:blue;"><a 
+                      (click)="getExtSys(element)">
+                      {{element.extSysCode}}</a> </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="extSysName">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black ">External Sys
+                    Name </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.extSysName}} </td>
+                </ng-container>
+
+
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" style="background-color: white;" class="text-black"
+                showFirstLastButtons></mat-paginator>
+
+            </div>
+          <!-- </mat-card>   -->
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- <mat-toolbar>External System</mat-toolbar>
+  <button class="btn btn-success" [routerLink]="'/excelExtSys'" style="margin-left:100px;">New</button>
+  <mat-card style="margin-left:100px;margin-right:100px;">
+
+  </mat-card> -->

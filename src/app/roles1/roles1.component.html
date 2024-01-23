@@ -1,0 +1,828 @@
+<form #roleForm="ngForm" novalidate>
+  <!-- <h3>{{responseError}}</h3> -->
+  <div class="header">
+    <h6 class="headOne"></h6>
+    <h6 class="headAlt"></h6>
+     <h4 class="headTwo"> Create Role</h4>
+  </div>
+  
+  <div class="line"></div>
+  <div></div>
+  <div fxLayout="row">
+   
+    <span fxFlex></span>
+    <div fxFlex="50">
+      
+ 
+      <mat-card>
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+          <div fxFlex="100">
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <label style="font-weight: bold;">Role Name</label>&nbsp;
+                <input matInput class="mat-field-flex" type="text" oninput="this.value = this.value.toUpperCase()" required
+                  [(ngModel)]="role.roleName" name="roleName" #roleName="ngModel">
+                  <mat-error [hidden]="roleName.valid || roleName.pristine">
+                    Please enter a Role Name
+                  </mat-error>
+
+              </mat-form-field>
+            </div>
+
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <label style="font-weight: bold;">Role Description</label>
+                <input class="mat-field-flex" matInput type="text" [(ngModel)]="role.roleDesc" name="roleDesc"  #roleDesc="ngModel" required>
+                <mat-error [hidden]="roleDesc.valid || roleDesc.pristine">
+                  Please enter a Role Description
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="pb-1">
+            <!--  <mat-button-toggle-group name="fontStyle" value="admin">
+                <mat-button-toggle value="admin" (click)="changeAdmin()">Admin</mat-button-toggle>
+                <mat-button-toggle value="fms" (click)="changeFms()">FMS</mat-button-toggle>
+                <mat-button-toggle value="monitor" (click)="changeFmsMonitoring()">FMS Monitoring</mat-button-toggle>
+              </mat-button-toggle-group> -->
+              <mat-button-toggle-group name="fontStyle" [value]="selectedtab">
+                <mat-button-toggle   *ngFor="let col of newfmostabsdata.tabslist;let i = index" [value]=col.tabname (click)="rolestype(i)">{{col.tabname}}</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <span fxFlex></span>
+  </div>
+
+
+
+  <div class="margin-333">
+   <!-- <mat-table  [dataSource]="datasource.list" class='dyntable'>
+      <ng-container [matColumnDef]="column" *ngFor="let column of displayedcolumns;let i = index;"> 
+          <span *ngIf="i === 1">
+            <mat-header-cell *matHeaderCellDef class='mathead'>
+              <mat-checkbox (change)="$event ? masterToggle(i) : null"
+                            [checked]="selection.hasValue(i) && isAllSelected(i)"
+                            [indeterminate]="selection.hasValue(i) && !isAllSelected(i)"
+                            [aria-label]="checkboxLabel(i)" [disabled]=is_edit>
+              </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row;let matIndex = index;">
+              <mat-checkbox (click)="$event.stopPropagation(i)"
+                            (change)="$event ? selection.toggle(row, i) : null;selectrow($event, matIndex, i)"
+                            [checked]="selection.isSelected(row, i)"
+                            [aria-label]="checkboxLabel(row, i)" [disabled]=is_edit>
+              </mat-checkbox>
+            </mat-cell>
+          </span>
+          <span *ngIf="i !== 1">
+            <mat-header-cell  *matHeaderCellDef>
+            {{column}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element;let rIndex = index;">
+              <mat-checkbox *ngIf="element[column] == '0' || element[column] == '1'"  [checked]="checkedvalue(checkedlist[rIndex][i].value, rIndex, i)"  (change)="onChange($event, rIndex, i, element[column])" name="element[column]" [disabled]=is_edit></mat-checkbox> 
+              <span  *ngIf="element[column] != '0' && element[column] != '1' ">{{element[column]}} </span>
+            </mat-cell>
+          </span>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedcolumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns:displayedcolumns;"></mat-row> 
+    </mat-table> -->
+    <mat-table  [dataSource]="datasource.list" class='dyntable'>
+      <ng-container [matColumnDef]="column" *ngFor="let column of displayedcolumns;let i = index;"> 
+          <span *ngIf="i === 1">
+            <mat-header-cell *matHeaderCellDef class='mathead'>
+              <mat-checkbox (change)="$event ? masterToggle(i) : null"
+                            [checked]="selection.hasValue(i) && isAllSelected(i)"
+                            [indeterminate]="selection.hasValue(i) && !isAllSelected(i)"
+                            [aria-label]="checkboxLabel(i)" [disabled]=is_edit>
+              </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row;let matIndex = index;">
+              <mat-checkbox (click)="$event.stopPropagation(i)"
+                            (change)="$event ? selection.toggle(row, i) : null;selectrow($event, matIndex, i)"
+                            [checked]="selection.isSelected(row, i)"
+                            [aria-label]="checkboxLabel(row, i)" [disabled]=is_edit>
+              </mat-checkbox>
+            </mat-cell>
+          </span>
+          <span *ngIf="i !== 1">
+            <mat-header-cell  *matHeaderCellDef>
+            {{column}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element;let rIndex = index;">
+              <mat-checkbox *ngIf="element[column] == '0' || element[column] == '1'"  [checked]="checkedvalue(checkedlist[rIndex][i].value, rIndex, i)"  (change)="onChange($event, rIndex, i, element[column])" name="element[column]" [disabled]=is_edit></mat-checkbox> 
+              <span  *ngIf="element[column] != '0' && element[column] != '1' ">{{element[column]}} </span>
+            </mat-cell>
+          </span>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedcolumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns:displayedcolumns;"></mat-row> 
+    </mat-table>
+   <!-- sneha comment <table class="default-table default-bg mat-elevation-z1" style="width: 100%">
+      <thead>
+        <tr>
+
+          <th scope="col">Screen</th>&nbsp;
+          <th scope="col">New</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+          <th scope="col">Close</th>
+          <th scope="col">Reopen</th>
+          <th scope="col">Unlock</th>
+          <th scope="col">Print</th>
+          <th scope="col">Auth</th>
+          <th scope="col">View</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr id="1" *ngIf="rowPermission">
+          <td>Users</td>&nbsp;
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.new1" name="new1" ngChecked="all"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy1" name="copy1" ng-checked="all"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete1" name="delete1" [checked]="delete1"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close1" name="close1" [checked]="select1"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen1" name="reopen1" [checked]="select1"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock1" name="unlock1" [checked]="select1"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.print1" name="print1" [checked]="select1"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth1" name="auth1" [checked]="select1"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view1" name="view1" [checked]="select1"></mat-checkbox>
+          </td>
+
+
+        </tr>
+
+        <tr id="2" *ngIf="rowPermission">
+          <td> Role</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new2" name="new2"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy2" name="copy2"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete2" name="delete2"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close2" name="close2"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen2" name="reopen2"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock2" name="unlock2"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print2" name="print2"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth2" name="auth2"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view2" name="view2"></mat-checkbox>
+          </td>
+        </tr>
+
+        <tr id="3" *ngIf="medianPermission">
+          <td>External System</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new3" name="new3"></mat-checkbox> <input type="checkbox" id="new3">
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy3" name="copy3"></mat-checkbox> <input type="checkbox" id="copy3">
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete3" name="delete3"></mat-checkbox> <input type="checkbox" id="delete3">
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close3" name="close3"></mat-checkbox> <input type="checkbox" id="close3">
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen3" name="reopen3"></mat-checkbox> <input type="checkbox" id="reopen3">
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock3" name="unlock3"></mat-checkbox> <input type="checkbox" id="unlock3">
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print3" name="print3"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth3" name="auth3"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view3" name="view3"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="4" *ngIf="medianPermission">
+          <td>Tag</td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.new4" name="new4"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy4" name="copy4"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete4" name="delete4"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close4" name="close4"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen4" name="reopen4"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock4" name="unlock4"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print4" name="print4"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth4" name="auth4"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view4" name="view4"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="5" *ngIf="fms">
+          <td>Database</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new5" name="new5"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy5" name="copy5"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete5" name="delete5"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close5" name="close5"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen5" name="reopen5"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock5" name="unlock5"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print5" name="print5"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth5" name="auth5"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view5" name="view5"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="6" *ngIf="fms">
+          <td>Customer</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new6" name="new6"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy6" name="copy6"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete6" name="delete6"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close6" name="close6"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen6" name="reopen6"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock6" name="unlock6"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print6" name="print6"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth6" name="auth6"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view6" name="view6"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="7" *ngIf="fms">
+          <td>Application</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new7" name="new7"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy7" name="copy7"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete7" name="delete7"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close7" name="close7"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen7" name="reopen7"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock7" name="unlock7"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print7" name="print7"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth7" name="auth7"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view7" name="view7"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="8" *ngIf="fms">
+          <td>Employee</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new8" name="new8"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy8" name="copy8"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete8" name="delete8"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close8" name="close8"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen8" name="reopen8"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock8" name="unlock8"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print8" name="print8"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth8" name="auth8"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view8" name="view8"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="9" *ngIf="fms">
+          <td>Data Store</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new9" name="new9"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy9" name="copy9"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete9" name="delete9"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close9" name="close9"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen9" name="reopen9"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock9" name="unlock9"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print9" name="print9"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth9" name="auth9"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view9" name="view9"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="15" *ngIf="fms">
+          <td>Software</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new15" name="new15"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy15" name="copy15"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete15" name="delete15"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close15" name="close15"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen15" name="reopen15"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock15" name="unlock15"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print15" name="print15"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth15" name="auth15"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view15" name="view15"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="23" *ngIf="fms">
+          <td>Report</td>&nbsp;
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view23" name="view23"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="10" *ngIf="rowPermission">
+          <td>Audit Log</td>&nbsp;
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view10" name="view10"></mat-checkbox>
+          </td>
+
+
+
+        </tr>
+        <tr id="11" *ngIf="fmsMonitor">
+          <td>Db Monitoring</td>&nbsp;
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view11" name="view11"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="12" *ngIf="fmsMonitor">
+          <td>Transaction Monitoring</td>&nbsp;
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view12" name="view12"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="13" *ngIf="fmsMonitor">
+          <td>Data Store Monitoring</td>&nbsp;
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view13" name="view13"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="14" *ngIf="fmsMonitor">
+          <td>Employee Monitoring</td>&nbsp;
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view14" name="view14"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="16" *ngIf="fms">
+          <td>Customer Group</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new16" name="new16"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy16" name="copy16"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete16" name="delete16"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close16" name="close16"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen16" name="reopen16"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock16" name="unlock16"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print16" name="print16"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth16" name="auth16"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view16" name="view16"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="19" *ngIf="fms">
+          <td>Payment Monitoring</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new19" name="new19"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy19" name="copy19"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete19" name="delete19"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close19" name="close19"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen19" name="reopen19"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock19" name="unlock19"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print19" name="print19"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth19" name="auth19"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view19" name="view19"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="17" *ngIf="fms">
+          <td>Transaction Monitoring</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new17" name="new17"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy17" name="copy17"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete17" name="delete17"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close17" name="close17"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen17" name="reopen17"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock17" name="unlock7"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print17" name="print17"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth17" name="auth17"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view17" name="view17"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="20" *ngIf="fms">
+          <td>Generic Transaction</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new20" name="new20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy20" name="copy20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete20" name="delete20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close20" name="close20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen7" name="reopen20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock20" name="unlock20"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print20" name="print20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth20" name="auth20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view20" name="view20"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="18" *ngIf="fms">
+          <td>External System</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new18" name="new18"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy18" name="copy18"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete18" name="delete18"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close18" name="close18"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen18" name="reopen18"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock18" name="unlock18"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print18" name="print18"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth7" name="auth18"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view18" name="view18"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="20" *ngIf="fms">
+          <td>Generic Transaction</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new20" name="new20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy20" name="copy20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete20" name="delete20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close20" name="close20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen7" name="reopen20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock20" name="unlock20"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print20" name="print20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth20" name="auth20"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view20" name="view20"></mat-checkbox>
+          </td>
+        </tr>
+        <tr id="24" *ngIf="fms">
+          <td>Datastore User Maintainance</td>&nbsp;
+          <td>
+            <mat-checkbox [(ngModel)]="role.new24" name="new24"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.copy24" name="copy24"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.delete24" name="delete24"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.close24" name="close24"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.reopen24" name="reopen24"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.unlock24" name="unlock24"></mat-checkbox>
+          </td>
+
+          <td>
+            <mat-checkbox [(ngModel)]="role.print24" name="print24"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.auth24" name="auth24"></mat-checkbox>
+          </td>
+          <td>
+            <mat-checkbox [(ngModel)]="role.view24" name="view24"></mat-checkbox>
+          </td>
+        </tr>
+
+      </tbody>
+    </table> -->
+  </div>
+
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+    <button id='defaultele' (click)="defaulttoggle()"></button>
+    <button class="hvr-push btn btn-sucess text-white submit-btn"   color="primary" (click)="onSubmit()" [disabled]="!roleForm.form.valid">Submit</button>
+    <button class="hvr-push btn btn-danger reset-btn" color="warn" #resetSubmitbtn (click)="roleForm.reset();reset()">Reset</button>
+    <button class="hvr-push btn text-white exit-btn"  color="accent" routerLink="/roles/summary">&nbsp;Exit&nbsp;</button>
+  </div>
+
+   <!-- audit log-->
+   <div fxLayout="row" *ngIf="auditlogdata">
+    <div fxFlex></div>
+    <div fxFlex="95" style="margin-top:30px;">
+       <mat-card>
+        <mat-card-title>
+  
+        </mat-card-title>
+        <mat-card-content>
+          <div fxLayout="row">
+  
+            <table id="audittrail">
+              <tr>
+                <th>Created By:</th>
+                <td>
+                    <mat-chip>{{auditlogdata.maker}}</mat-chip>
+                </td>
+<th>Creation Date:</th>
+                <td>
+                    <mat-chip>{{auditlogdata.makerDtStamp | date: 'M/d/yy, h:mm a'}}</mat-chip>
+                </td>
+ <th>AuthStatus:</th>
+                <td>
+                    <mat-chip>{{auditlogdata.authStatus}}</mat-chip>
+                </td>
+                         <!--  <th>First Time Auth:</th>
+                <td>
+                    <mat-chip>{{auditlogdata.firstTimeAuth}}</mat-chip>
+                </td>  -->        
+              </tr>
+              <tr>
+<th>Verified Id:</th>
+                <td>
+                    <mat-chip>{{auditlogdata.verifierId}}</mat-chip>
+                </td> 
+                <th>Verified Date:</th>
+                <td>
+                    <mat-chip>{{auditlogdata.checkerDtStamp | date: 'M/d/yy, h:mm a'}}</mat-chip>
+                </td>
+              
+                <th>Record Status:</th>
+                <td>
+                    <mat-chip>{{auditlogdata.recordStatus}}</mat-chip>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card> 
+    </div>
+    <div fxFlex></div>
+  </div>
+
+  <!--end of audit log-->
+
+</form>

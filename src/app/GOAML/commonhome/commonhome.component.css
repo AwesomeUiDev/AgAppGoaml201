@@ -1,0 +1,9 @@
+mat-card{
+    background-image: url('leaf.jpg');
+
+    display:block;
+    margin: 100px;
+    height: 100px;
+  color: white;
+  text-align: center;
+}

@@ -1,0 +1,417 @@
+<app-home></app-home>
+
+<div class="card bg-transparent border-0 ">
+
+  <!-- <div class="card-title col-sm-6 text-md-center text-danger font-weight-bold">
+    Type or XML Report : Large Cash Transaction Report
+  </div> -->
+  <!-- ------------------------------- -->
+  <div class="card bg-transparent border-0 media" id="auth">
+    <!-- <div class="card-header col-sm-6 text-md-center bg-transparent ">
+      Reporting Maintenance
+    </div> -->
+    <!-- <h4 class="headTwo">
+      Reporting Maintenance
+      </h4> -->
+
+      <div class="header">
+        <h6 class="headOne" >
+         <!-- {{downloadMsg}} -->
+        </h6>
+        <h6 class="headAlt">
+         <!-- {{validationResponse}} -->
+         <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+         </h6>
+         <h4 class="headTwo">
+          Reporting Maintenance
+        </h4>
+      </div>
+      <div class="line"></div>
+  
+      
+    <div>
+      <h5 style="color: green"> {{responsesucess}}</h5>
+      <h5 style="color: blue"> {{emailresponse}}</h5>
+    </div>
+    <div class="card bg-transparent border-0 col-sm-12">
+      <div class="card-body table-bordered  border-0 col-sm-12 bxshdwborder bxshdw">
+        <form #myForm="ngForm" novalidate>
+          <table class="border-0 col-md-12 bg-transparent cellDiv">
+            <div class="card table border-0 bg-transparent col-md-11">
+              <tr>
+
+                <div class="form-group col-lg-12 border-0">
+
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group" [class.has-error]="userNo.touched&&userNo.invalid"
+                      [class.has-success]="userNo.valid">
+                      <label class="serif" for="userNo">User Id<span class='manfield'>*</span></label>
+                      <input type="text" name="userNo" required class="col-lg-12 form-control"
+                        [(ngModel)]="report.userNo" #userNo="ngModel" (change)="checkUser(userNo.Value)" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="userNo.touched&&userNo.invalid">
+                        UserId is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group" [class.has-error]="firstName.touched&&firstName.invalid"
+                      [class.has-success]="firstName.valid">
+                      <label class="serif" for="firstName">FirstName<span class='manfield'>*</span></label>
+                      <input type="text" name="firstName" required class="col-lg-12 form-control"
+                        [(ngModel)]="report.firstName" #firstName="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="firstName.touched&&firstName.invalid">
+                        FirstName is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class=" fom-group col-lg-12" [class.has-error]="middlename.touched&&middlename.invalid"
+                      [class.has-success]="middlename.valid">
+                      <label class="serif" class="serif" for="middlename">MiddleName</label>
+                      <input type="text" name="middlename" required id="middlename" class="col-lg-12 form-control"
+                        [(ngModel)]="report.middlename" #middlename="ngModel" [readOnly]="is_edit">
+
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label class="serif" for="lastName">LastName<span class='manfield'>*</span></label>
+                      <input type="text" required name="lastName" id="lastName" class="col-lg-12 form-control"
+                        [(ngModel)]="report.lastName" #lastName="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="lastName.touched&&lastName.invalid">
+                        LastName is required
+                      </span>
+                    </div>
+                  </td>
+                </div>
+              </tr>
+              <tr>
+
+                <div class="form-group col-lg-12">
+
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label class="serif" for="gender">Gender<span class='manfield'>*</span></label>
+                      <input type="text" name="gender" required id="gender" [(ngModel)]="report.gender"
+                        #gender="ngModel" class="col-lg-12 form-control" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="gender.touched&&gender.invalid">
+                        Gender is required
+                      </span>
+                    </div>
+                  </td>
+
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label class="serif" for="birthDate">BirthDate<span class='manfield'>*</span></label>
+                      <input type="Date" name="birthDate" required id="birthDate" class="col-lg-12 form-control serif"
+                        [(ngModel)]="report.birthDate" #birthDate="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="birthDate.touched&&birthDate.invalid">
+                        Birth Date is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group" [class.has-error]="ssn.touched&&ssn.invalid"
+                      [class.has-success]="ssn.valid">
+                      <label class="serif" for="ssn">SSN<span class='manfield'>*</span></label>
+                      <input type="text" name="ssn" required id="ssn" class="col-lg-12 form-control"
+                        [(ngModel)]="report.ssn" #ssn="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="ssn.touched&&ssn.invalid">
+                        SSN is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label class="serif" for="idNumber">IDNumber <span class='manfield'>*</span></label>
+                      <input type="text" name="idNumber" required id="idNumber" class="col-lg-12 form-control"
+                        [(ngModel)]="report.idNumber" #idNumber="ngModel" (change)="checkIdnumber()" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="idNumber.touched&&idNumber.invalid">
+                        IdNumber is required
+                      </span>
+                    </div>
+                  </td>
+                </div>
+                <!-- </td> -->
+                <!-- </div> -->
+              </tr>
+
+              <tr>
+
+                <div class="form-group col-lg-12" [class.has-error]="idNumber.touched&&idNumber.invalid"
+                  [class.has-success]="idNumber.valid">
+
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group" [class.has-error]="nationality.touched&&nationality.invalid"
+                      [class.has-success]="nationality.valid">
+                      <label class="serif" for="nationality">Nationality<span class='manfield'>*</span></label>
+                      <input type="text" name="nationality" required id="nationality" class="form-control"
+                        [(ngModel)]="report.nationality" #nationality="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="nationality.touched&&nationality.invalid">
+                        Nationality is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label class="serif" for="passport">Passport<span class='manfield'>*</span></label>
+                      <input type="text" name="passport" required id="passport" class="form-control"
+                        [(ngModel)]="report.passport" #passport="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="passport.touched&&passport.invalid">
+                        Passport is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group" [class.has-error]="email.touched&&email.invalid"
+                      [class.has-success]="email.valid">
+                      <label class="serif" for="email">Email<span class='manfield'>*</span></label>
+                      <input type="email" name="email" required id="email" class="form-control"
+                        [(ngModel)]="report.email" #email="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="email.touched&&email.invalid">
+                        Email is required
+                      </span>
+                    </div>
+                    <!-- <div class="col-lg-12 form-group"[class.has-error]="emailFormControl.touched&&emailFormControl.invalid"
+                    [class.has-success]="emailFormControl.valid">
+                      <label class="serif" for="emailFormControl">Email<span class='manfield'>*</span></label>
+                     <input type="email" class="form-control" [formControl]="emailFormControl" [(ngModel)]="report.email" name="email" required id="email" >
+                    <span class="alert alert-danger" *ngIf="emailFormControl.touched && emailFormControl.invalid">
+                      Email is required
+                    </span>
+                    </div> -->
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label class="serif" for="passportCountry">PassportCountry<span class='manfield'>*</span></label>
+                      <input type="text" name="passportCountry" required id="passportCountry" class="form-control"
+                        [(ngModel)]="report.passportCountry" #passportCountry="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="passportCountry.touched&&passportCountry.invalid">
+                        PassportCountry is required
+                      </span>
+                    </div>
+                  </td>
+                </div>
+              </tr>
+
+              <tr>
+
+                <div class="form-group col-lg-12" [class.has-error]="passportCountry.touched&&passportCountry.invalid"
+                  [class.has-success]="passportCountry.valid">
+
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group" [class.has-error]="occupation.touched&&occupation.invalid"
+                      [class.has-success]="occupation.valid">
+                      <label class="serif" for="occupation">Occupation<span class='manfield'>*</span></label>
+                      <input type="text" name="occupation" required id="occupation" class="form-control"
+                        [(ngModel)]="report.occupation" #occupation="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="occupation.touched&&occupation.invalid">
+                        Occupation is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label class="serif" for="contactType">ContactType<span class='manfield'>*</span></label>
+                      <input type="text" name="contactType" placeholder='Max 4 characters' required id="contactType" class="form-control"
+                        [(ngModel)]="report.contactType" #contactType="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="contactType.touched&&contactType.invalid">
+                        ContactType is required
+                      </span>
+                      <!--<small>ContactType should be maximum 4 Characters</small>-->
+                    </div>
+      
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group" [class.has-error]="countryprefix.touched&&countryprefix.invalid"
+                      [class.has-success]="countryprefix.valid">
+                      <label class="serif" for="countryprefix">Countryprefix<span class='manfield'>*</span></label>
+                      <input type="number" name="countryprefix" required id="countryprefix" class="form-control"
+                        [(ngModel)]="report.countryprefix" #countryprefix="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="countryprefix.touched&&contactType.invalid">
+                        Countryprefix is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label class="serif" for="communicationType">CommunicationType</label><br>
+                      <select [(ngModel)]="report.communicationType" #communicationType="ngModel" (change)="CheckComm()"
+                        id="communicationType" name="communicationType"  ngModel #communicationType="ngModel"
+                        class="custom-select comm form-control col-lg-12"  [disabled]="is_edit">
+
+                        <option value="work">
+                          work
+
+                        </option>
+
+                      </select>
+                      <!-- </td> -->
+
+                    </div>
+                  </td>
+
+                </div>
+              </tr>
+
+              <tr>
+
+                <div class="form-group col-lg-12">
+
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group" [class.has-error]="phoneNumber.touched&&phoneNumber.invalid"
+                      [class.has-success]="phoneNumber.valid">
+                      <label class="serif" for="phoneNumber">Phone Number<span class='manfield'>*</span></label>
+                      <input type="number" name="phoneNumber" required id="phoneNumber" class="form-control col-lg-12" (keypress)="keyPress($event)"
+                        [(ngModel)]="report.phoneNumber" #phoneNumber="ngModel" (change)="checkphoneNo()" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="phoneNumber.touched&&phoneNumber.invalid">
+                       Phone Number is required
+                      </span>
+                    </div>
+                  </td>
+
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group" [class.has-error]="address.touched&&address.invalid"
+                      [class.has-success]="address.valid">
+                      <label class="serif"for="address">Address <span class='manfield'>*</span></label>
+                      <input type="text" name="address" required id="address" class="form-control col-lg-12"
+                        [(ngModel)]="report.address" #address="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="address.touched&&address.invalid">
+                        Address is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label class="serif" for="town">Town <span class='manfield'>*</span></label>
+                      <input type="text" name="town" required id="town" class="form-control col-lg-12" [(ngModel)]="report.town"
+                        #town="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="town.touched&&town.invalid">
+                        Town is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="col-lg-12 form-group">
+                      <label  for="addressType" class="form-group col-lg-12 serif">AddressType</label>
+                      <!-- <input type="text" name="countryprefix" required id="countryprefix" class="form-control"> -->
+                      <!-- <td class="border-0"> -->
+                      <select [(ngModel)]="report.addressType" #addressType="ngModel" id="addressType"
+                        name="addressType" class="custom-select add form-control col-lg-12" [disabled]="is_edit">
+
+                        <option value="work">
+                          work
+                        </option>
+                      </select>
+                      <!-- </td> -->
+                    </div>
+                </div>
+              </tr>
+
+              <tr>
+
+                <div class="form-group col-lg-12" [class.has-error]="town.touched&&town.invalid"
+                  [class.has-success]="town.valid">
+
+                  <td class="border-0">
+                    <div class="form-group col-lg-12" [class.has-error]="city.touched&&city.invalid"
+                      [class.has-success]="city.valid">
+                      <label class="serif" for="city">City<span class='manfield'>*</span></label>
+                      <input type="text" name="city" required id="city" class="form-control" [(ngModel)]="report.city"
+                        #city="ngModel" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="city.touched&&city.invalid">
+                        City is required
+                      </span>
+                    </div>
+                  </td>
+                  <td class="border-0">
+                    <div class="form-group col-lg-12" [class.has-error]="countryCode.touched&&countryCode.invalid"
+                      [class.has-success]="countryCode.valid">
+                      <label class="serif" for="countryCode">CountryCode<span class='manfield'>*</span></label>
+                      <input type="text" name="countryCode" maxlength="2" minlength="2" id="countryCode"
+                        class="form-control" [(ngModel)]="report.countryCode" #countryCode="ngModel"
+                        (change)="checkcountrycode()" [readOnly]="is_edit">
+                      <span class="alert alert-danger" *ngIf="countryCode.touched&&countryCode.invalid">
+                        CountryCode is required
+                      </span>
+                    </div>
+                  </td>
+                </div>
+              </tr>
+              <tr>
+                <!-- <div class="btn-group">
+                  <td class="border-0">
+
+                    <button (click)="Checking()" class="hvr-push btn btn-success text-white" style="background: #229954;">Save</button>
+                  </td>
+                  <td class="border-0">
+                    <button type="reset"
+                      class="hvr-push btn btn-danger text-white"  >Reset</button>
+                  </td>
+                </div> -->
+              </tr>
+            </div>
+            <div class="form-group" style="text-align: center;">
+              <button (click)="Checking()" class="hvr-push btn btn-success text-white save-btn" *ngIf="!enablesummarybutton">Submit</button>
+              <button (click)="onClickOfUpdate()"  style="background:  #424949;"  class="hvr-push btn btn-success text-white save-btn" *ngIf="enablesummarybutton" >Save</button>&nbsp;&nbsp;
+              <button type="reset" #resetSubmitbtn
+                class="hvr-push btn btn-danger text-white reset-btn"  >Reset</button>&nbsp;&nbsp;
+                <button class="hvr-push btn text-white exit-btn"  style=" width: 77px;" color="accent" routerLink="/ReportmainteinanceSummary">Exit</button>&nbsp;&nbsp;
+                <button type="text" id="5" color="primary"   class=" text-white edit-btn btn wdth"  (click)="changeStatus()"
+                *ngIf="enablesummarybutton" >Edit</button>&nbsp;&nbsp; 
+                <!-- <button   (click)="onCLickOfSummary()"
+                class="hvr-push btn btn-danger text-white"  >Summary</button> -->
+          </div>
+          </table>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!-- audit log-->
+<div fxLayout="row">
+  <div fxFlex></div>
+  <div fxFlex="95">
+     <mat-card *ngIf="enablesummarybutton">
+      <mat-card-title>
+
+      </mat-card-title>
+      <mat-card-content>
+        <div fxLayout="row">
+
+          <table id="audittrail">
+            <tr>
+              <th>Created By:</th>
+              <td>
+                  <mat-chip *ngIf='formresponse && formresponse.creatorId'>{{formresponse.creatorId}}</mat-chip>
+                  <mat-chip *ngIf='!formresponse || !formresponse.creatorId'>-</mat-chip>
+              </td>
+              <th>Creation Date:</th>
+              <td>
+                  <mat-chip *ngIf='formresponse && formresponse.creatorDtStamp'>{{formresponse.creatorDtStamp | date:'short'}}</mat-chip>
+                  <mat-chip *ngIf='!formresponse || !formresponse.creatorDtStamp'>-</mat-chip>
+              </td>                     
+            </tr>
+            <tr>
+              <th>Modified By:</th>
+              <td>
+                  <mat-chip *ngIf='formresponse && formresponse.verifierId'>{{formresponse.verifierId }}</mat-chip>
+                  <mat-chip *ngIf='!formresponse || !formresponse.verifierId'>-</mat-chip>
+              </td> 
+              <th>Modified Date:</th>
+              <td>
+                  <mat-chip *ngIf='formresponse && formresponse.verifierDtStamp'>{{formresponse.verifierDtStamp | date:'short'}}</mat-chip>
+                  <mat-chip *ngIf='!formresponse || !formresponse.verifierDtStamp'>-</mat-chip>
+              </td> 
+            </tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card> 
+  </div>
+  <div fxFlex></div>
+</div>
+
+<!--end of audit log-->

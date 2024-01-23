@@ -1,0 +1,122 @@
+<!-- <p>
+  systemconfiguration-summary works!
+</p> -->
+<div class="card bg-transparent border-0 ">
+  <div class="card bg-transparent border-0 media" id="auth">
+   
+
+    <div class="header">
+      <h6 class="headOne" >
+     
+      </h6>
+      <h6 class="headAlt">
+      
+       </h6>
+       <h4 class="headTwo">
+       System Configuration Summary
+      </h4>
+    </div>
+    <div class="line"></div>
+
+  
+
+    <div class="card bg-transparent border-0 col-sm-12" style="margin-top: 20px;">
+      <!-- <a  class="btn  btn-lg bckbtn" routerLink="/systemConfig">Back</a>&nbsp;&nbsp;&nbsp; -->
+      <div class="card-body   border-0 col-sm-10 bxshdwborder bxshdw" style="margin: auto; overflow: auto;">
+        
+                <!-- <div>
+                  <mat-form-field class="full-width matfltr" appearance="outline">
+                    <input class="mat-form-field mat-form-field-infix" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                  </mat-form-field>
+                </div>
+                <div style="text-align: right;">
+                    &nbsp;&nbsp;
+                   
+                    <button type="text" class="9 btn hvr-push new-btn text-white btnwdth"  routerLink="/systemConfig"
+                    >New</button> &nbsp;&nbsp;
+                    <button class="hvr-push btn text-white exit-btn btnwdth"  color="accent" routerLink="/about">Exit</button>
+
+                  </div> -->
+                  <!-- search code-->
+                  <div fxLayout="row" class="rw">
+                    <div fxFlex="30">
+                      <div class="mt-12">
+                        <mat-form-field class="full-width" appearance="outline">
+                          <input class="mat-form-field mat-form-field-infix  filterip" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div fxLayout="row" class='btn-group algn' fxFlex="1 1 0%" fxLayoutAlign="end center" fxLayoutGap="5px">
+                        <button type="text" class="9 btn hvr-push new-btn text-white btnwdth"  routerLink="/systemConfig"
+                    >New</button> &nbsp;&nbsp;
+                    <button class="hvr-push btn text-white exit-btn btnwdth"  color="accent" routerLink="/about">Exit</button>
+
+                    </div>
+                  </div>
+                  <!--end of search code-->
+                  <div  class="mat-elevation-z8" class="bg-transparent ">
+              
+            
+              <table mat-table [dataSource]="dataSource" style="width: 100%;" class="bg-transparent table-striped">
+          
+      
+                
+             <ng-container matColumnDef="rentityId">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0" > RentityId</th>
+              <td mat-cell *matCellDef="let element ;let i=index;" class="text-md-center ">
+                <a class="handsym" (click)="getByUserId(element)">
+                  {{element.rentityId}}</a> </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="reportType">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > ReportType</th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.reportType}} </td>
+            </ng-container>
+    
+
+            <ng-container matColumnDef="fileLocation">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > FileLocation </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.fileLocation}} </td>
+            </ng-container>
+      
+            
+           
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="creatorId">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > CreatorId </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.creatorId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="creatorDtStamp">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > CreationDate </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.creatorDtStamp | date:'short'}} </td>
+            </ng-container>
+<!-- 
+            <ng-container matColumnDef="reportingFrequency">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > reportingFrequency </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.reportingFrequency}} </td>
+            </ng-container> -->
+
+            <!-- <ng-container matColumnDef="reportType">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " >reportType </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.reportType}} </td>
+            </ng-container> -->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              </table>
+          
+              <mat-paginator (page)='onPaginateChange($event)' style="background-color: white;" class="text-black" [pageSize]='pageSize' [pageSizeOptions]="[5, 10, 20]"
+                showFirstLastButtons></mat-paginator>
+            </div>
+          
+          
+          <!-- </mat-card> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

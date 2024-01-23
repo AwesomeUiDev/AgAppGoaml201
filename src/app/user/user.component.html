@@ -1,0 +1,257 @@
+<div class="card bg-transparent border-0 ">
+
+  <div class="card bg-transparent border-0 media" id="auth">
+   <!-- <div class="card-header col-sm-6 text-md-center bg-transparent  ">
+      Register User
+    </div> -->
+    <div class="header">
+      <h6 class="headOne"></h6>
+      <h6 class="headAlt"></h6>
+       <h4 class="headTwo"> Register User</h4>
+    </div>
+    <div class="line"></div>
+    <div >
+      <p *ngIf="button3" style="color:red;margin-left: 20px;"> Updating User Details For User Id <b style="color:blue;">{{this.user.userId}}</b> and User name <b style="color:blue;">{{this.user.userName}}</b>. </p>
+    </div>
+   
+    <div class="card bg-transparent border-0 col-sm-12">
+      <div class="card-body table-bordered mrgbtn border-0 col-sm-10 bxshdw wdt overalgn">
+          <form autocomplete="off" >
+          <div class="card  bg-transparent border-0 text-black font-weight-bold">
+            <div class="card fom bg-transparent border-0 ">
+              <div class="form-group">
+                <div class="row" *ngIf="!button3">
+                  <div
+                    class="input-group col-md-12 bg-transparent text-black font-weight-bold border-0 text-md-center">User
+                    Id
+                </div>
+                <div class="col-md-12">
+                  <input style="text-transform:uppercase;" type="text" class="form-control col-md-12" name="userId" id="userId" [(ngModel)]="user.userId" 
+                    minlength="6" maxlength="50" ngModel #id1="ngModel" required (keypress)="keyPress($event)">
+                  
+                    <div class=" alert alert-danger border-0 text-black col-md-6 text-md-center"
+                    *ngIf="id1.touched && !id1.valid ">
+                    UserId should contain Minimum 6 characters
+                  </div>
+                </div>
+                </div>
+
+                <div class="row " *ngIf="!button3">
+                  <div
+                    class="input-group col-md-12 bg-transparent text-black font-weight-bold border-0 text-md-center">Username
+                </div>
+                <div class="col-md-12">
+                  <input  type="text" class="form-control col-md-12" name="userName" id="userName" autocomplete="false" autofill="off"
+                    [(ngModel)]="user.userName" minlength="3" maxlength="50" ngModel #name="ngModel" (keypress)="keyPress($event)" required>
+                  <div class=" alert alert-danger col-md-6 border-0 text-black text-md-center"
+                    *ngIf="name.touched && !name.valid">
+                    Enter Username
+                  </div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div
+                    class="input-group col-md-12 bg-transparent text-black font-weight-bold border-0 text-md-center">Email
+                </div>
+                <div class="col-md-12">
+                  <input type="email" class="form-control col-md-12" name="emailId" id="emailId" (keyup)="validatemail()"
+                    [(ngModel)]="user.emailId" minlength="3" maxlength="50" ngModel #mail="ngModel" required [readonly]="is_edit">
+                  <div class=" alert alert-danger col-md-6 border-0 text-black text-md-center"
+                    *ngIf="mail.touched && !mail.valid || emailerror">
+                   Enter valid Email address
+                  </div>
+                </div>
+                </div>
+                <div class="row ">
+                  <div
+                    class="input-group col-md-12 bg-transparent text-black font-weight-bold border-0 text-md-center">Roles
+                </div>
+                <div class="col-md-12">
+                  <select id="my-input" class="form-control col-md-12 roles" name="roleId" id="roles" [(ngModel)]="user.roleId"
+                    ngModel #roles="ngModel"  required [disabled]=is_edit>
+                    <option selected disabled>--select--</option>
+                    <option *ngFor="let role of rolesList" value='{{role.roleName}}'>{{role.roleName}}</option>
+                    <!--<option value="U">User</option>
+                    <option value="V">Authorizer</option>
+                    <option value="I">ICT</option> -->
+                  </select>
+                </div>
+                  <div class='col-md-4'></div>
+                  <div class='col-md-4'></div>
+                  <div class=" alert alert-danger col-md-6 border-0 text-black text-md-center"
+                    *ngIf="roles.touched && !roles.valid">
+                    Select Roles
+                  </div>
+                </div>
+                <div class="row ">
+                  <div
+                    class="input-group col-md-12 bg-transparent text-black font-weight-bold border-0 text-md-center">Phone
+                    Number
+                </div>
+                <div class="col-md-12">
+                  <input type="number" class="form-control col-md-12" name="phoneNumber" id="phoneNumber" (keypress)="keyPress1($event)"
+                    [(ngModel)]="user.phoneNumber" minlength="10" maxlength="50" ngModel #phone="ngModel" required [readonly]="is_edit">
+                  <div class=" alert alert-danger col-md-6 border-0 text-black text-md-center"
+                    *ngIf="phone.touched && !phone.valid">
+                   Enter phoneNumber
+                  </div>
+                  </div>
+                </div>
+                <!-- *ngIf="!button1" -->
+                <div class="row " *ngIf="!button3">
+                  <div
+                    class="input-group col-md-12 bg-transparent text-black font-weight-bold border-0 text-md-center">Password
+                </div>
+                  <!-- <div class="input-placeholder"> -->
+                    <div class="col-md-12 position">
+                  <input style="float: left; padding-right: 30px;" pass #pass="ngModel" class="form-control col-md-12"
+                    pattern="{{passwordRegex}}" [(ngModel)]="user.password" name="password"
+                    [ngClass]="{'has-danger':pass.invalid && (pass.dirty ||pass.touched),
+                    'has-success':pass.valid && (pass.dirty || pass.touched)}" 
+                    [type]="hide ? 'password' : 'text'" required>
+                    <mat-icon class="placeholder" (click)="myFunction()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  <!-- </div>  -->
+                  <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+                 <!-- <mat-error *ngIf="pass.errors?.required">Password is required</mat-error> -->
+                  <mat-error #passwordmat *ngIf="pass.errors?.pattern">{{errorMsg}} <br> Should have Min {{minPass}} and Max {{maxPass}} characters.</mat-error>
+                  
+                  <!-- <input type="password" class="form-control col-md-4" name="password" id="password"
+                    [(ngModel)]="user.password" minlength="8" maxlength="14" ngModel #pass="ngModel"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
+                  <div class=" alert alert-danger  col-md-6 border-0 text-danger " *ngIf="pass.touched && !pass.valid">
+                    <div *ngIf="pass.errors.required" >Please enter password </div>
+                    <div *ngIf="pass.errors.minlength" >Please enter Minimum 8 characters!</div>
+                    <div *ngIf="pass.errors.pattern">at least one uppercase letter, one lowercase letter, one number and
+                      one special character</div> 
+                  </div> -->
+                </div>
+              </div>
+                <div class="row ">
+                   <div class="input-group col-md-12 bg-transparent text-black font-weight-bold border-0">Notification
+                    Required
+                   </div>
+                <div class="col-md-12">
+                  <select id="my-input" class="form-control col-md-12" name="sendNotification" id="sendNotification" [(ngModel)]="user.sendNotification"
+                    ngModel #roles="ngModel" required [disabled]=is_edit>
+                    <option selected disabled>--select--</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select> 
+                </div>
+                </div>
+                <div class="row " *ngIf="button3">
+                  <div class="input-group col-md-12 bg-transparent text-black font-weight-bold border-0">
+                   Record Status
+                  </div>
+                  <div class="col-md-12">
+                <select id="my-input" class="form-control col-md-12" name="status" id="status" [(ngModel)]="user.status"
+                    ngModel #status="ngModel" required [disabled]=is_edit >
+                    <option selected disabled>--select--</option>
+                    <option value="O">Open</option>
+                    <option value="C">Close</option>
+                  </select>
+                </div>
+                </div>
+                <div class="row "  *ngIf="button3">
+                  <div class="input-group col-md-12 bg-transparent text-black font-weight-bold border-0">Do You want to Unclock the User?                  
+                  </div>
+                <!-- <select id="my-input" class="form-control col-md-4" name="activeStatus" id="activeStatus" [(ngModel)]="user.activeStatus"
+                    ngModel #status="ngModel" required> -->
+                    <!-- <option selected disabled>--select--</option>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option> -->
+                    <div class="col-md-12">
+                    <mat-radio-group aria-label="Select an option" name="activeStatus" id="activeStatus" [(ngModel)]="user.activeStatus"
+                    ngModel #status="ngModel" required [disabled]=is_edit>
+                    <mat-radio-button value="Y">Yes</mat-radio-button>
+                    <mat-radio-button value="N">No</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                
+                  <!-- </select> -->
+                </div>
+
+                   
+                <div class="btn-group mgntp">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button type="submit" class="hvr-push btn btn-sucess submit-btn text-white newbdrd"
+                    (click)="registerUser()" style="width: 90px; text-align: center;" *ngIf="!button3"> &nbsp;&nbsp;Submit &nbsp;&nbsp;</button>
+                    <button class="btnupd btn text-white save-btn" (click)="updateRecord()" *ngIf="button3"> &nbsp;&nbsp;Save &nbsp;&nbsp;</button>  &nbsp;&nbsp;&nbsp;
+                  <button type="reset" style="margin-left: 5px;margin-right: 5px;" #resetSubmitbtn class="hvr-push btn btn-danger text-white reset-btn newbdrd" > &nbsp;&nbsp;Reset &nbsp;&nbsp;</button>
+                  &nbsp;&nbsp;&nbsp;
+                  <button class="hvr-push btn text-white exit-btn btnwdth"  color="accent" routerLink="/summary">&nbsp;&nbsp;Exit &nbsp;&nbsp;</button>
+
+                  <!-- <button type="submit" class="hvr-push btn btn-primary text-white summary-btn newbdrd" (click)="onCLickOfSummary()"
+                  style="background: #1A5276;"   >Summary</button> -->
+                  &nbsp;&nbsp;
+                  <button type="auth"  class="hvr-push btn btn-primary text-white auth-btn newbdrd btnwdth" *ngIf="button3 && user.authStatus =='U'" (click)="onAuth()"
+                  style="background:#28a745" [disabled]="disableAuth"   >Auth</button>&nbsp;&nbsp;
+                 
+
+                  <button type="text" id="5" color="primary"   class=" text-white edit-btn btn btnalgn"  (click)="changeStatus()"
+                  *ngIf="button3" >Edit</button>&nbsp;&nbsp;         
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+ 
+ 
+        <!-- audit log-->
+        <div fxLayout="row" *ngIf="button3 || auditlognewuser">
+          <div fxFlex></div>
+          <div fxFlex="95" style="margin-top:20px;">
+             <mat-card>
+              <mat-card-title>
+        
+              </mat-card-title>
+              <mat-card-content>
+                <div fxLayout="row">
+        
+                  <table id="audittrail">
+                    <tr>
+                      <th>Created By:</th>
+                      <td>
+                          <mat-chip>{{user.creatorId}}</mat-chip>
+                      </td>
+                      <th>Creation Date:</th>
+                      <td>
+                          <mat-chip>{{user.creatorDtStamp | date:'short'}}</mat-chip>
+                      </td> 
+                      <th>AuthStatus:</th>
+                      <td>
+                          <mat-chip *ngIf="!user.authStatus">{{user.authStatus}}</mat-chip>
+                          <mat-chip *ngIf="user.authStatus && user.authStatus == 'U'">UNAUTHORIZED</mat-chip>
+                          <mat-chip *ngIf="user.authStatus && user.authStatus == 'A'">AUTHORIZED</mat-chip>
+                      </td>                    
+                    </tr>
+                    <tr>
+                      <th>Modification No:</th>
+                      <td>
+                          <mat-chip>{{user.versionNo}}</mat-chip>
+                      </td>
+                      <th>Verified Id:</th>
+                      <td>
+                          <mat-chip>{{user.verifierId}}</mat-chip>
+                      </td>
+                      <th>Verified Date:</th>
+                      <td>
+                          <mat-chip>{{user.verifierDtStamp | date:'short'}}</mat-chip>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </mat-card-content>
+            </mat-card> 
+          </div>
+          <div fxFlex></div>
+        </div>
+      
+        <!--end of audit log-->
+    </div>
+  </div>
+</div>

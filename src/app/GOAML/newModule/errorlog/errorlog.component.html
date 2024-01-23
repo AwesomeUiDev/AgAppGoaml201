@@ -1,0 +1,114 @@
+<app-home></app-home>
+<!-- <div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      GitHub's API rate limit has been reached. It will be reset in one minute.
+    </div>
+  </div> -->
+
+  <!--  <div class="example-table-container">
+
+   <table mat-table [dataSource]="data" class="example-table"
+           matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+     
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let row">{{row.number}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let row">{{row.title}}</td>
+      </ng-container>
+
+    
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef>State</th>
+        <td mat-cell *matCellDef="let row">{{row.state}}</td>
+      </ng-container>
+
+     
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Created
+        </th>
+        <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> -->
+  <!-- </div>
+
+ 
+</div> -->
+<div class="header">
+  <h6 class="headOne" >
+   <!-- {{downloadMsg}} -->
+  </h6>
+  <h6 class="headAlt">
+   <!-- {{validationResponse}} -->
+   <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+   </h6>
+   <h4 class="headTwo">
+    Error Monitoring
+  </h4>
+</div>
+<div class="line"></div>
+<mat-card  style="background-color: transparent;" class="bxshdwborder bxshdw">
+  <div class="example-table-container" style="background-color: transparent;">
+
+    <table mat-table [dataSource]="dataSource" class="example-table" style="background-color: transparent;"
+           matSort matSortActive="LOG_TIMESTAMP" matSortDisableClear matSortDirection="desc">
+           <ng-container matColumnDef="LOG_TIMESTAMP">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+              LOG_TIMESTAMP
+            </th>
+            <td mat-cell *matCellDef="let row">{{row.LOG_TIMESTAMP | date:'medium'}}</td>
+          </ng-container>
+    
+      <!-- <ng-container matColumnDef="EXEC_DATE">
+        <th mat-header-cell *matHeaderCellDef>EXEC_DATE</th>
+        <td mat-cell *matCellDef="let row">{{row.EXEC_DATE | date:'medium'}}</td>
+      </ng-container> -->
+
+   
+      <ng-container matColumnDef="TYPE">
+        <th mat-header-cell *matHeaderCellDef>TYPE</th>
+        <td mat-cell *matCellDef="let row">{{row.TYPE}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="PACKAGE_NAME">
+        <th mat-header-cell *matHeaderCellDef>PACKAGE_NAME</th>
+        <td mat-cell *matCellDef="let row">{{row.PACKAGE_NAME}}</td>
+      </ng-container>
+      <ng-container matColumnDef="PROCEDURE_NAME">
+        <th mat-header-cell *matHeaderCellDef>PROCEDURE_NAME</th>
+        <td mat-cell *matCellDef="let row">{{row.PROCEDURE_NAME}}</td>
+      </ng-container>
+      <ng-container matColumnDef="MESSAGE">
+        <th mat-header-cell *matHeaderCellDef>MESSAGE</th>
+        <td mat-cell *matCellDef="let row"><textarea style="background-color: transparent;">{{row.MESSAGE}}</textarea></td>
+      </ng-container>
+      <ng-container matColumnDef="ERR_CODE">
+        <th mat-header-cell *matHeaderCellDef>ERR_CODE</th>
+        <td mat-cell *matCellDef="let row">{{row.ERR_CODE}}</td>
+      </ng-container>
+      <ng-container matColumnDef="LINE_NUM">
+        <th mat-header-cell *matHeaderCellDef>LINE_NUM</th>
+        <td mat-cell *matCellDef="let row">{{row.LINE_NUM}}</td>
+      </ng-container>
+    
+
+     
+      <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+
+    </table>
+    <!-- <mat-paginator  [pageSize]="10"></mat-paginator> -->
+  </div>
+</mat-card>
+

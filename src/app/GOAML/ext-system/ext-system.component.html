@@ -1,0 +1,106 @@
+<app-home></app-home>
+
+<div class="card bg-transparent border-0 ">
+  <div class="card bg-transparent border-0 media" id="auth">
+    <!-- <div class="card-header col-sm-6 text-md-center bg-transparent ">
+      New External System
+    </div> -->
+    <h4 class="headTwo">
+      New External System
+    </h4>
+
+    <div class="card bg-transparent border-0 col-sm-10">
+      <div class="card-body table-bordered  border-0 col-sm-8 ">
+
+        <form  class="bxshdwborder bxshdw" (ngSubmit)="onSubmit(extSysCode.value)" style="font-size:13px;">
+          <!-- <h3>{{responseEnewrror}}</h3> -->
+
+          <div >
+            <div  class="row">
+              <div >
+                <div  class="form-group row" >
+                  <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                  <div class='col-xs-6 col-sm-6 col-lg-6 col-md-6 leftcol'>
+                  <label style="text-align: center;" class="serif" for="extSysCode">External System Code</label>&nbsp;
+                </div>
+                  <!-- <input type="text" id="extSysCode" [(ngModel)]="createExtSys1.extSysCode" style="float: right; "
+                            name="extSysCode"> -->
+                  <div class='col-xs-6 col-sm-6 col-lg-6 col-md-6 rightcol'>
+                  <mat-form-field>
+                    <!-- <mat-label>External System Code</mat-label> -->
+                    <mat-select class="border mat-field-flex" name="ext" #extSysCode (selectionChange)="getProcess(extSysCode.value)"
+                      [(ngModel)]="createExtSys1.extSysCode" required #error1="ngModel">
+                      <mat-option *ngFor="let topping of data" [value]="topping">{{topping.extSysCode}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                  <div class="algn alert alert-danger border-0 text-black " *ngIf="error1.touched && !error1.valid">
+                    <p *ngIf="error1.errors.required">enter external system code</p>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                  <div class='col-xs-6 col-sm-6 col-lg-6 col-md-6 leftcol'>
+                  <label style="text-align: center;" class="serif"  for="extSysName">External system name</label>
+                  <div class="algn alert alert-danger border-0 text-black" *ngIf="error2.touched && !error2.valid">
+                    <p *ngIf="error2.errors.required">enter external system name</p>
+                  </div>
+                </div>
+                <div class='col-xs-6 col-sm-6 col-lg-6 col-md-6 rightcol'>
+                  <mat-form-field>
+                    <!-- <mat-label>External System Name</mat-label> -->
+                    <input class="mat-field-flex" type="text" id="extSysName" required #error2="ngModel" [(ngModel)]="createExtSys1.extSysName"
+                      value="{{createExtSys2}}" name="extSysName" matInput disabled>
+
+                  </mat-form-field>
+                </div>
+                  <!-- <div class=" alert alert-danger border-0 text-black" *ngIf="error2.touched && !error2.valid">
+                    <p *ngIf="error2.errors.required">enter external system name</p>
+                  </div> -->
+                </div>
+
+                <div class="form-group row">
+                  <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                  <div class='col-xs-6 col-sm-6 col-lg-6 col-md-6 leftcol'>
+                  <label class="serif"  for="processCode">Process code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+                 
+                  </div>
+
+                  <div class='col-xs-6 col-sm-6 col-lg-6 col-md-6 rightcol'>
+                  <mat-form-field>
+                    <!-- <mat-label>Process code</mat-label> -->
+                    <input type="text" class="mat-field-flex" id="processCode" required #error3="ngModel"
+                      [(ngModel)]="createExtSys1.processCode" name="processCode" matInput>
+                  </mat-form-field>
+                  
+                </div>
+                  <div class="algn alert alert-danger border-0 text-black" *ngIf="error3.touched && !error3.valid">
+                    <p *ngIf="error3.errors.required">enter processcode</p>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+            </div>
+
+          <div style="text-align: center;">
+            <button type="submit" class="hvr-push btn btn-sucess save-btn"  >Save</button>&nbsp;
+            <button type="reset" #resetSubmitbtn class="hvr-push btn btn-danger reset-btn" >Reset</button>&nbsp;
+            <button class="hvr-push btn exit-btn" 
+              [routerLink]="'/externalsystemlist'">Exit</button>
+            </div> 
+          </div>
+
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>

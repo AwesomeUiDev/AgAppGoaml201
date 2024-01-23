@@ -1,0 +1,87 @@
+<h2 mat-dialog-title>Transaction Details</h2>
+<mat-dialog-content class="text">
+    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+        <mat-chip *ngFor="let chip of markedValue" selected >
+          {{chip}}
+        </mat-chip>
+      </mat-chip-list>
+<table  class="table">
+  <thead>
+  
+  </thead>
+  <tbody>
+<!-- <tr>data will disblay here</tr> -->
+<tr>
+  <td> Transaction Reference No : <b>{{this.data[0].TRN_REF_NO}}</b></td>
+  <td> Transaction Date : <b>{{this.data[0].TRN_DT | date}}</b></td>
+  <td> Value date : <b>{{this.data[0].VALUE_DT | date }}</b></td>
+</tr>
+<tr>
+    <td> Credit Account: <b>{{this.data[0].CR_ACCOUNT}}</b></td>
+    <td> Debit Account : <b>{{this.data[0].DR_ACCOUNT}}</b></td>
+    <td> Debit Amount : <b>{{this.data[0].DR_AMOUNT }}</b></td>
+  </tr>
+  <tr>
+      <!-- <td> Account Entry Sr no : <b>{{this.data[0].AC_ENTRY_SR_NO}}</b></td> -->
+      <td> User Id: <b>{{this.data[0].USERID }}</b></td>
+      <td> Credit Account TYPE: <b>{{this.data[0].CR_AC_TYPE}}</b></td>
+      <td> Credit Branch: <b>{{this.data[0].CR_BRANCH }}</b></td>
+    </tr>
+  <tr>
+      <td> Credit Amount : <b>{{this.data[0].CR_AMOUNT}}</b></td>
+      <td> Credit Currency : <b>{{this.data[0].CR_CCY}}</b></td>
+      <td> Debit Ac TYPE: <b>{{this.data[0].DR_AC_TYPE }}</b></td>
+    </tr>
+    <tr>
+        <td> Debit Branch  : <b>{{this.data[0].DR_BRANCH}}</b></td>
+        <td> Debit Currency : <b>{{this.data[0].DR_CCY}}</b></td>
+        <td> Exchange Rate: <b>{{this.data[0].EXCHG_RATE }}</b></td>
+      </tr>
+      <tr>
+          <td>Fcy Amount   : <b>{{this.data[0].FCY_AMOUNT}}</b></td>
+          <td> Module : <b>{{this.data[0].MODULE}}</b></td>
+          <td> Related Customer: <b>{{this.data[0].RELATED_CUSTOMER }}</b></td>
+        </tr>
+        <tr>
+            <td>Transaction Code  : <b>{{this.data[0].TRN_CODE}}</b></td>
+            <td> Transaction Describtion  : <b>{{this.data[0].TRN_DESC}}</b></td>
+          
+          </tr>
+        
+   <tr>
+      <td><button TYPE="button" class="btn btn-danger" *ngIf="!strbutton" (click)="strCall(this.data[0].TRN_REF_NO)">STR</button></td>
+      <td><button TYPE="button" class="btn btn-success" *ngIf="!nonstrbutton" (click)="nonStrCall(this.data[0].TRN_REF_NO)"> Non STR</button></td>
+   </tr>
+   <tr>
+     <td colsban="3" *ngIf="strbuttontextarea">
+        <div class="form-groub">
+            <label for="text1">Reason:</label>
+            <textarea class="form-control" rows="5" name="test1" [(ngModel)]="text1" ></textarea>
+          </div>
+     </td>
+    </tr><tr>
+        <td colsban="3" *ngIf="strbuttontextarea">
+        <div class="form-groub">
+            <label for="test2">Action:</label>
+            <textarea class="form-control" rows="5" name="test2" [(ngModel)]="text2"></textarea>
+          </div>
+     </td>
+   </tr>
+   <tr>
+      <td colsban="3" *ngIf="strbuttontextarea">
+         <div class="form-groub">
+             <label for="test3">Describtion:</label>
+             <textarea class="form-control" rows="5" name="test3" [(ngModel)]="text3"></textarea>
+           </div>
+      </td>
+    </tr>
+  </tbody>
+  <mat-progress-bar mode="indeterminate" *ngIf="progress"></mat-progress-bar>
+</table>
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button (click)="submitData(this.data[0].TRN_REF_NO)" *ngIf="strbuttontextarea">Submit!</button>
+<button mat-raised-button [mat-dialog-close]="true" color="primary">Close</button>
+</mat-dialog-actions>

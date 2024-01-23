@@ -1,0 +1,95 @@
+
+<div>
+  <div class="header">
+    <h6 class="headOne" >
+     {{responseMsg}}
+    </h6>
+    <h6 class="headAlt">
+     {{responseError}}
+     <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+     </h6>
+    <h4 class="headTwo">
+      Adjustment Value
+    </h4>
+  </div>
+  <div class="line"></div>
+  <form>
+  <table align="center" cellpadding="8" cellspacing="8">
+    <tr>
+      <td><b>Department</b></td>
+      <td>
+        <select ngModel name="department" #department>
+          <option disabled>Select</option>
+          <option *ngFor="let dept of deptList">{{dept}}</option>
+        </select>
+      </td>
+      <td>
+        <div class="btn-effcts">
+          <button type="submit" class="hvr-push btn btn-success" (click)="financeAdjustmentList(department.value)" id="show">Query</button>
+        </div>
+      </td>
+    </tr>
+    <!-- </table>
+</form>
+<br>
+<br>
+<form method="POST">
+  <table align="center" cellpadding="8" cellspacing="8"> -->
+    <tr>
+      <td><b>Execution Date</b></td>
+      <td>
+        <input type="date" name="exec_date" ngModel #exec_date />
+      </td>
+      <td>
+        <div class="btn-effcts">
+          <button type="submit" class="hvr-push btn btn-success" [disabled]="!listFromDb || saveStatus" (click)="financeAdjustmentSave(exec_date.value)">Save</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+  <br>
+  <br>
+  <table align="center" cellspacing="8" cellpadding="8" class="TableColor" style="display:none" id="fetchTable">
+      <thead>
+    <tr>
+      <th><input type="button" class="add-row btn btn-success" value="+" (click)="addObject()"></th>
+      <th>Acc Number</th>
+      <th>Branch Code</th>
+      <th>Currency</th>
+      <th>Debit Amount</th>
+      <th>Credit Amount</th>
+      <th style="display:none">Department</th>
+      <th style="display:none">Exec Date</th>
+      <!-- <th>Exec Date</th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let list of listFromDb; let i=index;">
+      <td><input type="button" name="record" (click)="delete(i)" class="btn btn-danger" value="Delete"></td>
+      <td><input type="text" [(ngModel)]="list.account_number"  name="account_number" ngModel #account_number upperCase></td>
+      <td><input type="text" [(ngModel)]="list.branch_code" name="branch_code" ngModel #branch_code upperCase></td>
+      <td><input type="text" [(ngModel)]="list.currency"  name="currency" ngModel #currency upperCase></td>
+      <td><input type="text" [(ngModel)]="list.debit_amount" name="debit_amount" ngModel #debit_amount></td>
+      <td><input type="text" [(ngModel)]="list.credit_amount" name="credit_amount" ngModel #credit_amount></td>
+      <td><input type="text" [(ngModel)]="list.department" name="department" ngModel #department style="display:none" upperCase></td>
+      <td><input type="text" [(ngModel)]="list.exec_date"  name="exec_date" ngModel #exec_date style="display:none"></td>
+    </tr>
+    <!-- <tr> -->
+      <!-- <td><input type="checkbox" name="record"></td>
+      <td><input type="text"  id="account_number" name="account_number" [(ngModel)]="newObject.account_number"></td>
+      <td><input type="text"  id="branch_code" name="branch_code" [(ngModel)]="newObject.branch_code"></td>
+      <td><input type="text" id="currency" name="currency" [(ngModel)]="newObject.currency"></td>
+      <td><input type="text"  id="debit_amount" name="debit_amount" [(ngModel)]="newObject.debit_amount"></td>
+      <td><input type="text" id="credit_amount" name="credit_amount" [(ngModel)]="newObject.credit_amount"></td>
+      <td><input type="text" id="department" name="department" [(ngModel)]="newObject.department"></td> -->
+    <!-- </tr> -->
+    
+  </tbody>
+  </table>
+  <!-- <table align="center"  cellspacing="8" cellpadding="8" style="display:none" id="deleteBtn">
+      <tr>
+          <td><button type="button" class="delete-row" >Delete Rows</button></td>
+      </tr>
+  </table> -->
+</div>

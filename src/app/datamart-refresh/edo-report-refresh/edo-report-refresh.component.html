@@ -1,0 +1,54 @@
+
+<div>
+  <div class="header">
+    <h6 class="headOne" >
+     {{response}}
+    </h6>
+    <h6 class="headAlt">
+     {{validationResponse}}
+     <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+     </h6>
+    <h4 class="headTwo">
+      Eod Report Refresh
+    </h4>
+  </div>
+  <div class="line"></div>
+  <form (ngSubmit)="eodReportRefresh(mis_date.value,branch.value,report.value)" >
+    <table align="center" cellpadding="8" cellspacing="8" width="400px">
+      <tr>
+        <td><b>MIS Date</b></td>
+        <td><input type="date" name="mis_date" ngModel #mis_date required="required"></td>
+      </tr>
+      <tr>
+          <td><b>Branch Name</b></td>
+        <td><select ngModel #branch name="branch" required="required" >
+          <option disabled>Select</option>
+          <option value="ALL">All</option>
+          <option *ngFor="let branch of branches" value="{{branch}}">{{branch}}</option>
+        </select></td>
+      </tr>
+      <tr>
+        <td><b>Report Name</b></td>
+        <td>
+          <select ngModel #report name="report" required="required">
+            <option disabled>Select</option>
+            <option  value="ALL">All</option>
+            <!-- <option *ngFor="let report of reports" value="{{report}}">{{report}}</option> -->
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="btn-effcts">
+            <button type="submit" [disabled]="buttonFlag" class="hvr-push btn btn-success">Refresh</button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="reset" class="hvr-push btn btn-danger"  (click)="reset()">Reset</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

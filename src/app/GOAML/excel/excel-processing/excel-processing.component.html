@@ -1,0 +1,39 @@
+<app-home></app-home>
+<mat-toolbar style="background-color:gray;">Excel Processing</mat-toolbar> 
+<form >
+<mat-card >
+  <div class="example-container">
+      <label>External System</label>
+      <select name="extSys" #extSys1 (change)=getProcessName(extSys1.value)>
+        
+        <option *ngFor="let report of extSysData" [ngValue]="report">{{report.extSys}}</option>
+      </select>
+    <mat-form-field>
+      <input  type="date" name="dateforData" #dateforData matInput >
+    </mat-form-field>
+    <div>
+        <button  type="submit" class="btn btn-success" (click)="finalSubmit(dateforData.value)" >Show Details</button>
+    </div>
+   
+  </div>
+</mat-card>
+</form>
+<mat-card>
+    <button class="btn btn-success" (click)="getProcessData()">Process Data</button>
+ <form>
+   
+<div class="form-group">
+        <label for="applicationName">Credit Amount</label>
+        <input type="text" class="form-control" value={{dataFromresponse?.creditAmount}}>
+      </div>
+      <div class="form-group">
+          <label for="applicationName">Debit Amount</label>
+          <input type="text" class="form-control" value={{dataFromresponse?.debitAmount}}>
+        </div>
+        <div class="form-group">
+            <label for="applicationName">No of Record</label>
+            <input type="text" class="form-control" value={{dataFromresponse?.numberOfRecords}}>
+          </div>
+    
+ </form>
+</mat-card>

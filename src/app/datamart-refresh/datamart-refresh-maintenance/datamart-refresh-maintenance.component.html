@@ -1,0 +1,59 @@
+
+<div>
+    <div class="header">
+      <h6 class="headOne" >
+       {{response}}
+      </h6>
+      <h6 class="headAlt">
+       {{validationResponse}}
+       <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+       </h6>
+      <h4 class="headTwo">
+        Maintenance
+      </h4>
+    </div>
+    <div class="line"></div>
+    <form (ngSubmit)="getMaintenanceLines(v_report_no.value)" >
+      <table align="center" cellpadding="8" cellspacing="8">
+        <tr>
+          <td><b>Report Name</b></td>
+          <td>
+            <select ngModel #v_report_no name="v_report_no" required="required">
+              <option aria-readonly="true" value="">Select</option>
+              <option *ngFor="let report of reportList" value="{{report}}">{{report}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="btn-effcts">
+              <button type="submit" class="hvr-push btn btn-success">Apply</button>
+            </div>
+          </td>
+          <td>
+            <div class="btn-effcts">
+              <button type="reset" class="hvr-push btn btn-danger" (click)="reset()">Reset</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <br>
+    <br>
+    <table align="center" cellpadding="8" cellspacing="8" class="TableColor" *ngIf="mdMultiSqlDetails" border="1" width="80%">
+        <tr>
+          <th  width="40%">Line ID</th>
+          <th  width="40%">Business Lines</th>
+          <!-- <th>Data Modeling</th> -->
+        </tr>
+        <tr *ngFor="let lines of mdMultiSqlDetails">
+          <td  width="40%"><a href="javascript:void(0);" (click)="navigateToReportParameter(lines.n_sort_order,lines.v_report_line_desc)">{{lines.n_sort_order}}</a></td>
+          <td  width="40%">{{lines.v_report_line_desc}}</td>
+          <!-- <td>{{}}</td> -->
+          <!-- <td>{{user.authStatus}}</td>
+          <td>{{user.versionNo}}</td>
+          <td><a [routerLink]="'/'">Modify</a></td>
+          <td><a href="javascript:void(0);" (click)="deleteUser(i)">Delete</a></td> -->
+        </tr>
+      </table>
+  </div>

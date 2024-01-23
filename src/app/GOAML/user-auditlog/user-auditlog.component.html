@@ -1,0 +1,132 @@
+<!-- <p>
+  user-auditlog works!
+</p> -->
+
+<div class="card bg-transparent border-0 ">
+  <div class="card bg-transparent border-0 media" id="auth">
+    <div class="header">
+       <h4 class="headTwo">Download</h4>  
+    </div>
+    <div class="line"></div>
+  
+    <div class='row mrg50'>
+    <div class="col-sm-3"></div>
+    <div class="card bg-transparent border-0 col-sm-6">
+      <div class="card-body table-bordered  border-0 col-sm-8 bxshdw padtp">
+
+        <form #generate="ngForm" class='frmcls'>
+          <div class='row wdt'>
+            <div class='row wdt mnbtm10'>
+            <div class='col-md-12 col-xs-12 col-sm-12 fntbld fltrt'><label for="reportType">Type Of Report</label></div>
+            <div class='col-md-12 col-xs-12 col-sm-12 col-lg-12 '>
+              <select id="reportType" name="reportType" [(ngModel)]="statusDto.reportType"
+              class="custom-select-sm wdt border">
+              <option>--Select--</option>
+              <option value="User Status Report">User Status Report</option>
+              <option value="System Audit Logs">System Audit Logs</option>
+              <!-- <option *ngFor="let report of reportTypeData;" value="{{report}}">{{report}}</option> -->
+            </select>
+            </div>
+          </div>
+          <!--from date -->
+          <div class='row wdt mnbtm10'>
+            <div class='col-md-12 col-xs-12 col-sm-12 fntbld fltrt'><label for="reportType">From Date &nbsp;&nbsp;&nbsp;&nbsp; </label></div>
+            <div class='col-md-12 col-xs-12 col-sm-12 col-lg-12 '>
+              <input type="date" class="form-control" name="fromDate" (inputChanged)="handlesInputChange($event)" id="fromDate"
+              [(ngModel)]="statusDto.fromDate">
+            </div>
+          </div>
+          <!--end of from date-->
+          <!--to date-->
+          <div class='row wdt mnbtm10'>
+            <div class='col-md-12 col-xs-12 col-sm-12 fntbld fltrt'><label for="reportType">To Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label></div>
+            <div class='col-md-12 col-xs-12 col-sm-12 col-lg-12 '>
+              <input type="date" name="todate" id="toDate" class="form-control"
+              [(ngModel)]="statusDto.toDate">
+            </div>
+          </div>
+          <!--end of to date-->
+          <div class="btn-group page">
+            &nbsp;&nbsp;
+            <button class="hvr-push btn btn-success apply-btn dfbt btnwdth" 
+              (click)="getRecordTrn()" type="submit">&nbsp;Download&nbsp;</button>
+            &nbsp;&nbsp;
+            <button class="hvr-push btn reset-btn dfbt" type="reset" 
+              (click)="tableHide()">&nbsp;&nbsp;Reset&nbsp;&nbsp;</button>
+            &nbsp;&nbsp;
+         
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+  <div>
+
+</div>
+<div class='row'>
+<div class="mat-elevation-z8" *ngIf="datafortable">
+      <!-- <div class="card-body table-bordered bxshdw border-0 col-sm-10 "> -->
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" class="bg-transparent">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="trnRefNo">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> No. </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.trnRefNo}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="transactionDate">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> Transaction Date </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.transactionDate}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="module">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> Module </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.module}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="currency">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> Currency </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.currency}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lcyAmount">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> LCY Amount </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.lcyAmount}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="reportingDate">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> Reporting Date </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.reportingDate}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          
+         
+        </div>
+        <div class="btn-download">
+          <button class="hvr-push btn download-btn dfbt" (click)="downloadData()">Download  </button>
+        </div>
+      
+
+      </div>
+</div>
+
+
+
+<!-- <button  class="btn btn-success"  (click)="exportAsXLSX()">Export As Excel</button> -->

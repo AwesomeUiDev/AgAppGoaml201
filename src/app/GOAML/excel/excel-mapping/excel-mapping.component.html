@@ -1,0 +1,258 @@
+<app-home></app-home>
+<div class="card bg-transparent border-0 col-sm-12">
+  <div class="card-body table-bordered  border-0 col-sm-12 bxshdwborder bxshdw">
+
+    <br>
+    <div class="m-333">
+      <button mat-raised-button class="mb-05 text-center" [routerLink]="'/updateExcelMapping'" style="background: white;"
+        class="text-black">
+         Update Mapping
+      </button>
+    </div>
+    <br>
+
+    <!-- <mat-card class="bg-light border-bottom-0">
+
+
+        <mat-form-field class="example-full-width">
+          <label>External System</label>
+          <input matInput #extSys1>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field class="example-full-width">
+          <label>Process Name</label>
+          <input matInput #processName1>
+        </mat-form-field>
+        <label style="color:green;margin-left: 20px;">Is Header Present</label>
+
+        <input type="checkbox" name="isChecked" [(ngModel)]="isChecked">
+
+        <div class="border-bottom-0">
+          <label style="color:green;"> Starting Row </label>&nbsp;
+          <input type="number" [(ngModel)]="starting" #startingRow [ngModelOptions]="{standalone: true}">
+        </div>
+
+
+      </mat-card> -->
+    <mat-form-field>
+      <label>External System</label>
+      <mat-select class="mat-field-flex"  name="ext" #extSysName (selectionChange)="getProcess(extSysName.value)">
+        <mat-option *ngFor="let topping of extSysData1" [value]="topping">{{topping}}</mat-option>
+      </mat-select>
+      <!-- <select id="ext" name="ext"  #extSysName (selectionChange)="getProcess(extSysName.value)"
+      class="custom-select-sm col-sm-2 ">
+      <option>External System</option>
+      <option class="mat-field-flex" *ngFor="let topping of extSysData1" [value]="topping" >{{topping}}</option>
+    </select> -->
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <label>Process Code</label>
+      <mat-select class="mat-field-flex" #processCode (selectionChange)="getProcessName1(processCode.value,extSysName.value)">
+        <mat-option *ngFor="let topping of processName" [value]="topping">{{topping}}</mat-option>
+      </mat-select>
+      <!-- <select id="ext" name="ext"   #processCode (selectionChange)="getProcessName1(processCode.value,extSysName.value)"
+      class="custom-select-sm col-sm-2">
+      <option>Process Code</option>
+      <option *ngFor="let topping of processName" [value]="topping">{{topping}}</option>
+    </select> -->
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <!--<mat-label>Data Starting Row</mat-label>-->
+      <!-- <input type="number" [(ngModel)]="starting" #startingRow [ngModelOptions]="{standalone: true}" matInput value="00"> -->
+      <!-- <input type="text"  name="Data Starting Row"
+      [(ngModel)]="starting" #startingRow [ngModelOptions]="{standalone: true}" matInput value="00"> -->
+      <label>Data Starting Row</label>
+      <input type="number"  (keypress)="keyPress($event)"  required name="Data Starting Row" class=" mat-field-flex"
+      [(ngModel)]="starting" #startingRow [ngModelOptions]="{standalone: true}" matInput value="00">
+    </mat-form-field>
+    &nbsp;
+    <mat-checkbox class='mtchk' [(ngModel)]="isChecked" value="" name="isChecked" style="color:green;">Is Header Present
+    </mat-checkbox>
+    <div>
+      <small style="color: #A93226;">*select minimum two mandatory row</small>
+    </div>
+    
+    <!-- <div class="border-bottom-0 ">
+      <label style="color:green;"> Starting Row </label>&nbsp;
+      <input type="number" [(ngModel)]="starting" #startingRow [ngModelOptions]="{standalone: true}" value="00">
+    </div> -->
+    <form style="margin-bottom:50px;">
+
+      <!-- <label style="color:green;margin-left: 20px;">Is Header Present</label>
+
+      <input type="checkbox" name="isChecked" [(ngModel)]="isChecked"> -->
+
+      <!-- <div class="border-bottom-0">
+        <label style="color:green;"> Starting Row </label>&nbsp;
+        <input type="number" [(ngModel)]="starting" #startingRow [ngModelOptions]="{standalone: true}" value="00">
+      </div> -->
+      <!-- <br> -->
+      &nbsp;&nbsp;
+      <table id="excelMapp"  mat-table [dataSource]="excelMap" class="mat-elevation-z8 bg-transparent" >
+        <ng-container matColumnDef="columnnDescription">
+          <th mat-header-cell *matHeaderCellDef style="background: white ;" class="text-black border-bottom-0"> Name
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.columnnDescription}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dataType">
+          <th mat-header-cell *matHeaderCellDef style="background: white ;" class="text-blck border-bottom-0">
+            Datatype
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.dataType}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="mandatory">
+          <th mat-header-cell *matHeaderCellDef style="background: white  ;" class="text-black border-bottom-0">
+            Mandatory
+          </th>
+          <td mat-cell *matCellDef="let element"><input type="checkbox" id="mandatory" name="mandatory"
+              [(ngModel)]="element.mandatory"></td>
+        </ng-container>
+
+        <ng-container matColumnDef="headerName">
+          <th mat-header-cell *matHeaderCellDef style="background: white ;" class="text-black border-bottom-0">Header
+            Name </th>
+          <td mat-cell *matCellDef="let element"><input type="text" id="headerName" name="headerName"
+              [(ngModel)]="element.headerName"></td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateFormat" >
+          <th mat-header-cell *matHeaderCellDef style="background: white ;" class="text-black border-bottom-0">Date
+            Format</th>
+          <!-- <td mat-cell *matCellDef="let element"><input type="text" id="dateFormat"  name="dateFormat"
+              [(ngModel)]="element.dateFormat"></td> -->
+        </ng-container>
+        <ng-container matColumnDef="mappingColumn">
+          <th mat-header-cell *matHeaderCellDef style="background: white  ;" class="text-black border-bottom-0">
+            Mapping
+            Column </th>
+          <!-- <td mat-cell *matCellDef="let element"  ><input type="text" id="mappingColumn" name="mappingColumn" [(ngModel)]="element.mappingColumn"></td> -->
+          <td mat-cell *matCellDef="let element">
+
+            <input type="text" id="mappingColumn" oninput="this.value = this.value.toUpperCase()" pass1 #pass1="ngModel"
+              maxlength="3" minlength="1" name="mappingColumn" [(ngModel)]="element.mappingColumn">
+            <div>
+              <span style="color:red;" class="help-bpx" *ngIf="pass1.touched && !pass1.valid">Please enter the Value
+                !</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+      <!-- <form (ngSubmit) = "finalSubmit(fieldArray)" style="margin-bottom:50px;background-color: white;"> -->
+      <br>
+      <!-- <div class="container" > -->
+      <div [formGroup]="addForm">
+        <div class="form-group">
+
+
+          <table style="width: 100%;">
+
+            <!-- <thead>
+                    <th> Column</th>
+                    <th>Column DataType</th>
+                    <th> Mandatory</th>
+                   
+                    <th> Default Value</th>
+                    <th>  Mapping Column </th>
+                    <th> Action </th>
+                  
+                  </thead> -->
+            <tbody >
+              <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;" class="border-bottom-black">
+                &nbsp;
+                <td >
+                  <!-- <input type="string" [formControl]="row.get('columnnName')" placeholder=""> -->
+                  <mat-form-field>
+                      <!-- <mat-label>ColumnName</mat-label> -->
+                      <!-- <input type="string" [formControl]="row.get('columnnName')" matInput >
+                    </mat-form-field> --> 
+
+                    <!-- <label class="serif" for="submissionCode">ColumnName</label> -->
+
+                    <input type="text"  required class="form-control mat-field-flex "
+                    [formControl]="row.get('columnnName')" matInput >
+                    </mat-form-field>
+
+                </td>
+                <td>
+                  <!-- <input type="string" [formControl]="row.get('dataType')"> -->
+                  <mat-form-field>
+                    <!-- <mat-label>DataType</mat-label> -->
+                    <mat-select class="mat-field-flex"  matNativeControl required [formControl]="row.get('dataType')"  (selectionChange)="greet($event)" >
+                      <mat-option value="NUMBER">NUMBER</mat-option>
+                      <mat-option value="DATE" (selectionChange)="greet($event)"  >DATE</mat-option>
+                      <mat-option value="CHAR">CHAR</mat-option>
+                      <mat-option value="VARCHAR">VARCHAR</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <!-- <input type="checkbox" [formControl]="row.get('mandatory')"> -->
+                  <mat-checkbox  [formControl]="row.get('mandatory')">IsMandatory
+                    </mat-checkbox>
+                </td>
+               
+                <td>
+                  <!-- <input type="string" [formControl]="row.get('headerName')"> -->
+                  <mat-form-field>
+                      <!-- <mat-label>HeaderName</mat-label> -->
+                      <!-- <input type="string" [formControl]="row.get('headerName')" matInput> -->
+                      <input type="text" required class="form-control mat-field-flex"
+                      [formControl]="row.get('headerName')" matInput >
+                    </mat-form-field>
+                </td>
+                <td>
+                  <!-- <input type="string" [formControl]="row.get('dateFormat')"> -->
+                  <mat-form-field  >
+                      <!-- <mat-label>DateFormat</mat-label> -->
+                      <!-- <input type="string" [formControl]="row.get('dateFormat')" matInput> -->
+                      <input matInput [readonly]="!editable" type="text" required  class="form-control mat-field-flex"
+                      [formControl]="row.get('dateFormat')" >
+                    </mat-form-field>
+                </td>
+
+                <td>
+                  <!-- <input type="string" [formControl]="row.get('mappingColumn')"
+                    oninput="this.value = this.value.toUpperCase()" maxlength="3"> -->
+                    <mat-form-field>
+                        <!-- <mat-label>MappingColumn</mat-label> -->
+                        <!-- <input type="string" [formControl]="row.get('mappingColumn')"
+                    oninput="this.value = this.value.toUpperCase()" maxlength="3"  matInput > -->
+                   <input type="text" required class="form-control mat-field-flex"
+                   [formControl]="row.get('mappingColumn')"
+                   oninput="this.value = this.value.toUpperCase()" maxlength="3"  matInput >
+                      </mat-form-field>
+                </td>
+
+
+                <td>
+                  <button class="btn-md text-white" (click)="onRemoveRow(index)" style="background: #A93226;width: 30px;">-</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+      <button class="hvr-push btn btn-success text-white" (click)="onAddRow()" style="background: #229954;">+</button>
+      <!-- </div> -->
+      <!--co ntainer -->
+
+
+      <br>
+      <br>
+      <!-- <button type="button" class="btn btn-success" (click)="addNewColumn()" >Add</button> -->
+      <button type="submit" class="hvr-push btn btn-success" style="background: #229954;"
+        (click)="finalSubmit(rows.value,isChecked,startingRow.value)" [disabled]="saveDisabled">Submit</button>
+    </form>
+  </div>
+</div>

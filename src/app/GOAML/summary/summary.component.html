@@ -1,0 +1,96 @@
+<!-- <div class="header">
+<h6 class="headOne"></h6>
+<h6 class="headAlt"></h6>
+<h4 class="headTwo"> Role Management</h4>
+</div> -->
+
+<div class="header">
+  <h6 class="headOne"></h6>
+  <h6 class="headAlt"></h6>
+  <h4 class="headTwo"> User Summary </h4>
+  </div>
+  <div class="line"></div>
+  <div>
+  <mat-card>
+  <!-- <mat-card-title>Role Management</mat-card-title> -->
+  <mat-card-content>
+  <div fxLayout="row" class="rw">
+  <div fxFlex="30">
+  <div class="mt-12">
+  <mat-form-field class="full-width" appearance="outline">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  </div>
+  </div>
+  <!-- <div style="margin-left: 60%;margin-top: 16px;"> -->
+  
+  <div fxLayout="row" class='btn-group algn' fxFlex="1 1 0%" fxLayoutAlign="end center" fxLayoutGap="5px">
+  <button type="text" class="9 btn hvr-push new-btn text-white btnwdth" routerLink="/user"
+  >New</button>&nbsp;&nbsp;
+  
+  <button color="warn" class='exit-btn btn btn-success btnwdth' routerLink="/about">Exit</button>
+  
+  </div>
+  </div>
+  
+  <div class="margin-333">
+  <div>
+  <table mat-table [dataSource]="dataSource" style="width: 100%;">
+  <!-- Position Column -->
+  <ng-container matColumnDef="userId">
+  <th class="textalgn" mat-header-cell *matHeaderCellDef>User Id</th>
+  <td class="textalgn" mat-cell *matCellDef="let element; let i=index;"><a routerLink=""
+  (click)="getByUserId(element.userId)">{{element.userId}}</a> </td>
+  </ng-container>
+  <ng-container matColumnDef="userName">
+  <th class="textalgn" mat-header-cell *matHeaderCellDef>UserName</th>
+  <td class="textalgn" mat-cell *matCellDef="let element; let i=index;">{{element.userName}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="emailId">
+  <th class="textalgn" mat-header-cell *matHeaderCellDef>Emaild</th>
+  <td class="textalgn" mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="authStatus">
+  <th class="textalgn" mat-header-cell *matHeaderCellDef>AuthStatus</th>
+  <td class="textalgn" mat-cell *matCellDef="let element"> {{element.authStatus}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="roleId">
+  <th class="textalgn" mat-header-cell *matHeaderCellDef>RoleId</th>
+  <td class="textalgn" mat-cell *matCellDef="let element"> {{element.roleId}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="phoneNumber">
+  <th class="textalgn" mat-header-cell *matHeaderCellDef>PhoneNumber</th>
+  <td class="textalgn" mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="status">
+  <th class="textalgn" mat-header-cell *matHeaderCellDef>RecordStatus</th>
+  <td class="textalgn" mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
+  
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator (page)='onPaginateChange($event)' [pageSize]='pageSize' [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons>
+  </mat-paginator>
+  </div>
+  </div>
+  </mat-card-content>
+  </mat-card>
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />

@@ -1,0 +1,157 @@
+<h2 mat-dialog-title>Transaction Details</h2>
+<mat-dialog-content class="text">
+    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+        <mat-chip *ngFor="let chip of markedValue" selected >
+          {{chip}}
+        </mat-chip>
+      </mat-chip-list>
+<table class="table">
+  <thead>
+  
+  </thead>
+  <tbody>
+    <!--For Sender-->
+  <!-- <tr *ngIf="sender">
+        <td>SENDER_NAME:<b style="color:blue;">{{data.SENDER_NAME }}</b></td>
+        <td>CHANNEL: <b style="color:blue;">{{data.CHANNEL}}</b></td>
+        <td>TRN_NO:<b style="color:blue;">{{data.TRN_NO}}</b></td>
+        </tr>
+        <tr *ngIf="sender">
+            <td>SENDER_ID_EXP_DT : <b style="color:blue;">{{data.SENDER_ID_EXP_DT | date }}</b></td>
+            <td>	SENDER_ID : <b style="color:blue;">{{data.SENDER_ID}}</b></td>
+            <td>	SENDER_CITY : <b style="color:blue;">{{data.SENDER_CITY}}</b></td>
+            </tr>
+          
+            <tr *ngIf="sender">
+                <td>	SENDER_BIRTHDATE : <b style="color:blue;">{{data.SENDER_BIRTHDATE }}</b></td>
+                <td>SENDER_ADDRESS : <b style="color:blue;">{{data.SENDER_ADDRESS}}</b></td>
+                <td>RECEIVER_NAME : <b style="color:blue;">{{data.RECEIVER_NAME}}</b></td>
+                </tr>
+                  --For Receiver
+                  <tr *ngIf="receiver">
+                      <td>	REC_ID : <b style="color:blue;">{{data.REC_ID }}</b></td>
+                      <td>REC_PHONE : <b style="color:blue;">{{data.REC_PHONE}}</b></td>
+                      <td>	SENDER_NAME: <b style="color:blue;">{{data.SEN_NAME}}</b></td>
+                      </tr>
+                <tr *ngIf="receiver">
+                    <td>	RECEIVER_ID_EXP_DT : <b style="color:blue;">{{data.	RECEIVER_ID_EXP_DT | date }}</b></td>
+                    <td>RECEIVER_NAME : <b style="color:blue;">{{data.RECEIVER_NAME}}</b></td>
+                    <td>	RECID_TYPE : <b style="color:blue;">{{data.RECID_TYPE}}</b></td>
+                    </tr>
+                    <tr *ngIf="receiver">
+                        <td>REC_ADDRESS : <b style="color:blue;">{{data.REC_ADDRESS }}</b></td>
+                        <td>REC_BIRTHDATE : <b style="color:blue;">{{data.REC_BIRTHDATE}}</b></td>
+                        <td>	REC_CITY : <b style="color:blue;">{{data.REC_CITY}}</b></td>
+                        </tr>
+                        -->
+                            <!--common data-->
+                            <p>Sender Details</p>
+                            <tr>
+                              <td>SENDER_NAME:<b style="color:blue;">{{data.SENDER_NAME }}</b></td>
+                              <td>CHANNEL: <b style="color:blue;">{{data.CHANNEL}}</b></td>
+                              <td>	TRN_NO:<b style="color:blue;">{{data.TRN_NO}}</b></td>
+                              </tr>
+        <tr>
+        <td>UPLOAD_DATE:<b style="color:blue;">{{data.UPLOAD_DATE | date }}</b></td>
+        <td>LCY_AMOUNT: <b style="color:blue;">{{data.LCY_AMOUNT}}</b></td>
+        <td>	TRN_DT:<b style="color:blue;">{{data.TRN_DT | date}}</b></td>
+        </tr>
+        <tr>
+            <td>	EVENT:<b style="color:blue;">{{data.EVENT}}</b></td>
+        <td>SENDER_ID_TYPE:<b style="color:blue;">{{data.SENDER_ID_TYPE }}</b></td>
+        <td>SENDER_ID: <b style="color:blue;">{{data.SENDER_ID}}</b></td>
+       
+      </tr><tr>
+          <td>SENDER_ID_EXP_DT:<b style="color:blue;">{{data.SENDER_ID_EXP_DT | date }}</b></td>
+          <td>SENDER_BIRTHDATE: <b style="color:blue;">{{data.SENDER_BIRTHDATE | date}}</b></td>
+          <td>SENDER_PHONE:<b style="color:blue;">{{data.SENDER_PHONE}}</b></td>
+    </tr>
+    <tr>
+      <td>SENDER_ADDRESS:<b style="color:blue;">{{data.SENDER_ADDRESS }}</b></td>
+      <td>SENDER_CITY: <b style="color:blue;">{{data.SENDER_CITY }}</b></td>
+      <td>SENDER_COUNTRY:<b style="color:blue;">{{data.SENDER_COUNTRY}}</b></td>
+</tr>
+<tr>
+  <td>OCCUPATION:<b style="color:blue;">{{data.SENDER_OCCUPATION  }}</b></td>
+  <td>AGENT_NAME: <b style="color:blue;">{{data.SEND_AGENT }}</b></td>
+  <td>PURPOSE:<b style="color:blue;">{{data.PURPOSE}}</b></td>
+</tr>
+<!--receiver parameter-->
+<p>Receiver Details</p>
+<tr>
+  <td>RECEIVER_NAME:<b style="color:blue;">{{data.RECEIVER_NAME }}</b></td>
+  <td>RECID_TYPE: <b style="color:blue;">{{data.RECID_TYPE }}</b></td>
+  <td>REC_ID:<b style="color:blue;">{{data.REC_ID}}</b></td>
+</tr>
+<tr>
+<td>RECEIVER_ID_EXP_DT:<b style="color:blue;">{{data.RECEIVER_ID_EXP_DT | date  }}</b></td>
+<td>REC_BIRTHDATE: <b style="color:blue;">{{data.REC_BIRTHDATE | date }}</b></td>
+<td>REC_PHONE:<b style="color:blue;">{{data.REC_PHONE}}</b></td>
+</tr>
+<tr>
+  <td>REC_ADDRESS:<b style="color:blue;">{{data.REC_ADDRESS   }}</b></td>
+  <td>REC_CITY: <b style="color:blue;">{{data.REC_CITY }}</b></td>
+ <td>RECEIVER_COUNTRY:<b style="color:blue;">{{data.RECEIVER_COUNTRY}}</b></td>
+  </tr>
+  <tr>
+    <td>OCCUPATION:<b style="color:blue;">{{data.RECEIVER_OCCUPATION   }}</b></td>
+    <td>AGENT_NAME: <b style="color:blue;">{{data.RECEIVE_AGENT }}</b></td>
+    <td>PURPOSE:<b style="color:blue;">{{data.PURPOSE}}</b></td>
+    
+    </tr>
+   <tr>
+      <td><button type="button" class="btn btn-danger" *ngIf="!strbutton" (click)="strCall(data.TRN_NO)">STR</button></td>
+      <td><button type="button" class="btn btn-success" *ngIf="!nonstrbutton" (click)="nonStrCall(data.TRN_NO)"> Non STR</button></td>
+   </tr>
+   <tr>
+     <td colspan="3" *ngIf="strbuttontextarea">
+        <div class="form-group">
+            <label for="text1">Reason:</label>
+            <textarea class="form-control" rows="5" name="test1" [(ngModel)]="text1" ></textarea>
+          </div>
+     </td>
+    </tr><tr>
+        <td colspan="3" *ngIf="strbuttontextarea">
+        <div class="form-group">
+            <label for="test2">Action:</label>
+            <textarea class="form-control" rows="5" name="test2" [(ngModel)]="text2"></textarea>
+          </div>
+     </td>
+   </tr>
+   <tr>
+      <td colspan="3" *ngIf="strbuttontextarea">
+         <div class="form-group">
+             <label for="test3">Description:</label>
+             <textarea class="form-control" rows="5" name="test3" [(ngModel)]="text3"></textarea>
+           </div>
+      </td>
+    </tr>
+  </tbody>
+  <mat-progress-bar mode="indeterminate" *ngIf="progress"></mat-progress-bar>
+</table>
+<!-- <form>
+  <div>
+      <mat-form-field>
+          <textarea matInput placeholder="Textarea" name="test1" [(ngModel)]="text1" matAutosizeMinRows=1 matAutosizeMaxRows=5></textarea>
+        </mat-form-field>
+  </div>
+  <div>
+      <mat-form-field>
+          <textarea matInput placeholder="Textarea"  cdkTextareaAutosize
+          cdkAutosizeMinRows="2"
+          cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+  </div>
+  <div>
+      <mat-form-field>
+          <textarea matInput placeholder="Textarea"  matAutosizeMinRows=1 matAutosizeMaxRows=5></textarea>
+        </mat-form-field>
+  </div>
+
+</form>   -->
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button (click)="submitData(data.EVENT,data.TRN_NO)" *ngIf="strbuttontextarea">Submit!</button>
+<button mat-raised-button [mat-dialog-close]="true" color="primary">Close</button>
+</mat-dialog-actions>

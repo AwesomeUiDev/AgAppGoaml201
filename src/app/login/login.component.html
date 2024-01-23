@@ -1,0 +1,144 @@
+<div *ngIf="status" >
+    <!-- <div class="full"> -->
+        <!-- <a align="right" id="logo full"><img width="100" height="30" src="assets/images/Orient_Bank.png"></a> -->
+        
+      <!-- </div> -->
+<div class="login-block" id='loginBlock'>
+    
+    <!-- <a align="right" id="logo full"><img width="150" top="10" height="30" src="assets/images/Orient_Bank.png"></a> -->
+    <!-- <img width="200"  height="40" src="assets/images/Orient_Bank.png"> -->
+        <div class="container">
+        <div class="row">
+            <div class="col-md-4 login-sec">
+              <div class='row rowimg'>
+                <img src='assets/images/Orient_Bank.png'> 
+              </div>
+              <h2 class="text-center"> GoAML</h2>
+                <form class="login-form" #Login="ngForm" (ngSubmit)="login(Login.value)" >
+      <div class="form-group">
+        <label for="exampleInputEmail1"><b>User ID</b></label>
+        <input type="text" class="form-control" name="userId" #userId placeholder=""  ngModel required upperCase/>
+        
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" ><b>Password</b></label>
+        <input type="password" class="form-control" name="userPwd" placeholder="" ngModel required/>
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                
+                <h5 class="modal-title" >Do you want to reset your Password?</h5>
+                <button type="button" class="close" data-dismiss="modal" align="right">&times;</button>
+              </div>
+              <!-- <div class="modal-body"> -->
+                <!-- <input type="text" class="form-control" name="fUserId" #fUserId value="userId.value" placeholder="Enter UserID"  ngModel required upperCase/>
+                <p>Send credentials to registered mail Id...?</p> -->
+              <!-- </div> -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="forgotPassword(userId.value)" >Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"  >No</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+     
+        <button type="submit" class="btn btn-login float-right" >Sign-in</button>
+        <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Forgot Password</button> -->
+<a  class='blue' (click)="forgotPassword(userId.value)">Forgot Password</a>
+        
+      </form>
+     
+      <!-- </div> -->
+      <p class="response">{{response}}</p>
+      <!-- <a href="javascript:void(0);" class="btn-lg" data-toggle="modal" data-target="#myModal" style="color:black;">Forgot/Reset Password</a> -->
+      <table cellpadding="5">
+      <!-- <tr><td>
+        <img  id="logo"height="60" width="140"src="assets/images/dtb.png"></td>
+        
+      </tr> -->
+      <!-- <tr>
+        <td></td>
+      </tr> -->
+     <tr>
+        <td><img  id="logo"height="60" width="140"src="assets/images/l.png"></td>
+      <!-- <td><h4>PoignantSolutions</h4></td> -->
+    </tr>
+    <tr>
+      <td><p>&copy; 2020 PoignantSolutions Ltd</p></td>
+    </tr>
+    </table>
+    <!-- created by can be written under here -->
+    <!-- <div class="copy-text"> <i class="fa fa-heart"></i>  <a href=""></a></div> -->
+            </div>
+            <div class="col-md-8 banner-sec">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                     <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                      </ol>
+                <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <img class="d-block img-fluid" width="2000" height="2000" src="assets/images/16.jpg" alt="First slide">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="banner-text">
+                <!-- <h2>SIAS</h2> -->
+                <h2>GoAML</h2>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p> -->
+            </div>	
+      </div>
+        </div>
+        <div class="carousel-item">
+          <img class="d-block img-fluid" src="assets/images/binary.jpg" alt="First slide">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="banner-text">
+                <!-- <h2>SIAS</h2> -->
+                <h2>GoAML</h2>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p> -->
+            </div>	
+        </div>
+        </div>
+        <div class="carousel-item">
+          <img class="d-block img-fluid" src="assets/images/Cartoon.jpg" alt="First slide">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="banner-text">
+                <!-- <h2>SIAS</h2> -->
+                <h2>GoAML</h2>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p> -->
+            </div>	
+        </div>
+      </div>
+                </div>	   
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<!-- <div *ngIf="!status">
+  <div *ngIf="userType.indexOf('A') > -1">
+<app-admin-home></app-admin-home>
+</div>
+</div> -->
+<div *ngIf="!status && !defaultPassword" >
+    <!-- <div *ngIf="userType.indexOf('N') > -1"> -->
+  <app-user-home [user]="userDto"></app-user-home>
+  <!-- </div> -->
+  </div>
+
+  <div *ngIf="!status && defaultPassword" >
+      <!-- <div *ngIf="userType.indexOf('N') > -1"> -->
+       
+    <app-default-password [user]="userDto"></app-default-password>
+    <!-- </div> -->
+    </div>
+<div id='dummyele' (click)="resetpage()"></div>
+<!-- /*class="text-uppercase"*/ -->
+<!-- src="https://static.pexels.com/photos/33972/pexels-photo.jpg"
+src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg"
+src="https://images.pexels.com/photos/872957/pexels-photo-872957.jpeg" -->

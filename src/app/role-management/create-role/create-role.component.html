@@ -1,0 +1,260 @@
+
+<div>
+  <div class="header">
+      <h6 class="headOne" >
+       {{response}}
+      </h6>
+      <h6 class="headAlt">
+       {{validationResponse}}
+       <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+       </h6>
+      <h4 class="headTwo">
+          Create Role
+      </h4>
+    </div>
+  <div class="line"></div>
+  <form #Role = "ngForm" (ngSubmit)="createRole(Role.value)">
+    <table align="center" cellpadding="8" cellspacing="8">
+      <tr>
+        <td><b>Role ID</b></td>
+        <td>
+          <input type="text" name="roleId" ngModel #roleId upperCase>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Role Description</b></td>
+        <td>
+          <input type="text" name="roleDesc" ngModel #roleDesc upperCase>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Admin</b></td>
+        <td>
+          <input type="radio" name="roleType" value="A" ngModel #roleType (click)="storeValue('A')">
+        </td>
+      </tr>
+      <tr>
+        <td><b>Normal</b></td>
+        <td>
+          <input type="radio" name="roleType" value="N" #roleType ngModel (click)="storeValue('N')">
+        </td>
+      </tr>
+    </table>
+  
+    <br>
+    <br>
+    <table align="center" cellpadding="8" cellspacing="8" *ngIf="selected == 'A'" width="400px">
+      <tr>
+          <td><h5>User Management</h5></td>
+      </tr>
+      <tr>
+       <td><b>Create User</b></td>
+        <td>
+          <input type="checkbox" value="UMCU" (click)="getFid('UMCU')"></td>
+      </tr>
+      <tr>
+        <td><b>View User</b></td>
+        <td>
+          <input type="checkbox" value="UMVU" (click)="getFid('UMVU')">
+          <!-- <input type="checkbox" value="UMVU" (click)="getFid('UMVU')" > -->
+          
+        </td>
+        </tr>
+        <tr>
+          <td><b>Modify User</b></td>
+        <td >
+          <input type="checkbox" value="UMMU" *ngIf="funcId.indexOf('UMVU') > -1" (click)="getFid('UMMU')"></td>
+        </tr>
+        <tr>
+          <td><b>Auth User</b></td>
+        <td>
+          <input type="checkbox" value="UMAU" (click)="getFid('UMAU')"></td>
+      </tr>
+      <tr>
+          <td><h5>Role Management</h5></td>
+      </tr>
+      <tr>
+        <td><b>Create Role</b></td>
+        <td>
+          <input type="checkbox" value="RMCR" (click)="getFid('RMCR')"></td>
+      </tr>
+      <tr>
+        <td><b>View Role</b></td>
+        <td>
+          <input type="checkbox" value="RMVR" (click)="getFid('RMVR')"></td>
+        </tr>
+        <tr>
+          <td><b>Modify Role</b></td>
+        <td>
+          <input type="checkbox" value="RMMR" *ngIf="funcId.indexOf('RMVR') > -1" (click)="getFid('RMMR')"></td>
+        </tr>
+        <tr>
+          <td><b>Auth Role</b></td>
+        <td>
+          <input type="checkbox" value="RMAR" (click)="getFid('RMAR')"></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="btn-effcts">
+            <button type="submit" class="hvr-push btn btn-success">Submit</button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="reset" class="hvr-push btn btn-danger" (click)="reset()">Reset</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- <table align="center" cellpadding="8" cellspacing="8" *ngIf="selected.indexOf('N') > -1"> -->
+        <!-- <tr *ngIf="selected.indexOf('N') > -1">
+        
+        </tr>
+        <tr *ngIf="selected.indexOf('N') > -1">
+          <td><b>Risk</b></td>
+          <td>
+            <input type="checkbox" name=""><b>Refresh</b></td>
+  
+          <td>
+            <input type="checkbox" name=""><b>Manual Values Input</b></td>
+  
+          <td>
+            <input type="checkbox" name=""><b>Risk Maintenance</b></td>
+  
+          <td>
+            <input type="checkbox" name=""><b>Car Maintenance</b></td>
+            <td>
+                <input type="checkbox" name=""><b>Adjustment Value</b></td>
+                <td>
+                    <input type="checkbox" name=""><b>Sf Investment Filter</b></td>
+        </tr>
+      </table> -->
+    <!-- <br>
+    <br>
+    <table align="center" cellpadding="8" cellspacing="8">
+        <tr *ngIf="selected.indexOf('N') > -1">
+          <th>List of Roles</th>
+          <th>Role Rights</th>
+        </tr>
+        <tr *ngIf="selected.indexOf('N') > -1">
+          <td><b>IB-Capital</b></td>
+          <td>
+            <input type="checkbox" name=""><b>File Upload</b></td>
+  
+          <td>
+            <input type="checkbox" name=""><b>Refresh</b></td>
+  
+        </tr>
+      </table> -->
+      <br>
+      <br>
+    <table align="center" cellpadding="8" cellspacing="8" *ngIf="selected=='N'">
+  <!--      <tr>
+            <td><h5>Datamart Refresh</h5></td>
+        </tr>
+        <tr>
+          <td><b>Staging</b></td>
+          <td>
+            <input type="checkbox" (click)="getFid('DRS')"></td>
+        </tr>
+        <tr>
+          <td><b>Master</b></td>
+          <td>
+            <input type="checkbox" (click)="getFid('DRM')"></td>
+          </tr>
+         
+          <tr>
+              <td><b>Eod Refresh</b></td>
+              <td><input type="checkbox" (click)="getFid('DRERR')"></td>
+          </tr> 
+          <tr>
+              <td><b>Maintenance</b></td>
+            <td>
+              <input type="checkbox" [checked]="funcId.indexOf('DRMS') > -1" (click)="getFid('DRMS')"></td>
+          </tr>
+          <tr>
+            <td><b>Error</b></td>
+          <td>
+            <input type="checkbox" (click)="getFid('DRE')"></td>
+        </tr>
+        <tr>
+            <td><h5>Reports</h5></td>
+        </tr>
+        <tr>
+            <td><b>MIS-Refresh</b></td>
+        <td>
+          
+          <input type="checkbox" (click)="getFid('DRRR')"></td>
+        </tr>
+       
+     <tr>
+        <td><h5>File Processing</h5></td>
+     </tr>
+        <tr>
+          <td><b>Upload</b></td>
+          <td>
+            <input type="checkbox" (click)="getFid('FUM')"></td>
+            </tr>
+            <tr>
+              <td><b>Download</b></td>
+          <td>
+            <input type="checkbox" (click)="getFid('FDM')"></td>
+        </tr>
+        <tr>
+            <td><h5>Adjustment Screen</h5></td>
+         </tr>
+            <tr>
+              <td><b>Adjustment Value</b></td>
+              <td>
+                <input type="checkbox" (click)="getFid('FAV')"></td>
+                </tr> -->
+        <tr>
+          <td><h5>MDA</h5></td>
+        </tr>
+        <tr>
+          <td><b>Fetching</b></td>
+          <td> <input type="checkbox" (click)="getFid('MDAF')"></td>
+        </tr>
+        <tr>
+          <td><b>Modification Process</b></td>
+          <td><input type="checkbox" (click)="getFid('MDAM')"></td>
+        </tr>
+        <tr>
+          <td><b>Verification</b></td>
+          <td><input type="checkbox" (click)="getFid('MDAV')"></td>
+        </tr>
+        <tr>
+          <td><h5>IFRS</h5></td>
+        </tr>
+        <tr>
+          <td><b>IFRS-Fetching</b></td>
+          <td> <input type="checkbox" (click)="getFid('IFRSF')"></td>
+        </tr>
+        <tr>
+          <td><b>IFRS-Process</b></td>
+          <td><input type="checkbox" (click)="getFid('IFRSP')"></td>
+        </tr>
+        <tr>
+          <td><b>Verification Finance</b></td>
+          <td><input type="checkbox" (click)="getFid('IFRSVF')"></td>
+        </tr>
+        <tr>
+          <td><b>Verification Credit</b></td>
+          <td><input type="checkbox" (click)="getFid('IFRSVC')"></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="btn-effcts">
+              <button type="submit" class="hvr-push btn btn-success" [disabled]="disabledButtonFlag">Submit</button>
+            </div>
+          </td>
+          <td>
+            <div class="btn-effcts">
+              <button type="reset" class="hvr-push btn btn-danger"  (click)="reset()">Reset</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+</div>

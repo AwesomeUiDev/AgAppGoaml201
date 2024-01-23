@@ -1,0 +1,220 @@
+<!-- <p>
+  reportmainteinance-summary works!
+</p> -->
+
+<app-home></app-home>
+<!-- <div id="FristRoleBox" style="background-color: orange; color:white">
+    <h3>External System Maintenance</h3>
+</div>&nbsp;&nbsp; -->
+<div class="card bg-transparent border-0 ">
+  <div class="card bg-transparent border-0 media" id="auth">
+   
+
+    <div class="header">
+      <h6 class="headOne" >
+     
+      </h6>
+      <h6 class="headAlt">
+      
+       </h6>
+       <h4 class="headTwo">
+        Report Maintenance Summary
+      </h4>
+    </div>
+    <div class="line"></div>
+
+  
+
+    <div class="card bg-transparent border-0 col-sm-12" style="margin-top: 20px;">
+      <!-- <a  class="btn  btn-lg bckbtn" routerLink="/reportingMaintenance">Back</a>&nbsp;&nbsp;&nbsp; -->
+      <div class="card-body   border-0 col-sm-10 bxshdwborder bxshdw" style="margin: auto; overflow: auto;">
+        
+       
+          
+                  <div class="mat-elevation-z8" class="bg-transparent ">
+              <!-- <mat-form-field class="full-width matfltr" appearance="outline">
+                <input class="mat-form-field mat-form-field-infix" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+              </mat-form-field>
+              <div style="text-align: right;">
+                &nbsp;&nbsp;
+                <button type="text" class="9 btn hvr-push new-btn text-white btnwdth"  routerLink="/reportingMaintenance">New</button>
+                &nbsp;&nbsp;
+                <button class="hvr-push btn text-white exit-btn btnwdth"  color="accent" routerLink="/about">Exit</button>
+
+      
+              </div> -->
+              <div fxLayout="row" class="rw">
+                <div fxFlex="30">
+                  <div class="mt-12">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <input class="mat-form-field mat-form-field-infix  filterip" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div fxLayout="row" class='btn-group algn' fxFlex="1 1 0%" fxLayoutAlign="end center" fxLayoutGap="5px">
+                  <button type="text" class="9 btn hvr-push new-btn text-white btnwdth"  routerLink="/reportingMaintenance">New</button>
+                  &nbsp;&nbsp;
+                  <button class="hvr-push btn text-white exit-btn btnwdth"  color="accent" routerLink="/about">Exit</button>
+  
+                </div>
+              </div>
+              <!--end of search code-->
+              
+              <table mat-table [dataSource]="dataSource" style="width: 100%;" class="bg-transparent table-striped">
+          
+      
+                <!-- <ng-container matColumnDef="userNo">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0" > User Id </th>
+                  <td mat-cell *matCellDef="let element ;let i=index;" class="text-md-center ">
+                  
+                      {{element.userNo}} </td>
+                </ng-container>
+          
+              
+                <ng-container matColumnDef="firstName">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > First Name </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.firstName}} </td>
+                </ng-container>
+          
+                <ng-container matColumnDef="middlename">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Middle Name </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.middlename}} </td>
+                </ng-container>
+                <ng-container matColumnDef="lastName">
+                    <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Last Name </th>
+                    <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.lastName}} </td>
+                  </ng-container>
+          
+               
+                <ng-container matColumnDef="gender">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Gender </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.gender}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="birthDate">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Birth Date </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.birthDate}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ssn">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > SSN </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.ssn}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="communicationType">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Communication Type </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.communicationType}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="idNumber">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Id Number </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.idNumber}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nationality">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Nationality </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.nationality}} </td>
+                </ng-container>
+                <ng-container matColumnDef="passport">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Passport </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.passport}} </td>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Email </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.email}} </td>
+                </ng-container>
+                <ng-container matColumnDef="passportCountry">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Passport Country </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.passportCountry}} </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="occupation">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Occupation </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.occupation}} </td>
+                </ng-container>                <ng-container matColumnDef="contactType">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Contact Type </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.contactType}} </td>
+                </ng-container>                <ng-container matColumnDef="countryprefix">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > countryprefix </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.countryprefix}} </td>
+                </ng-container>                <ng-container matColumnDef="phoneNumber">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > phoneNumber </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.phoneNumber}} </td>
+                </ng-container>                <ng-container matColumnDef="address">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " >address </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.address}} </td>
+                </ng-container>                <ng-container matColumnDef="town">
+                  <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > town </th>
+                  <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.town}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > city </th>
+                <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.city}} </td>
+              </ng-container>                
+              <ng-container matColumnDef="countryCode">
+                <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > countryCode </th>
+                <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.countryCode}} </td>
+             </ng-container> -->
+
+             <ng-container matColumnDef="userNo">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0" > UserId </th>
+              <td mat-cell *matCellDef="let element ;let i=index;" class="text-md-center ">
+                <a class="handsym" (click)="getByUserId(element)">
+                  {{element.userNo}}</a> </td>
+            </ng-container>
+      
+          
+            <ng-container matColumnDef="firstName">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > FirstName </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.firstName}} </td>
+            </ng-container>
+      
+            
+            <ng-container matColumnDef="phoneNumber">
+                <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > PhoneNumber </th>
+                <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.phoneNumber}} </td>
+              </ng-container>
+      
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Email </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="creatorId">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > CreatorId </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.creatorId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="creatorDtStamp">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > CreationDate </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.creatorDtStamp | date:'short'}} </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="communicationType">
+              <th mat-header-cell *matHeaderCellDef class="text-md-center font-weight-bold text-black border-bottom-0 " > Communication Type </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.communicationType}} </td>
+            </ng-container> -->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              </table>
+          
+              <mat-paginator (page)='onPaginateChange($event)' style="background-color: white;" class="text-black" [pageSize]='pageSize' [pageSizeOptions]="[5, 10, 20]"
+                showFirstLastButtons></mat-paginator>
+            </div>
+          
+          
+          <!-- </mat-card> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

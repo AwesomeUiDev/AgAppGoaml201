@@ -1,0 +1,65 @@
+
+<div>
+    <!-- <h4>Modification Process</h4> -->
+    <div class="header">
+      <h6 class="headOne" >
+       {{responseMsg}}
+      </h6>
+      <h6 class="headAlt">
+        {{responseError}}
+       </h6>
+      <h4 class="headTwo">
+        IFRS - Process
+      </h4>
+    </div>
+    <div class="line"></div>
+    <form class="bxshdwborder bxshdw">
+      <table align="center" cellpadding="8" cellspacing="8">
+        <tr>
+          <td class="serif">Date</td>
+          <td>
+            <input class="serif" type="date" name="misDate" #misDate (change)="enableProcess(misDate.value)">
+          </td>
+        </tr>
+        <tr>
+          <!-- <td>
+            <div class="btn-effcts">
+              <button type="submit" class="hvr-push btn btn-success" [disabled]="!misDate" (click)="callFunctionIfrs()">Apply</button>
+            </div>
+            </td>
+            <td>
+            <div class="btn-effcts">
+              <button type="reset" class="hvr-push btn btn-danger" (click)="reset()">Reset</button>
+            </div>
+          </td> -->
+        </tr>
+      </table>
+    
+    <br>
+    <br>
+    <table align="center" cellpadding="8" cellspacing="8">
+    <tr>
+      <td class="serif">Process</td>
+      <td width="400px" *ngIf="!perc"><div class="progressContainer">
+          <div class="progress">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                  style="width:0%">
+                  0%
+              </div>
+          </div>
+      </div></td>
+      <td width="400px" *ngIf="perc"><div class="progressContainer">
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                style="width:100%">
+                100%
+            </div>
+        </div>
+    </div></td>
+      <td>
+        <button class="hvr-push btn btn-success" type="submit" [disabled]="!dateValidate" (click)="startProcess(misDate.value)">Start Process</button>
+      </td>
+    </tr>
+    </table>
+  </form>
+  

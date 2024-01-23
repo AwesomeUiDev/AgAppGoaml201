@@ -1,0 +1,101 @@
+table {
+    border-style: solid;
+    border-width: 2px;
+    width: 100%;
+    text-align: center !important;
+    font-family: avenir, 'avenir next', helvetica, arial, sans-serif;
+  font-weight: lighter;
+  }
+  
+  th {
+    border-style: solid;
+    border-width: 2px;
+   
+    font-weight: normal;
+    width: 320px;
+    font-size: 12px;
+    
+    height: 30px;
+    text-align: center;
+  }
+  td {
+    border-style: solid;
+    border-width: 2px;
+    color: 363636;
+    font-weight: normal;
+    font-size: 12px;
+    width: 320px;
+    text-align: center;
+    height: 30px;
+    
+  } 
+  mat-toolbar {
+    height: 30px;
+    font-size: small;
+    
+    color: white;
+    font-family: avenir, 'avenir next', helvetica, arial, sans-serif;
+  font-weight: lighter;
+  }
+  .otherbtnclr {
+    color: white;
+    background-color: white;
+  
+    border-radius: 20px;
+  }
+  .otherbtnclr:hover {
+    
+    color: white;
+    border-radius: 20px;
+  }
+  .mat-raised-button {
+    width: 100px;
+    height: 40px;
+    line-height: 20px;
+    min-height: 20px;
+    /* vertical-align: top; */
+    font-size: 18px;
+    padding: 0 0;
+    margin: 5px;
+    font-family: avenir, "avenir next", helvetica, arial, sans-serif;
+    font-weight: lighter;
+    box-shadow: 5px 4px #888888;
+  }
+
+  .hvr-push {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .hvr-push:focus, .hvr-push:active {
+    -webkit-animation-name: hvr-push;
+    animation-name: hvr-push;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+  }
+  
+  .btn
+  {
+    border-radius:5px !important;
+  }
+  
+  .btn-danger{
+    margin-right:10px;
+  }
+
+  .btn-effcts.panel-widget {
+    padding: 1em;
+    margin-top: 2em;
+    background: #fff;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.15);
+}

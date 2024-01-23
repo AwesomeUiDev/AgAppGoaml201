@@ -1,0 +1,402 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* body {font-size: 100%;} */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+h1
+{
+	color:#111;
+	/*text-shadow: 5px 10px 15px #94146b;*/
+}
+
+/* #fafafa */
+.bg
+{
+	/* background-color: #ff0062; */
+	width:100%;
+	height: 100%;
+}
+
+
+
+.datamartHeading{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align:left;
+ text-shadow: 2px 2px #000000;
+    padding-top: 20px;
+	padding-left: 20px;
+	position: fixed;
+}
+
+
+	.container
+	{
+		/* width: 100%; */
+		margin:0 auto;
+		overflow-y: auto;
+		
+		/* height: 100hv; */
+		
+	}
+
+	/* .alt-header
+	{
+		top:0;
+		left: 0;
+		width: 100%;
+		height: 10%;
+		position: fixed;
+	} */
+	
+
+	/* 00ffbf #232f3e */
+	/* 3b5a67 */
+	.fixed-header, .fixed-footer
+	{
+		overflow: hidden;
+		width: 100%;
+		height: 10%;
+		position: fixed;
+		background: #4d7397;
+		padding: 10px,0;
+		color: rgb(255, 255, 255);
+		z-index: 2;
+		-webkit-box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.70);
+ -moz-box-shadow:    0px 3px 5px rgba(100, 100, 100, 0.70);
+ box-shadow:         0px 3px 5px rgba(0, 0, 0, 0.70);
+		
+	}
+	.fixed-header 
+	{
+		top:0;
+		left: 0;
+	}
+	.fixed-footer
+	{
+		bottom: 0;
+	}
+	.fixed-header a{
+		float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+	}
+	.datamartLogo 
+	{
+		position: fixed;
+	    height: 13%;
+		width: 8%;
+		top:8px;
+		left: 150px;
+	}
+	.serif {
+		
+		font-size: 15px;	
+		letter-spacing: 0.1px;
+		font-style: normal;
+		font-weight: bold;
+		font-variant: normal;	
+		/* font-family: "Times New Roman", Times, serif; */
+		font-family: Arial;
+		 /* font-family: "Lucida Console", Courier, monospace; */
+	
+	  }
+/* new styles  */
+.bxshdwborder
+{
+    border:10px solid white;
+}
+.bxshdw
+{
+	background-color: #ffffff !important;
+    box-shadow:0 3px 1px -2px rgba(61, 51, 51, 0.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12) !important;
+}
+#content
+{
+	background-color:#F5F5F5;
+}
+.bg-light
+{
+   background-color:#ffffff !important;
+}
+.dtext tr td div
+{
+	float: left !important;
+}
+.dtext tr td
+{
+	text-align:center;
+}
+	/* end of new styles */
+
+	
+.btn-color {
+	border: none;
+	background-color: #28a745;
+	border-color: #28a745;
+	padding: 8px 20px 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 4px 2px;
+            cursor: pointer;
+}
+	
+.mat-field-flex{
+ /* border: 1px solid #adadad
+ border-radius: 4px; */
+ display: block !important;
+    width: 100% !important;
+    padding: .375rem .75rem !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+	/* color: #495057; */
+	color: black !important;
+    background-color: #fff !important;
+    background-clip: padding-box !important;
+    border: 1px solid #ced4da !important;
+    border-radius: .25rem !important;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+}
+	.mat-form-field-appearance-legacy .mat-form-field-underline{
+		height: 0px !important;
+	}
+	.mat-form-field-label-wrapper{
+		position: relative;
+	}
+	.mat-form-field-appearance-legacy .mat-form-field-label {
+		top: 2em !important;
+		text-align: center !important;
+	  }
+	  .btn-danger{
+		background-color: #7386D5;
+		border: #7386D5;
+	}
+	.exit-btn{
+		background-color: #dc3545 !important;
+		border: #dc3545 !important;
+	}
+	.delete-btn{
+		background-color:#dc3545 !important;
+		border: #dc3545 !important;
+	}
+	.new-btn{
+		background-color:#3f51b5 !important;
+		border: #3f51b5 !important;
+	}
+	.close-btn{
+		background-color: #17a2b8 !important;
+		border: #17a2b8;
+	}
+	.edit-btn{
+		background-color: #6c757d !important;
+		border: #6c757d !important;
+	}
+	.auth-btn{
+		background-color:  #28a745 !important;
+		border: #28a745 !important;
+	}
+	.reopen-btn{
+		background-color: #20c997 !important;
+		border: #20c997 !important;
+	}
+	.apply-btn{
+		background-color: #28a745 !important;
+		border: #28a745 !important;
+	}
+	.fetch-btn{
+		background-color: #28a745 !important;
+		border: #28a745 !important;
+	}
+	.save-btn{
+		background-color: #28a745 !important;
+		border: #28a745 !important;
+	}
+	.reset-btn{
+		background-color: #dc3545 !important; 
+		border: #dc3545 !important;
+	}
+	.generate-btn{
+		background-color: #28a745 !important;
+		border: #28a745 !important;
+	}
+	.submit-btn{
+		background-color: #28a745 !important;
+		border: #28a745 !important;
+	}
+	.download-btn
+	{
+		background-color: #2D323E !important;
+		border:#2D323E !important;
+		color:white !important;
+	}
+	 /* .mat-raised-button {
+		box-sizing: border-box;
+		position: relative;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+		outline: 0;
+		border: none;
+		-webkit-tap-highlight-color: transparent;
+		display: inline-block;
+		white-space: nowrap;
+		text-decoration: none;
+		vertical-align: baseline;
+		text-align: center;
+		margin: 0;
+		min-width: 88px;
+		line-height: 36px;
+		padding: 0 16px;
+		border-radius: 2px;
+		overflow: visible;
+		transform: translate3d(0,0,0);
+		transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+	} 
+	<tr _ngcontent-c4=""><td></td><td _ngcontent-c4="" class="text-center align-middle" style="text-align: center;width: 100%;"><div _ngcontent-c4="" class="btn-group"><button _ngcontent-c4="" class="hvr-push btn btn-success" id="show" type="submit" disabled="">Fetch</button><button _ngcontent-c4="" class="hvr-push btn btn-danger" id="hide" type="reset">Reset</button></div></td></tr>*/
+	.margin-333
+	{
+		margin-top:35px;
+	}
+	.row
+	{
+		margin-left:0px;
+		margin-right:0px;
+	}
+	.pb-1
+	{
+		text-align: center;
+	}
+	.mat-form-field-appearance-legacy .mat-form-field-ripple
+	{
+		height:0px !important;
+	}
+	.scrpl .mat-form-field-wrapper
+	{
+       padding-bottom:0px;
+	}
+	.mat-field-flex{
+		/* border: 1px solid #adadad
+		border-radius: 4px; */
+		display: block !important;
+		   width: 100% !important;
+		   padding: .375rem .75rem !important;
+		   font-size: 1rem !important;
+		   line-height: 1.5 !important;
+		   /* color: #495057; */
+		   color: black !important;
+		   background-color: #fff !important;
+		   background-clip: padding-box !important;
+		   border: 1px solid #ced4da !important;
+		   border-radius: .25rem !important;
+		   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+	   }
+.mtchk label
+{
+	margin-top:50px;
+}
+.matfltr .mat-form-field-flex .mat-form-field-infix
+{
+	padding-top:7px !important;
+	padding-bottom:7px !important;
+}
+.newbdrd
+{
+   border-radius:5px !important;
+   font-weight:400;
+}
+.useridentity{
+	width: 100%;
+	border-radius: 5px;
+	background-color: #2D323E !important;
+	border-color: #2D323E !important;
+}
+.btnupd{
+	
+    background: #424949;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 5px !important;
+
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.wdth-align{
+   
+    width: 900px !important;
+    overflow: auto !important;
+  }
+  /* audit log css */
+  #audittrail{
+    border-collapse: collapse;
+    width: 100%;
+}
+#audittrail {
+	border-collapse: collapse;
+	width: 100%;
+  }
+  
+  #audittrail td, #audittrail th {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: center;
+  }
+  #audittrail tr:nth-child(even){background-color: #f2f2f2;}
+
+#audittrail th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #10174C;
+  color: white;
+}
+.rowupdte
+  {
+     width:90%;
+     margin-left:auto;
+	 margin-right: auto;
+	 margin-top:30px;
+  }
+  .userName
+  {
+	  text-transform: uppercase;
+  }
+  .material-icons {  
+     /* Support for all WebKit browsers.  */
+    -webkit-font-smoothing: antialiased;
+
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+.btnwdth{
+	width: 88px !important;
+	border-radius: 5px !important;
+  }
+  .handsym{
+	cursor: pointer;
+  }

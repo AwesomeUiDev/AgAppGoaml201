@@ -1,0 +1,84 @@
+<app-home></app-home>
+
+<div class="card bg-transparent border-0 ">
+  <div class="card bg-transparent border-0 media" id="auth">
+    <!-- <div class="card-header col-sm-6 text-md-center bg-transparent">
+      Excel Upload
+    </div> -->
+    <!-- <h4 class="headTwo">
+      Excel Upload
+    </h4> -->
+
+    <div class="header">
+      <h6 class="headOne" >
+       <!-- {{downloadMsg}} -->
+      </h6>
+      <h6 class="headAlt">
+       <!-- {{validationResponse}} -->
+       <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+       </h6>
+       <h4 class="headTwo">
+        Excel Upload
+      </h4>
+    </div>
+    <div class="line"></div>
+
+    <h3>{{responseMsgUpload}}</h3>
+    <!-- ------------------------------- -->
+    <div></div>
+
+    <div class="card bg-transparent border-0 col-sm-10">
+      <div class="card-body table-bordered  border-0 col-sm-10 bxshdwborder bxshdw">
+
+        <form #excelUpload="ngForm" novalidate>
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+          <!-- <mat-form-field>
+            <mat-label>External System</mat-label>
+            <mat-select name="ext" #extSysName [(ngModel)]="selectExt" #ext="ngModel" (selectionChange)="getProcess(extSysName.value)" required>
+              <mat-option *ngFor="let topping of extSysData1" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <label class="serif" for="processCode" style="text-align: center;">External System</label>
+         &nbsp;&nbsp;&nbsp;
+            <select id="processCode" name="ext"  required #error3="ngModel"
+            [(ngModel)]="selectExt" #ext="ngModel" (change)="getProcess($event)" required
+            class="custom-select-sm col-sm-2">
+              <option>--Select--</option>
+              <option *ngFor="let topping of extSysData1" [value]="topping">{{topping}}</option>
+            </select>
+          &nbsp; &nbsp; &nbsp;
+          <!-- <mat-form-field>
+            <mat-label>Process Code</mat-label>
+            <mat-select #processCode name="proCode" required [(ngModel)]="pCode" #proCode="ngModel" (selectionChange)="getProcessName1(processCode.value,extSysName.value)">
+              <mat-option *ngFor="let topping of processName" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <label class="serif" for="processCode" style="text-align: center;">Process Code</label>
+          &nbsp;&nbsp;&nbsp;
+             <select #processCode name="proCode" required [(ngModel)]="pCode" #proCode="ngModel" (selectionChange)="getProcessName1(processCode.value,extSysName.value)"
+             class="custom-select-sm col-sm-2">
+               <option>--Select--</option>
+               <option *ngFor="let topping of processName" [value]="topping">{{topping}}</option>
+             </select>
+          <br>
+          &nbsp; &nbsp; &nbsp;
+          <div class="serif">
+            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+
+            Upload File : <input class="serif" name="fupload" [(ngModel)]="fileData" #fupload="ngModel" required  type="file" (change)="selectFile($event)">
+          </div>
+          <br>
+          <div class="btn-group">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+           &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+            <button type="submit" class=" hvr-push btn btn-success save-btn text-white" [disabled]="!selectedFiles" (click)="upload()"
+             >Upload</button>&nbsp; &nbsp;
+            <button class=" hvr-push btn btn-danger text-white reset-btn" 
+              (click)="reset()">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>

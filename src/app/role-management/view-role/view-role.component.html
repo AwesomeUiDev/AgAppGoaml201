@@ -1,0 +1,71 @@
+
+<div>
+  <div class="header">
+      <h6 class="headOne" >
+       {{response}}
+      </h6>
+      <h6 class="headAlt">
+       {{validationResponse}}
+       <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+       </h6>
+      <h4 class="headTwo">
+          View Role
+      </h4>
+    </div>
+  <div class="line"></div>
+  <form #Role = "ngForm" (ngSubmit)="getRoles(Role.value)">
+    <table align="center" cellpadding="8" cellspacing="8">
+      <tr>
+        <th>Role ID</th>
+        <th>Role Description</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>
+          <select name="roleId" ngModel #roleId>
+              <option aria-readonly="true" value="">Select</option>
+            <option *ngFor="let roles of userRoles">{{roles}}</option>
+          </select>
+        </td>
+        <td>
+          <input type="text" name="roleDesc" size="10" ngModel #roleDesc upperCase>
+        </td>
+        <td>
+          <select name="authStatus" ngModel #authStatus>
+              <option aria-readonly="true" value="">Select</option>
+            <option value="A">Authorized</option>
+            <option value="I">Initialized</option>
+          </select>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="submit" class="hvr-push btn btn-success">Search</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <br>
+  <br>
+  <table align="center" cellpadding="8" cellspacing="8" class="TableColor">
+    <tr *ngIf="roles">
+      <th width="120px">Role ID</th>
+      <th width="120px">Role Description</th>
+      <th width="120px">Auth Status</th>
+      <th width="120px">Version No.</th>
+      <th *ngIf="roleInfo.indexOf('RMMR') > -1">Modify</th>
+      <th *ngIf="roleInfo.indexOf('RMMR') > -1">Delete</th>
+      <th *ngIf="roleInfo.indexOf('RMAR') > -1">Authorize Role</th>
+    </tr>
+    <tr *ngFor="let role of roles; let i=index;">
+      <td width="120px">{{role.roleId}}</td>
+      <td width="120px">{{role.roleDesc}}</td>
+      <td width="120px">{{role.authStatus}}</td>
+      <td width="120px">{{role.versionNo}}</td>
+      <td *ngIf="roleInfo.indexOf('RMMR') > -1"><a href="javascript:void(0);" (click)="getModifyRole(i)">Modify</a></td>
+      <td *ngIf="roleInfo.indexOf('RMMR') > -1"><a href="javascript:void(0);" (click)="deleteRole(i)">Delete</a></td>
+      <td *ngIf="role.authStatus == 'I'"><a href="javascript:void(0);" (click)="authorizeRole(i)" *ngIf="roleInfo.indexOf('RMAR') > -1 && role.modifyBy!=userId" >Authorize</a></td>
+        <td  *ngIf="role.authStatus == 'A'"><a *ngIf="roleInfo.indexOf('RMAR') > -1">Authorized</a></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,642 @@
+<app-home></app-home>
+<!-- <mat-toolbar style="background-color: transparent;align-content: center;">Suspicious Transaction Report</mat-toolbar> -->
+<div  class="header">
+  <h6  class="headOne"></h6>
+  <h6  class="headAlt"></h6>
+  <h4  class="headTwo">Suspicious Transaction Report </h4>
+</div>
+<div  class="line"></div>
+<mat-card style="background-color: white">
+
+  <mat-form-field>
+    <label>Select Transaction Type</label>
+    <mat-select  class="mat-field-flex" #search (selectionChange)="getDropdown(search.value)">
+      <mat-option value="bank">Bank Transaction</mat-option>
+      <mat-option value="mts">MTS Transaction</mat-option>
+    </mat-select>
+  </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <mat-form-field *ngIf="dropdown1">
+    <label>Select Search Criteria</label>
+    <mat-select class="mat-field-flex" #val1 (selectionChange)="getData(val1.value)">
+      <mat-option value="txnno">Transaction Number</mat-option>
+
+      <mat-option class="mat-field-flex" value="actno" #val2 (selectionChange)="getData(val2.value)">Account Number</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+  &nbsp;
+  <mat-form-field *ngIf="dropdown2">
+    <label>Select an option</label>
+    <mat-select class="mat-field-flex" #val2 (selectionChange)="getData2(val2.value)">
+      <mat-option  value="transactionno">Transaction Number</mat-option>
+      <mat-option  value="idno">Id Number</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+  <!--for bank-->
+  <div *ngIf="bank">
+
+    <form [formGroup]="bankform">
+      <div class="row">&nbsp;
+        <mat-form-field *ngIf="trnbank">
+          <label>Transaction Number</label>
+          <input class="mat-field-flex" matInput  formControlName="trnbank">
+        </mat-form-field>
+        <div class="col-sm-3 pad0">
+        <!-- <label>Account Number</label>&nbsp; -->
+        <mat-form-field *ngIf="actnobank">
+          <label>Account Number</label>&nbsp;
+          <input class="mat-field-flex" matInput  formControlName="actnobank">
+        </mat-form-field>
+        
+        </div>
+        <div class="col-sm-3 pad0" *ngIf="date1">
+          <mat-form-field>
+            <label>From</label>
+            <input class="mat-field-flex" type="date" style="font-size:15px;" matInput formControlName="fromdate" >
+
+          </mat-form-field>&nbsp;&nbsp;
+        </div>
+        <div class="col-sm-3 pad0" *ngIf="date1">
+          <mat-form-field>
+            <label>To</label>
+            <input class="mat-field-flex" type="date" matInput formControlName="todate" >
+
+          </mat-form-field>
+        </div>
+        <br>
+        <br>
+        <!-- <div style="text-align: center;">
+          <button class="submit-btn hvr-push btn btn-sucess" type="submit" id="button"   *ngIf="submitbank"
+            (click)="senddataforbank()">Submit</button>&nbsp;
+          <button type="submit" id="button" class="submit-btn" color="primary" *ngIf="trnbank"
+            (click)="forTrn()">Submit</button>&nbsp;
+          <button type="button"  class="hvr-push btn btn-danger" color="primary" (click)="getRefresh()">Reset</button>
+        </div> -->
+
+
+      </div>
+      <div style="text-align: center;">
+        <button class="submit-btn hvr-push btn btn-sucess" type="submit" id="button"   *ngIf="submitbank"
+          (click)="senddataforbank()">Submit</button>&nbsp;
+        <button type="submit" id="button" class="submit-btn" color="primary" *ngIf="trnbank"
+          (click)="forTrn()">Submit</button>&nbsp;
+        <button type="button"  class="hvr-push btn btn-danger reset-btn" color="primary" (click)="getRefresh()">Reset</button>
+      </div>
+
+    </form>
+
+  </div>
+  <!--for mts-->
+  <div *ngIf="mts">
+    <form [formGroup]="mtsform">
+      <mat-form-field *ngIf="trnnomts">
+        <label>Transaction Number</label>
+        <input class="mat-field-flex" matInput  formControlName="trnmts">
+
+      </mat-form-field>
+      <mat-form-field *ngIf="idnomts">
+        <label>ID Number</label>
+        <input class="mat-field-flex" matInput  formControlName="idmts">
+
+      </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-form-field *ngIf="idnomts">
+        <label>Select Event</label>
+        <mat-select class="mat-field-flex" formControlName="dropdownmts" >
+          <mat-option value="SEND">Send</mat-option>
+          <mat-option value="RECEIVE">Receive</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <mat-form-field *ngIf="idnomts">
+        <label>From Date</label>
+        <input class="mat-field-flex" type="date" style="font-size:15px;" matInput formControlName="fromdate1" >
+
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-form-field *ngIf="idnomts">
+        <label>To Date</label> 
+        <input class="mat-field-flex" type="date" matInput formControlName="todate1" >
+
+      </mat-form-field>
+
+      <!-- <button type="submit" mat-raised-button color="primary" *ngIf="submitmts" (click)="dataformts()">Submit</button> -->
+      <div style="text-align: center;">
+        <button class="hvr-push btn btn-sucess submit-btn" type="submit"  color="primary" *ngIf="submitmts"
+          (click)="dataformtstrn()" >Submit</button>&nbsp;
+        <button class="hvr-push btn btn-danger reset-btn" type="submit"  color="primary" (click)="getRefresh()">Reset</button>
+      </div>
+    </form>
+  </div>
+  <p style="color:red;"> Click the Transaction Reference Number To Mark As STR Or Non STR.</p>
+</mat-card>
+
+
+<!--For  BANK TRANSACTION Display-->
+<mat-tab-group *ngIf="actclass">
+
+  <mat-tab style="color:burlywood;background-color: white" label="Customer Details">
+    <div class="mat-elevation-z8" *ngIf="!typec">
+      <table>
+        <tr>
+        </tr>
+        <tr>
+          <td>Amount Currency:<b style="color:blue;">{{custDetails.AMOUNTS_CCY }}</b></td>
+          <td>Business Desc: <b style="color:blue;">{{custDetails.BUSINESS_DESCRIPTION}}</b></td>
+          <td>Capital:<b style="color:blue;">{{custDetails.CAPITAL}}</b></td>
+        </tr>
+        <tr>
+          <td>Corporate Name: <b style="color:blue;">{{custDetails.CORPORATE_NAME}}</b></td>
+          <td>Customer No:<b style="color:blue;">{{custDetails.CUSTOMER_NO}}</b></td>
+          <td>Cust National Id: <b style="color:blue;">{{custDetails.C_NATIONAL_ID}}</b></td>
+        </tr>
+        <tr>
+          <td>Incorporation Country: <b style="color:blue;">{{custDetails.INCORP_COUNTRY}}</b></td>
+          <td>Incorporation Date: <b style="color:blue;">{{custDetails.INCORP_DATE | date}}</b></td>
+          <td>Networth: <b style="color:blue;">{{custDetails.NETWORTH}}</b></td>
+        </tr>
+        <tr>
+          <td>Address 1: <b style="color:blue;">{{custDetails.R_ADDRESS1}}</b></td>
+          <td>Address 2: <b style="color:blue;">{{custDetails.R_ADDRESS2}}</b></td>
+          <td>Residence Country: <b style="color:blue;">{{custDetails.R_COUNTRY }}</b></td>
+        </tr>
+
+      </table>
+
+
+    </div>
+    <table *ngIf="custtypeI">
+
+      <tr>
+        <td>AGE_PROOF_SUBMITTED:<b style="color:blue;">{{custtypeIdata.AGE_PROOF_SUBMITTED }}</b></td>
+        <td>BIRTH_COUNTRY: <b style="color:blue;">{{custtypeIdata.BIRTH_COUNTRY}}</b></td>
+        <td>CUSTOMER_NO:<b style="color:blue;">{{custtypeIdata.CUSTOMER_NO}}</b></td>
+      </tr>
+      <tr>
+        <td>CUST_COMM_MODE:<b style="color:blue;">{{custtypeIdata.CUST_COMM_MODE }}</b></td>
+        <td>DATE_OF_BIRTH: <b style="color:blue;">{{custtypeIdata.DATE_OF_BIRTH | date}}</b></td>
+        <td>D_ADDRESS1:<b style="color:blue;">{{custtypeIdata.D_ADDRESS1}}</b></td>
+      </tr>
+      <tr>
+        <td>D_ADDRESS2:<b style="color:blue;">{{custtypeIdata.D_ADDRESS2 }}</b></td>
+        <td>D_COUNTRY: <b style="color:blue;">{{custtypeIdata.D_COUNTRY}}</b></td>
+        <td>E_MAIL:<b style="color:blue;">{{custtypeIdata.E_MAIL}}</b></td>
+      </tr>
+      <tr>
+        <td>FIRST_NAME:<b style="color:blue;">{{custtypeIdata.FIRST_NAME }}</b></td>
+        <td>MOBILE_NUMBER: <b style="color:blue;">{{custtypeIdata.MOBILE_NUMBER}}</b></td>
+        <td>PLACE_OF_BIRTH:<b style="color:blue;">{{custtypeIdata.PLACE_OF_BIRTH}}</b></td>
+      </tr>
+      <tr>
+        <td>P_ADDRESS1:<b style="color:blue;">{{custtypeIdata.P_ADDRESS1 }}</b></td>
+        <td>P_ADDRESS2: <b style="color:blue;">{{custtypeIdata.P_ADDRESS2}}</b></td>
+        <td>P_NATIONAL_ID:<b style="color:blue;">{{custtypeIdata.P_NATIONAL_ID}}</b></td>
+      </tr>
+      <tr>
+        <td>RESIDENT_STATUS:<b style="color:blue;">{{custtypeIdata.RESIDENT_STATUS }}</b></td>
+        <td>SEX: <b style="color:blue;">{{custtypeIdata.SEX}}</b></td>
+        <td>US_RES_STATUS:<b style="color:blue;">{{custtypeIdata.US_RES_STATUS}}</b></td>
+      </tr>
+      <tr>
+        <td>VST_US_PREV:<b style="color:blue;">{{custtypeIdata.VST_US_PREV }}</b></td>
+        <td>TELEPHONE: <b style="color:blue;">{{custtypeIdata.TELEPHONE}}</b></td>
+        <td>PPT_EXP_DATE:<b style="color:blue;">{{custtypeIdata.PPT_EXP_DATE | date}}</b></td>
+      </tr>
+
+    </table>
+    <table *ngIf="custtypeB">
+
+      <tr>
+        <td>CUSTOMER_NO:<b style="color:blue;">{{btypecustdata.CUSTOMER_NO }}</b></td>
+        <td>CUSTOMER_TYPE: <b style="color:blue;">{{btypecustdata.CUSTOMER_TYPE}}</b></td>
+        <td>CUSTOMER_NAME1:<b style="color:blue;">{{btypecustdata.CUSTOMER_NAME1}}</b></td>
+      </tr>
+      <tr>
+        <td>COUNTRY:<b style="color:blue;">{{btypecustdata.COUNTRY }}</b></td>
+        <td>EXPOSURE_COUNTRY: <b style="color:blue;">{{btypecustdata.EXPOSURE_COUNTRY }}</b></td>
+        <td>ADDRESS_LINE1:<b style="color:blue;">{{btypecustdata.ADDRESS_LINE1}}</b></td>
+      </tr>
+      <tr>
+        <td>ADDRESS_LINE2:<b style="color:blue;">{{btypecustdata.ADDRESS_LINE2 }}</b></td>
+        <td>LOCAL_BRANCH: <b style="color:blue;">{{btypecustdata.LOCAL_BRANCH}}</b></td>
+        <td>LIABILITY_NO:<b style="color:blue;">{{btypecustdata.LIABILITY_NO}}</b></td>
+      </tr>
+      <tr>
+        <td>UNIQUE_ID_NAME:<b style="color:blue;">{{btypecustdata.UNIQUE_ID_NAME }}</b></td>
+        <td>UNIQUE_ID_VALUE: <b style="color:blue;">{{btypecustdata.UNIQUE_ID_VALUE}}</b></td>
+        <td>FROZEN:<b style="color:blue;">{{btypecustdata.FROZEN}}</b></td>
+      </tr>
+      <tr>
+        <td>CUSTOMER_CATEGORY:<b style="color:blue;">{{btypecustdata.CUSTOMER_CATEGORY }}</b></td>
+        <td>MAKER_ID: <b style="color:blue;">{{btypecustdata.MAKER_ID}}</b></td>
+        <td>MAKER_DT_STAMP:<b style="color:blue;">{{btypecustdata.MAKER_DT_STAMP | date}}</b></td>
+      </tr>
+      <tr>
+        <td>CHECKER_ID:<b style="color:blue;">{{btypecustdata.CHECKER_ID }}</b></td>
+        <td>CHECKER_DT_STAMP: <b style="color:blue;">{{btypecustdata.CHECKER_DT_STAMP | date}}</b></td>
+        <td>FX_CUST_CLEAN_RISK_LIMIT:<b style="color:blue;">{{btypecustdata.FX_CUST_CLEAN_RISK_LIMIT}}</b></td>
+      </tr>
+      <tr>
+        <td>OVERALL_LIMIT:<b style="color:blue;">{{btypecustdata.OVERALL_LIMIT }}</b></td>
+        <td>LIMIT_CCY: <b style="color:blue;">{{btypecustdata.LIMIT_CCY}}</b></td>
+        <td>SWIFT_CODE:<b style="color:blue;">{{btypecustdata.SWIFT_CODE}}</b></td>
+      </tr>
+      <tr>
+        <td>ELCM_CUSTOMER:<b style="color:blue;">{{btypecustdata.ELCM_CUSTOMER }}</b></td>
+        <td>ELCM_CUSTOMER_NO: <b style="color:blue;">{{btypecustdata.ELCM_CUSTOMER_NO}}</b></td>
+        <td>TRACK_LIMITS:<b style="color:blue;">{{btypecustdata.TRACK_LIMITS}}</b></td>
+      </tr>
+
+    </table>
+  </mat-tab>
+  <mat-tab label="Account Details">
+    <div *ngIf="actclass">
+      <table>
+        <tr>
+
+        </tr>
+        <tr>
+          <td>Account Name:<b style="color:blue;">{{dataforstr.AC_DESC }}</b></td>
+          <td>Customer Number: <b style="color:blue;">{{dataforstr.CUST_NO}}</b></td>
+          <td>Account Name:<b style="color:blue;">{{dataforstr.AC_DESC}}</b></td>
+        </tr>
+        <tr>
+          <td>Branch Code: <b style="color:blue;">{{dataforstr.BRANCH_CODE}}</b></td>
+          <td>Currency:<b style="color:blue;">{{dataforstr.CCY}}</b></td>
+          <td>Account Class: <b style="color:blue;">{{dataforstr.ACCOUNT_CLASS}}</b></td>
+        </tr>
+        <tr>
+          <td>Available Balance: <b style="color:blue;">{{dataforstr.ACY_AVL_BAL}}</b></td>
+          <td>Current Balance: <b style="color:blue;">{{dataforstr.ACY_CURR_BALANCE}}</b></td>
+          <td>LCY Current Balance: <b style="color:blue;">{{dataforstr.LCY_CURR_BALANCE}}</b></td>
+        </tr>
+        <tr>
+          <td>Account Type: <b style="color:blue;">{{dataforstr.ACCOUNT_TYPE}}</b></td>
+          <td>Account Status: <b style="color:blue;">{{dataforstr.ACC_STATUS}}</b></td>
+          <td>Account Open Date: <b style="color:blue;">{{dataforstr.AC_OPEN_DATE | date }}</b></td>
+        </tr>
+        <tr>
+          <td>Maker Id: <b style="color:blue;">{{dataforstr.MAKER_ID}}</b></td>
+          <td>Maker Date Stamp: <b style="color:blue;">{{dataforstr.MAKER_DT_STAMP | date }}</b></td>
+          <td>Checker: <b style="color:blue;">{{dataforstr.CHECKER_ID}}</b></td>
+        </tr>
+        <tr>
+          <td>Checker Date Stamp: <b style="color:blue;">{{dataforstr.CHECKER_DT_STAMP | date }}</b></td>
+          <td>Country Code: <b style="color:blue;">{{dataforstr.COUNTRY_CODE}}</b></td>
+          <td>Joint Account: <b style="color:blue;">{{dataforstr.JOINT_AC_INDICATOR}}</b></td>
+        </tr>
+        <tr>
+          <td>Dormancy Status: <b style="color:blue;">{{dataforstr.AC_STAT_DORMANT}}</b></td>
+          <td>No Credit: <b style="color:blue;">{{dataforstr.AC_STAT_NO_CR}}</b></td>
+          <td>No Debit: <b style="color:blue;">{{dataforstr.AC_STAT_NO_DR}}</b></td>
+        </tr>
+        <tr>
+          <td>Frozen: <b style="color:blue;">{{dataforstr.AC_STAT_FROZEN}}</b></td>
+          <td>Last Credit Activity: <b style="color:blue;">{{dataforstr.DATE_LAST_CR_ACTIVITY | date }}</b></td>
+          <td>Last Debit Activity: <b style="color:blue;">{{dataforstr.DATE_LAST_DR_ACTIVITY | date }}</b></td>
+        </tr>
+
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab style="color:blue;" label="Transaction Details">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" style="background-color: transparent;">
+        <ng-container matColumnDef="TRN_REF_NO">
+          <th mat-header-cell *matHeaderCellDef>Transaction Reference No. </th>
+          <td mat-cell *matCellDef="let element"> <a (click)="getDetailsTransaction3(element)">{{element.TRN_REF_NO}}</a>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="AC_NO">
+          <th mat-header-cell *matHeaderCellDef> Account Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.AC_NO}} </td>
+        </ng-container>
+        <ng-container matColumnDef="MODULE">
+          <th mat-header-cell *matHeaderCellDef> Module</th>
+          <td mat-cell *matCellDef="let element"> {{element.MODULE}} </td>
+        </ng-container>
+        <ng-container matColumnDef="TRN_DT">
+          <th mat-header-cell *matHeaderCellDef> Transaction Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.TRN_DT | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="LCY_AMOUNT">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let element"> {{element.LCY_AMOUNT}} </td>
+        </ng-container>
+        <ng-container matColumnDef="AC_CCY">
+          <th mat-header-cell *matHeaderCellDef>Currency</th>
+          <td mat-cell *matCellDef="let element"> {{element.AC_CCY}} </td>
+        </ng-container>
+        <ng-container matColumnDef="DRCR_IND">
+          <th mat-header-cell *matHeaderCellDef>Credit/Debit</th>
+          <td mat-cell *matCellDef="let element"> {{element.DRCR_IND}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons style="background-color: transparent;">
+      </mat-paginator>
+    </div>
+
+  </mat-tab>
+</mat-tab-group>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--for transaction-->
+<mat-tab-group *ngIf="fortrn">
+  <mat-tab label=" Debit  Account2">
+    <div *ngIf="fortrn1">
+      <table *ngIf="debitG">
+        <!--for type g-->
+        <P>For GL Account</P>
+        <tr>
+            <td>GL_DESC:<b style="color:blue;">{{dataforstrforbanktrndebit.GL_DESC}}</b></td>
+            <td>GL_CODE: <b style="color:blue;">{{dataforstrforbanktrndebit.GL_CODE}}</b></td>
+          <td>PARENT_GL:<b style="color:blue;">{{dataforstrforbanktrndebit.PARENT_GL }}</b></td>
+         
+        </tr>
+        <tr>
+            <td>ULTI_PARENT: <b style="color:blue;">{{dataforstrforbanktrndebit.ULTI_PARENT}}</b></td>
+            <td>TYPE:<b style="color:blue;">{{dataforstrforbanktrndebit.TYPE}}</b></td>
+          <td>IS_ACCRUAL: <b style="color:blue;">{{dataforstrforbanktrndebit.IS_ACCRUAL}}</b></td>
+         
+        </tr>
+        <tr>
+          <td>CUSTOMER: <b style="color:blue;">{{dataforstrforbanktrndebit.CUSTOMER}}</b></td>
+          <td>CCY_RES: <b style="color:blue;">{{dataforstrforbanktrndebit.CCY_RES}}</b></td>
+          <td>CATEGORY: <b style="color:blue;">{{dataforstrforbanktrndebit.CATEGORY}}</b></td>
+        </tr>
+        <tr>
+          <td>BLOCK: <b style="color:blue;">{{dataforstrforbanktrndebit.BLOCK}}</b></td>
+          <td>AVG_BAL_REQD: <b style="color:blue;">{{dataforstrforbanktrndebit.AVG_BAL_REQD}}</b></td>
+          <td>AUTH_STAT: <b style="color:blue;">{{dataforstrforbanktrndebit.AUTH_STAT  }}</b></td>
+        </tr>
+        <tr>
+          <td>Maker Id: <b style="color:blue;">{{dataforstrforbanktrndebit.MAKER_ID}}</b></td>
+          <td>Maker Date Stamp: <b style="color:blue;">{{dataforstrforbanktrndebit.MAKER_DT_STAMP | date }}</b></td>
+          <td>Checker: <b style="color:blue;">{{dataforstrforbanktrndebit.CHECKER_ID}}</b></td>
+        </tr>
+        <tr>
+          <td>Checker Date Stamp: <b style="color:blue;">{{dataforstrforbanktrndebit.CHECKER_DT_STAMP | date }}</b>
+          </td>
+          
+        </tr>
+      </table> 
+       <table *ngIf="debitA">   
+ <!--for type A-->
+ <p>Normal Account</p>
+ <tr>
+   <td>BRANCH_CODE: <b style="color:blue;">{{this.bankdatawithnormaldebittype.BRANCH_CODE }}</b></td>
+   <td>ACCOUNT_DERIVED_STATUS: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACCOUNT_DERIVED_STATUS}}</b></td>
+   <td>ACC_STATUS: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACC_STATUS }}</b></td>
+ </tr>
+ <tr>
+     <td>ACY_AVL_BAL: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACY_AVL_BAL}}</b></td>
+     <td>ACY_BLOCKED_AMOUNT: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACY_BLOCKED_AMOUNT }}</b></td>
+     <td>ACY_CURR_BALANCE: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACY_CURR_BALANCE}}</b></td>
+   </tr>
+   <tr>
+       <td>ACY_MTD_TOVER_CR: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACY_MTD_TOVER_CR}}</b></td>
+       <td>ACY_MTD_TOVER_DR: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACY_MTD_TOVER_DR }}</b></td>
+       <td>ACY_OPENING_BAL: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACY_OPENING_BAL}}</b></td>
+     </tr>
+     <tr>
+         <td>ACY_TODAY_TOVER_CR: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACY_TODAY_TOVER_CR }}</b></td>
+         <td>ACY_TODAY_TOVER_DR: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ACY_TODAY_TOVER_DR }}</b></td>
+         <td>AC_DESC: <b style="color:blue;">{{this.bankdatawithnormaldebittype.AC_DESC}}</b></td>
+       </tr>
+       <tr>
+           
+           <td>AC_DESC: <b style="color:blue;">{{this.bankdatawithnormaldebittype.AC_DESC}}</b></td>
+           <td>ADDRESS1: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ADDRESS1 }}</b></td>
+           <td>ADDRESS2: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ADDRESS2 }}</b></td>
+         </tr>
+         <tr>
+             <td>ALT_AC_NO: <b style="color:blue;">{{this.bankdatawithnormaldebittype.ALT_AC_NO }}</b></td>
+             <td>CHECKBOOK_NAME_1: <b style="color:blue;">{{this.bankdatawithnormaldebittype.CHECKBOOK_NAME_1 }}</b></td>
+             <td>CHECKER_ID: <b style="color:blue;">{{this.bankdatawithnormaldebittype.CHECKER_ID}}</b></td>
+           </tr>
+           <tr>
+               <td>CHECKER_DT_STAMP: <b style="color:blue;">{{this.bankdatawithnormaldebittype.CHECKER_DT_STAMP | date }}</b></td>
+               <td>CLEARING_AC_NO: <b style="color:blue;">{{this.bankdatawithnormaldebittype.CLEARING_AC_NO }}</b></td>
+               <td>CUST_AC_NO: <b style="color:blue;">{{this.bankdatawithnormaldebittype.CUST_AC_NO}}</b></td>
+             </tr>
+             <tr>
+                 <td>CUST_NO: <b style="color:blue;">{{this.bankdatawithnormaldebittype.CUST_NO }}</b></td>
+                 <td>DATE_LAST_CR: <b style="color:blue;">{{this.bankdatawithnormaldebittype.DATE_LAST_CR | date }}</b></td>
+                 <td>DATE_LAST_DR: <b style="color:blue;">{{this.bankdatawithnormaldebittype.DATE_LAST_DR | date}}</b></td>
+               </tr>
+               <tr>
+                   <td>DORMANCY_DATE: <b style="color:blue;">{{this.bankdatawithnormaldebittype.DORMANCY_DATE | date }}</b></td>
+                   <td>DR_GL: <b style="color:blue;">{{this.bankdatawithnormaldebittype.DR_GL  }}</b></td>
+                   <td>LCY_CURR_BALANCE: <b style="color:blue;">{{this.bankdatawithnormaldebittype.LCY_CURR_BALANCE }}</b></td>
+                 </tr>
+                 <tr>
+                     <td>MAKER_ID: <b style="color:blue;">{{this.bankdatawithnormaldebittype.MAKER_ID}}</b></td>
+                     <td>MAKER_DT_STAMP: <b style="color:blue;">{{this.bankdatawithnormaldebittype.MAKER_DT_STAMP   | date }}</b></td>
+                    
+                   </tr>
+ 
+  <!-- <tr>
+    <td>Maker Dt Stamp: <b style="color:blue;">{{this.bankdatawithnormaldebittype.MAKER_DT_STAMP | date}}</b></td>
+    <td>Parent Gl:<b style="color:blue;">{{this.bankdatawithnormaldebittype.PARENT_GL}}</b></td>
+    <td>Customer: <b style="color:blue;">{{this.bankdatawithnormaldebittype.CUSTOMER}}</b></td>
+  </tr> -->
+ 
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="Credit Account2">
+    <div *ngIf="debitaccount">
+      <table *ngIf="creditA">
+        <!--for type A-->
+       <p>Normal Account</p>
+        <tr>
+          <td>BRANCH_CODE: <b style="color:blue;">{{this.arrayfordebit[0].BRANCH_CODE }}</b></td>
+          <td>ACCOUNT_DERIVED_STATUS: <b style="color:blue;">{{this.arrayfordebit[0].ACCOUNT_DERIVED_STATUS}}</b></td>
+          <td>ACC_STATUS: <b style="color:blue;">{{this.arrayfordebit[0].ACC_STATUS }}</b></td>
+        </tr>
+        <tr>
+            <td>ACY_AVL_BAL: <b style="color:blue;">{{this.arrayfordebit[0].ACY_AVL_BAL}}</b></td>
+            <td>ACY_BLOCKED_AMOUNT: <b style="color:blue;">{{this.arrayfordebit[0].ACY_BLOCKED_AMOUNT }}</b></td>
+            <td>ACY_CURR_BALANCE: <b style="color:blue;">{{this.arrayfordebit[0].ACY_CURR_BALANCE}}</b></td>
+          </tr>
+          <tr>
+              <td>ACY_MTD_TOVER_CR: <b style="color:blue;">{{this.arrayfordebit[0].ACY_MTD_TOVER_CR}}</b></td>
+              <td>ACY_MTD_TOVER_DR: <b style="color:blue;">{{this.arrayfordebit[0].ACY_MTD_TOVER_DR }}</b></td>
+              <td>ACY_OPENING_BAL: <b style="color:blue;">{{this.arrayfordebit[0].ACY_OPENING_BAL}}</b></td>
+            </tr>
+            <tr>
+                <td>ACY_TODAY_TOVER_CR: <b style="color:blue;">{{this.arrayfordebit[0].ACY_TODAY_TOVER_CR }}</b></td>
+                <td>ACY_TODAY_TOVER_DR: <b style="color:blue;">{{this.arrayfordebit[0].ACY_TODAY_TOVER_DR }}</b></td>
+                <td>AC_DESC: <b style="color:blue;">{{this.arrayfordebit[0].AC_DESC}}</b></td>
+              </tr>
+              <tr>
+                  
+                  <td>AC_DESC: <b style="color:blue;">{{this.arrayfordebit[0].AC_DESC}}</b></td>
+                  <td>ADDRESS1: <b style="color:blue;">{{this.arrayfordebit[0].ADDRESS1 }}</b></td>
+                  <td>ADDRESS2: <b style="color:blue;">{{this.arrayfordebit[0].ADDRESS2 }}</b></td>
+                </tr>
+                <tr>
+                    <td>ALT_AC_NO: <b style="color:blue;">{{this.arrayfordebit[0].ALT_AC_NO }}</b></td>
+                    <td>CHECKBOOK_NAME_1: <b style="color:blue;">{{this.arrayfordebit[0].CHECKBOOK_NAME_1 }}</b></td>
+                    <td>CHECKER_ID: <b style="color:blue;">{{this.arrayfordebit[0].CHECKER_ID}}</b></td>
+                  </tr>
+                  <tr>
+                      <td>CHECKER_DT_STAMP: <b style="color:blue;">{{this.arrayfordebit[0].CHECKER_DT_STAMP | date }}</b></td>
+                      <td>CLEARING_AC_NO: <b style="color:blue;">{{this.arrayfordebit[0].CLEARING_AC_NO }}</b></td>
+                      <td>CUST_AC_NO: <b style="color:blue;">{{this.arrayfordebit[0].CUST_AC_NO}}</b></td>
+                    </tr>
+                    <tr>
+                        <td>CUST_NO: <b style="color:blue;">{{this.arrayfordebit[0].CUST_NO }}</b></td>
+                        <td>DATE_LAST_CR: <b style="color:blue;">{{this.arrayfordebit[0].DATE_LAST_CR | date }}</b></td>
+                        <td>DATE_LAST_DR: <b style="color:blue;">{{this.arrayfordebit[0].DATE_LAST_DR | date}}</b></td>
+                      </tr>
+                      <tr>
+                          <td>DORMANCY_DATE: <b style="color:blue;">{{this.arrayfordebit[0].DORMANCY_DATE | date }}</b></td>
+                          <td>DR_GL: <b style="color:blue;">{{this.arrayfordebit[0].DR_GL  }}</b></td>
+                          <td>LCY_CURR_BALANCE: <b style="color:blue;">{{this.arrayfordebit[0].LCY_CURR_BALANCE }}</b></td>
+                        </tr>
+                        <tr>
+                            <td>MAKER_ID: <b style="color:blue;">{{this.arrayfordebit[0].MAKER_ID}}</b></td>
+                            <td>MAKER_DT_STAMP: <b style="color:blue;">{{this.arrayfordebit[0].MAKER_DT_STAMP   | date }}</b></td>
+                           
+                          </tr>
+<!--for type G-->
+</table> 
+<table *ngIf="creditG">
+<P>For GL Account</P>
+<tr>
+    <td>GL_DESC:<b style="color:blue;">{{this.arrayfordebit[0].GL_DESC}}</b></td>
+    <td>GL_CODE: <b style="color:blue;">{{this.arrayfordebit[0].GL_CODE}}</b></td>
+  <td>PARENT_GL:<b style="color:blue;">{{this.arrayfordebit[0].PARENT_GL }}</b></td>
+ 
+</tr>
+<tr>
+    <td>ULTI_PARENT: <b style="color:blue;">{{this.arrayfordebit[0].ULTI_PARENT}}</b></td>
+    <td>TYPE:<b style="color:blue;">{{this.arrayfordebit[0].TYPE}}</b></td>
+  <td>IS_ACCRUAL: <b style="color:blue;">{{this.arrayfordebit[0].IS_ACCRUAL}}</b></td>
+ 
+</tr>
+<tr>
+  <td>CUSTOMER: <b style="color:blue;">{{this.arrayfordebit[0].CUSTOMER}}</b></td>
+  <td>CCY_RES: <b style="color:blue;">{{this.arrayfordebit[0].CCY_RES}}</b></td>
+  <td>CATEGORY: <b style="color:blue;">{{this.arrayfordebit[0].CATEGORY}}</b></td>
+</tr>
+<tr>
+  <td>BLOCK: <b style="color:blue;">{{this.arrayfordebit[0].BLOCK}}</b></td>
+  <td>AVG_BAL_REQD: <b style="color:blue;">{{this.arrayfordebit[0].AVG_BAL_REQD}}</b></td>
+  <td>AUTH_STAT: <b style="color:blue;">{{this.arrayfordebit[0].AUTH_STAT  }}</b></td>
+</tr>
+<tr>
+  <td>Maker Id: <b style="color:blue;">{{this.arrayfordebit[0].MAKER_ID}}</b></td>
+  <td>Maker Date Stamp: <b style="color:blue;">{{this.arrayfordebit[0].MAKER_DT_STAMP | date }}</b></td>
+  <td>Checker: <b style="color:blue;">{{this.arrayfordebit[0].CHECKER_ID}}</b></td>
+</tr>
+<tr>
+  <td>Checker Date Stamp: <b style="color:blue;">{{this.arrayfordebit[0].CHECKER_DT_STAMP | date }}</b>
+  </td>
+  
+</tr>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="Transaction Details2">
+    <div *ngIf="trndetails1">
+      <table>
+        <tr>
+          <td>Transaction Reference Number : <b style="color:blue;"><a
+                (click)="getDetailsTransaction1(this.arrayfortrn[0].TRN_REF_NO)">{{this.arrayfortrn[0].TRN_REF_NO }}</a></b>
+          </td>
+          <td>User Id : <b style="color:blue;">{{this.arrayfortrn[0].USERID}}</b></td>
+          <td>Module : <b style="color:blue;">{{this.arrayfortrn[0].MODULE}}</b></td>
+        </tr>
+        <tr>
+          <td>Transaction Description: <b style="color:blue;">{{this.arrayfortrn[0].TRN_DESC}}</b></td>
+          <td>Transaction Date:<b style="color:blue;">{{this.arrayfortrn[0].TRN_DT | date}}</b></td>
+          <td>Transaction Code : <b style="color:blue;">{{this.arrayfortrn[0].TRN_CODE}}</b></td>
+        </tr>
+        <tr>
+          <td>Ac Entry Serial Number:<b style="color:blue;">{{this.arrayfortrn[0].AC_ENTRY_SR_NO }}</b></td>
+          <td>Credit Account: <b style="color:blue;">{{this.arrayfortrn[0].CR_ACCOUNT}}</b></td>
+          <td>Auth Id:<b style="color:blue;">{{this.arrayfortrn[0].AUTH_ID}}</b></td>
+        </tr>
+        <tr>
+          <td>Credit Account Type: <b style="color:blue;">{{this.arrayfortrn[0].CR_AC_TYPE}}</b></td>
+          <td>Credit Amount:<b style="color:blue;">{{this.arrayfortrn[0].CR_AMOUNT}}</b></td>
+          <td>Credit Branch: <b style="color:blue;">{{this.arrayfortrn[0].CR_BRANCH}}</b></td>
+        </tr>
+        <tr>
+          <td>Credit Currency : <b style="color:blue;">{{this.arrayfortrn[0].CR_CCY}}</b></td>
+          <td>Debit Account : <b style="color:blue;">{{this.arrayfortrn[0].DR_ACCOUNT}}</b></td>
+          <td>Debit Account Type : <b style="color:blue;">{{this.arrayfortrn[0].DR_AC_TYPE}}</b></td>
+        </tr>
+        <tr>
+          <td>Exchange Rate : <b style="color:blue;">{{this.arrayfortrn[0].EXCHG_RATE}}</b></td>
+          <td>Fcy Amount : <b style="color:blue;">{{this.arrayfortrn[0].FCY_AMOUNT}}</b></td>
+          <td>Str Marked : <b style="color:blue;">{{this.arrayfortrn[0].STR_MARKED}}</b></td>
+        </tr>
+        <tr>
+          <td>Related Customer : <b style="color:blue;">{{this.arrayfortrn[0].RELATED_CUSTOMER}}</b></td>
+
+
+        </tr>
+
+      </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<!--transaction data display end -->
+
+
+
+
+<!--list of Mts Id Number data-->
+<div class="mat-elevation-z8 " style="background-color: transparent;" *ngIf="sendtable">
+  <mat-form-field class="example-full-width">
+
+    &nbsp;<input matInput placeholder="Sender Id" style="color: #000080" value="{{senderId}}" disabled *ngIf="sender">
+    &nbsp;<input matInput placeholder="Receiver Id" style="color: #000080" value="{{receiverId}}" disabled
+      *ngIf="receiver">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource1" style="background-color: transparent;">
+    <ng-container matColumnDef="TRN_NO">
+      <th mat-header-cell *matHeaderCellDef>TRN_NO </th>
+      <td mat-cell *matCellDef="let element" (click)="getMtsIdSend(element)"> {{element.TRN_NO}} </td>
+    </ng-container>
+    <ng-container matColumnDef="CHANNEL">
+      <th mat-header-cell *matHeaderCellDef>CHANNEL </th>
+      <td mat-cell *matCellDef="let element"> {{element.CHANNEL}} </td>
+    </ng-container>
+    <ng-container matColumnDef="TRN_DT">
+      <th mat-header-cell *matHeaderCellDef>TRN_DT </th>
+      <td mat-cell *matCellDef="let element"> {{element.TRN_DT| date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="LCY_AMOUNT">
+      <th mat-header-cell *matHeaderCellDef>LCY_AMOUNT </th>
+      <td mat-cell *matCellDef="let element"> {{element.LCY_AMOUNT}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons style="background-color: transparent;">
+  </mat-paginator>
+</div>

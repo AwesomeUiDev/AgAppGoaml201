@@ -1,0 +1,157 @@
+<div style="background-color:rgb(221, 217, 217)">
+  <mat-toolbar color="accent">
+    <span>Security Policy</span>
+  </mat-toolbar>
+  <br>    
+  <div fxLayout="row-wrap">
+    <div fxFlex="100">
+      <mat-card style="border-radius: 20px;width: 50%;margin-left: 25%">
+        <mat-card-content>
+          <div fxFlex="5"></div>
+          <div fxFlex="40">
+            <div>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Maximum Invalid Logins</mat-label>
+                <input matInput type="number" name="MaxLogins" required min="0" placeholder="Maximum Invalid Logins"
+                  onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                  (keyup)="checkvalue($event)" [(ngModel)]="security.max_inv_logins" #max_inv_logins="ngModel" [readonly]="!editFalg">
+              </mat-form-field>
+            </div>
+                  
+            <div>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Minimum Password Length</mat-label>
+                <input matInput type="number" name="minPasswordLength" required maxlength="99" min="4" placeholder="Minimum Password Length"
+                  onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                  (keyup)="checkvalue($event)" [(ngModel)]="security.min_pswd_length" #min_pswd_length="ngModel"  [readonly]="!editFalg">
+                <mat-error [hidden]="maxPswdLengthh <= minPswdLength">
+                  Minimun Password Length should not be greater than Maximum Password Length.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Password Expiry (In days)</mat-label>
+                <input matInput type="number" name="passwordExpiry" required min="0" placeholder="Password Expiry"
+                  onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                  (keyup)="checkvalue($event)" [(ngModel)]="security.pswd_expiry" #PasswordExpiry="ngModel" [readonly]="!editFalg">
+              </mat-form-field>
+            </div>
+                  
+            <div>
+              <div>
+                <mat-checkbox color="accent" name="two_factor_auth" (change)="buttonState($event)"
+                  [(ngModel)]="security.two_factor_auth" #two_factor_auth="ngModel" class="cb-style"  [disabled]="!editFalg">
+                    Two Factor Authentication
+                </mat-checkbox>
+              </div>
+                <br>
+              <div>
+                <mat-label>Password Complexity</mat-label>
+                <section name="pwdComplexity">
+                  <div>
+                    <mat-checkbox color="accent" name="pswd_complex_ucase" (change)="buttonState($event)"
+                      [(ngModel)]="security.pswd_complex_ucase" #pswd_complex_ucase="ngModel" class="cb-style" [disabled]="!editFalg">
+                      Require atleast one Uppercase (A-Z)
+                    </mat-checkbox>
+                  </div>
+                    
+                  <div>
+                    <mat-checkbox color="accent" name="pswd_complex_lcase" (change)="buttonState($event)"
+                      [(ngModel)]="security.pswd_complex_lcase" #pswd_complex_lcase="ngModel" class="cb-style" [disabled]="!editFalg">
+                      Require atleast one Lowercase (a-z)
+                    </mat-checkbox>
+                  </div>
+                      
+                  <div>
+                    <mat-checkbox color="accent" name="pswd_complex_num" (change)="buttonState($event)"
+                      [(ngModel)]="security.pswd_complex_num" #pswd_complex_num="ngModel" class="cb-style" [disabled]="!editFalg">
+                      Require atleast one Number (0-9)
+                    </mat-checkbox>
+                  </div>
+                      
+                  <div>
+                    <mat-checkbox color="accent" name="pswd_complex_splc" (change)="buttonState($event)"
+                      [(ngModel)]="security.pswd_complex_splc" #pswd_complex_splc="ngModel" class="cb-style" [disabled]="!editFalg">
+                      Require atleast one Special Character (@,:;'"$#%^&*!?...)
+                    </mat-checkbox>
+                  </div>
+                </section>   
+              </div>             
+            </div>
+          </div>
+                
+            <div fxFlex="10"></div>    
+            <div fxFlex="40">
+              <div>
+                <mat-form-field appearance="outline">
+                  <mat-label>Password Resuse After (Total Attempts)</mat-label>
+                  <input matInput type="number" name="resusePasswordAfter" required min="0" [readonly]="!editFalg" placeholder="Password Reuse After"
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                    (keyup)="checkvalue($event)" [(ngModel)]="security.pswd_reuse_aft" #resusePasswordAfter="ngModel">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Maximum Password Length</mat-label>
+                  <input matInput type="number" name="maxPasswordLength" required maxlength="99" min="4"  placeholder="Maximum Password Length"
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                    (keyup)="checkvalue($event)" [(ngModel)]="security.max_pswd_length" #max_pswd_length="ngModel" [readonly]="!editFalg">
+                </mat-form-field>
+              </div>
+                  
+              <div>
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Notification on Password Expiry (In Days)</mat-label>
+                  <input matInput type="number" name="pwdExpiryWarning" required min="0" placeholder="Notification on Password Expiry"
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                    (keyup)="checkvalue($event)" [(ngModel)]="security.notify_password_expiry_in_days"
+                    #pwdExpiryWarning="ngModel" [readonly]="!editFalg">
+                </mat-form-field>
+              </div>
+            </div>  
+        </mat-card-content>
+              
+          <div fxLayoutGap="10px" style="text-align: center;">
+            <!-- <app-buttons [buttonConfig]="textBtnConfig" [buttonslist]="enablebuttons"
+              (saveBtnClickEmt)="onsaveEditOfSecurityPolicy()"
+              (editBtnClickEmt)="editOfSecurityPolicy()"
+              (clickToViewUnAuth)="ViewUnAuthReocrds()"
+              (cancelBtnClickEmt)="onCancelSecurityPlocyEdit()">
+            </app-buttons> -->
+          </div>
+      </mat-card>
+    </div>
+  </div>
+  <br>
+      
+  <div fxLayout="row">
+    <div fxFlex="95px"></div>
+    <div fxFlex="100">
+      <div fxLayout="row">
+        <table id="customers">
+          <tr>                                   
+            <th>Auth Status</th>
+            <th>Input By</th>
+            <th>Input Date</th>
+            <th>Modification No</th>
+            <th>Authorized Date</th>
+            <th>Authorized By</th>
+          </tr>
+                                
+          <tr>
+            <td>{{security.auth_status}}</td>
+            <td>{{security.modified_by}}</td>
+            <td>{{security. modified_time | date}} </td>
+            <td>{{security.version}}</td>
+            <td>{{security.authorized_time | date}}</td>                                        
+            <td>{{security. authorized_by}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>       
+  </div>
+  <br>
+</div>

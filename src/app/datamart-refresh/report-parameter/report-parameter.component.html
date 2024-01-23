@@ -1,0 +1,532 @@
+<div>
+  <div class="header">
+    <h6 class="headOne">
+      {{response}}
+    </h6>
+    <h6 class="headAlt">
+      {{validationResponse}}
+      <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+    </h6>
+    <h4 class="headTwo">
+      Report Parameter Maintenance
+    </h4>
+  </div>
+  <div class="line"></div>
+  <table style="display:inline-block;" cellpadding="8" cellspacing="8">
+    <tr>
+      <td>
+        <b>Report Name</b>
+      </td>
+      <td>::</td>
+      <td>
+        <b>{{mdMultiSql.v_report_no}}</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Line Id</b>
+      </td>
+      <td>::</td>
+      <td>
+        <b>{{mdMultiSql.n_sort_order}}</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Business Lines</b>
+      </td>
+      <td>::</td>
+      <td>
+        <b>{{mdMultiSql.v_report_line_desc}}</b>
+      </td>
+    </tr>
+  </table>
+
+  <!-- <table cellpadding="8" cellspacing="8" style="float:right;">
+    <tr>
+      <td>
+        <b> <a href="javascript:void(0);" (click)="toggle()">Show/Hide Conditions</a></b>
+      </td>
+    </tr>
+  </table> -->
+  <div class="line"></div>
+   
+  <p align="center">
+    <b>Conditions</b>
+  </p>
+  <div class="line"></div>
+  <form #MdMultiSqlDetails="ngForm" (ngSubmit)="reportParameterData(MdMultiSqlDetails.value)">
+    <table align="center" cellpadding="8" cellspacing="8" ngFor="let mdMultiSql.operator of op" width="100%">
+      <tr hidden>
+        <td><input type="text" readonly name="n_sort_order" #n_sort_order [(ngModel)]="mdMultiSql.n_sort_order"></td>
+      </tr>
+      <tr hidden>
+          <td><input type="text" readonly name="v_report_no" #v_report_no [(ngModel)]="mdMultiSql.v_report_no"></td>
+        </tr>
+        <tr hidden>
+          <td><input type="text" readonly name="v_report_line_desc" #v_report_line_desc [(ngModel)]="mdMultiSql.v_report_line_desc"></td>
+        </tr>
+      <tr>
+          <td width="5%" ><input [disabled]="conditionCount >= 2" type="button" value="+" (click)="incrementCondition(2)"></td>
+          <td width="5%" ><input disabled type="button" value="-" (click)="decrementCondition()"></td>
+        <td width="25%">
+          <b>Condition 1</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name1" #v_column_name1 [(ngModel)]="mdMultiSql.v_column_name1">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op1" [ngModelOptions]="{standalone: true}"> 
+            <option value="{{op1}}" *ngIf="op1!=''" selected="selected">{{op1}}</option>
+            <option value="IN" *ngIf="op1!='IN'">IN</option>
+            <option value="=" *ngIf="op1!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name1_value" #v_column_name1_value [(ngModel)]="mdMultiSql.v_column_name1_value">
+        </td>
+      </tr>
+      <tr *ngIf="conditionCount>=2 || mdMultiSql.v_column_name2 || mdMultiSql.v_column_name2_value">
+          <td width="5%" ><input [disabled]="conditionCount >= 3" type="button" value="+" (click)="incrementCondition(3)"></td>
+          <td width="5%" ><input [disabled]="conditionCount >= 3" type="button" value="-" (click)="decrementCondition(1)"></td>
+        <td width="25%">
+          <b>Condition 2</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name2" #v_column_name1 [(ngModel)]="mdMultiSql.v_column_name2">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op2"  [ngModelOptions]="{standalone: true}">
+            <option value="{{op2}}" *ngIf="op2!=''" selected="selected">{{op2}}</option>
+            <option value="IN" *ngIf="op2!='IN'">IN</option>
+            <option value="=" *ngIf="op2!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name2_value" #v_column_name2_value [(ngModel)]="mdMultiSql.v_column_name2_value">
+        </td>
+      </tr>
+
+      <tr  *ngIf="conditionCount>=3 || mdMultiSql.v_column_name3 || mdMultiSql.v_column_name3_value">
+          <td width="5%" ><input [disabled]="conditionCount >= 4" type="button" value="+" (click)="incrementCondition(4)"></td>
+          <td width="5%" ><input [disabled]="conditionCount >= 4" type="button" value="-" (click)="decrementCondition(2)"></td>
+        <td width="25%">
+          <b>Condition 3</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name3" #v_column_name3 [(ngModel)]="mdMultiSql.v_column_name3">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op3" [ngModelOptions]="{standalone: true}">
+            <option value="{{op3}}" *ngIf="op3!=''" selected="selected">{{op3}}</option>
+            <option value="IN" *ngIf="op3!='IN'">IN</option>
+            <option value="=" *ngIf="op3!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name3_value" #v_column_name3_value [(ngModel)]="mdMultiSql.v_column_name3_value">
+        </td>
+      </tr>
+
+      <tr *ngIf="conditionCount>=4 || mdMultiSql.v_column_name4 || mdMultiSql.v_column_name4_value" >
+          <td width="5%" ><input [disabled]="conditionCount >= 5" type="button" value="+" (click)="incrementCondition(5)"></td>
+          <td width="5%" ><input [disabled]="conditionCount >= 5" type="button" value="-" (click)="decrementCondition(3)"></td>
+        <td width="25%">
+          <b>Condition 4</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name4" #v_column_name4 [(ngModel)]="mdMultiSql.v_column_name4">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op4" [ngModelOptions]="{standalone: true}">
+            <option value="{{op4}}" *ngIf="op!=''" selected="selected">{{op4}}</option>
+            <option value="IN" *ngIf="op4!='IN'">IN</option>
+            <option value="=" *ngIf="op4!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name4_value" #v_column_name4_value [(ngModel)]="mdMultiSql.v_column_name4_value">
+        </td>
+      </tr>
+
+      <tr *ngIf="conditionCount>=5 || mdMultiSql.v_column_name5 || mdMultiSql.v_column_name5_value">
+          <td width="5%" ><input [disabled]="conditionCount >= 6" type="button" value="+" (click)="incrementCondition(6)"></td>
+          <td width="5%" ><input [disabled]="conditionCount >= 6" type="button" value="-" (click)="decrementCondition(4)"></td>
+        <td width="25%">
+          <b>Condition 5</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name5" #v_column_name5 [(ngModel)]="mdMultiSql.v_column_name5">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op5" [ngModelOptions]="{standalone: true}">
+            <option value="{{op5}}" *ngIf="op5!=''" selected="selected">{{op5}}</option>
+            <option value="IN" *ngIf="op5!='IN'">IN</option>
+            <option value="=" *ngIf="op5!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name5_value" #v_column_name5_value [(ngModel)]="mdMultiSql.v_column_name5_value">
+        </td>
+      </tr>
+
+      <tr *ngIf="conditionCount>=6 || mdMultiSql.v_column_name6 || mdMultiSql.v_column_name6_value">
+          <td width="5%" ><input [disabled]="conditionCount >= 7" type="button" value="+" (click)="incrementCondition(7)"></td>
+          <td width="5%" ><input [disabled]="conditionCount >= 7" type="button" value="-" (click)="decrementCondition(5)"></td>
+        <td width="25%">
+          <b>Condition 6</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name6" #v_column_name6 [(ngModel)]="mdMultiSql.v_column_name6">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op6" [ngModelOptions]="{standalone: true}">
+            <option value="{{op6}}" *ngIf="op6!=''" selected="selected">{{op6}}</option>
+            <option value="IN" *ngIf="op6!='IN'">IN</option>
+            <option value="=" *ngIf="op6!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name6_value" #v_column_name6_value [(ngModel)]="mdMultiSql.v_column_name6_value">
+        </td>
+      </tr>
+
+      <tr *ngIf="conditionCount>=7 || mdMultiSql.v_column_name7 || mdMultiSql.v_column_name7_value">
+          <td width="5%" ><input [disabled]="conditionCount >= 8" type="button" value="+" (click)="incrementCondition(8)"></td>
+          <td width="5%" ><input [disabled]="conditionCount >= 8" type="button" value="-" (click)="decrementCondition(6)"></td>
+        <td width="25%">
+          <b>Condition 7</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name7" #v_column_name7 [(ngModel)]="mdMultiSql.v_column_name7">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op7" [ngModelOptions]="{standalone: true}">
+            <option value="{{op7}}" *ngIf="op7!=''" selected="selected">{{op7}}</option>
+            <option value="IN" *ngIf="op7!='IN'">IN</option>
+            <option value="=" *ngIf="op7!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name7_value" #v_column_name7_value [(ngModel)]="mdMultiSql.v_column_name7_value">
+        </td>
+      </tr>
+
+      <tr *ngIf="conditionCount>=8 || mdMultiSql.v_column_name8 || mdMultiSql.v_column_name8_value">
+          <td width="5%" ><input [disabled]="conditionCount >= 9" type="button" value="+" (click)="incrementCondition(9)"></td>
+          <td width="5%" ><input [disabled]="conditionCount >= 9" type="button" value="-" (click)="decrementCondition(7)"></td>
+        <td width="25%">
+          <b>Condition 8</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name8" #v_column_name8 [(ngModel)]="mdMultiSql.v_column_name8">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op8" [ngModelOptions]="{standalone: true}">
+            <option value="{{op8}}" *ngIf="op8!=''" selected="selected">{{op8}}</option>
+            <option value="IN" *ngIf="op8!='IN'">IN</option>
+            <option value="=" *ngIf="op8!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name8_value" #v_column_name8_value [(ngModel)]="mdMultiSql.v_column_name8_value">
+        </td>
+      </tr>
+
+      <tr *ngIf="conditionCount>=9 || mdMultiSql.v_column_name9 || mdMultiSql.v_column_name9_value">
+          <td width="5%" ><input [disabled]="conditionCount >= 10" type="button" value="+" (click)="incrementCondition(10)"></td>
+          <td width="5%" ><input [disabled]="conditionCount >= 10" type="button" value="-" (click)="decrementCondition(8)"></td>
+        <td width="25%">
+          <b>Condition 9</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name9" #v_column_name9 [(ngModel)]="mdMultiSql.v_column_name9">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op9" [ngModelOptions]="{standalone: true}">
+            <option value="{{op9}}" *ngIf="op9!=''" selected="selected">{{op9}}</option>
+            <option value="IN" *ngIf="op9!='IN'">IN</option>
+            <option value="=" *ngIf="op9!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name9_value" #v_column_name9_value [(ngModel)]="mdMultiSql.v_column_name9_value">
+        </td>
+      </tr>
+
+      <tr *ngIf="conditionCount>=10 || mdMultiSql.v_column_name10 || mdMultiSql.v_column_name10_value">
+          <td width="5%" ><input disabled type="button" value="+" (click)="incrementCondition(10)"></td>
+          <td width="5%" ><input  type="button" value="-" (click)="decrementCondition(9)"></td>
+        <td width="25%">
+          <b>Condition 10</b>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name10" #v_column_name10 [(ngModel)]="mdMultiSql.v_column_name10">
+        </td>
+        <td width="25%">
+          <select  [(ngModel)]="op10" [ngModelOptions]="{standalone: true}">
+            <option value="{{op10}}" *ngIf="op10!=''" selected="selected">{{op10}}</option>
+            <option value="IN" *ngIf="op10!='IN'">IN</option>
+            <option value="="  *ngIf="op10!='='">=</option>
+            <!-- <option value="IN" *ngIf="mdMultiSql.operator[1]!='IN'">IN</option>
+            <option value="=" *ngIf="mdMultiSql.operator[1]!='='">=</option> -->
+          </select>
+        </td>
+        <td width="25%">
+          <input type="text" name="v_column_name10_value" #v_column_name10_value [(ngModel)]="mdMultiSql.v_column_name10_value">
+        </td>
+      </tr>
+      
+    </table>
+    <div class="line"></div>
+   
+    <p align="center">
+      
+      <b>Calculative Columns</b>
+    </p>
+    <div class="line"></div>
+    <table align="center" cellpadding="8" cellspacing="8" width="100%">
+      <tr>
+          <td width="5%" ><input [disabled]="calculativeCount >= 2" type="button" value="+" (click)="incrementCalculative(2)"></td>
+          <td width="5%" ><input disabled type="button" value="-" (click)="decrementCalculative(1)"></td>
+        <td width="20%">
+          <b>Column 1</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column1" [(ngModel)]="mdMultiSql.v_measurable_column1" #v_measurable_column1>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount>=2 || mdMultiSql.v_measurable_column2">
+        <td width="5%"><input [disabled]="calculativeCount >= 3" type="button" value="+" (click)="incrementCalculative(3)"></td>
+        <td width="5%" ><input [disabled]="calculativeCount >= 3" type="button" value="-" (click)="decrementCalculative(1)"></td>
+        <!-- <td width="5%" ><input [disabled]="calculativeCount >= 2" type="button" value="+" (click)="incrementCalculative()"></td> -->
+        <td width="20%">
+          <b>Column 2</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column2" [(ngModel)]="mdMultiSql.v_measurable_column2" #v_measurable_column2>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount>=3 || mdMultiSql.v_measurable_column3">
+          <td width="5%"><input [disabled]="calculativeCount >= 4" type="button" value="+" (click)="incrementCalculative(4)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 4" type="button" value="-" (click)="decrementCalculative(2)"></td>
+        <td width="20%">
+          <b>Column 3</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column3" [(ngModel)]="mdMultiSql.v_measurable_column3" #v_measurable_column3>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount>=4 || mdMultiSql.v_measurable_column4">
+          <td width="5%"><input [disabled]="calculativeCount >= 5" type="button" value="+" (click)="incrementCalculative(5)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 5" type="button" value="-" (click)="decrementCalculative(3)"></td>
+        <td width="20%">
+          <b>Column 4</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column4" [(ngModel)]="mdMultiSql.v_measurable_column4" #v_measurable_column4>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 5 || mdMultiSql.v_measurable_column5">
+          <td width="5%"><input [disabled]="calculativeCount >= 6" type="button" value="+" (click)="incrementCalculative(6)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 6" type="button" value="-" (click)="decrementCalculative(4)"></td>
+        <td width="20%">
+          <b>Column 5</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column5" [(ngModel)]="mdMultiSql.v_measurable_column5" #v_measurable_column5>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 6 || mdMultiSql.v_measurable_column6">
+          <td width="5%"><input [disabled]="calculativeCount >= 7" type="button" value="+" (click)="incrementCalculative(7)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 7" type="button" value="-" (click)="decrementCalculative(5)"></td>
+        <td width="20%">
+          <b>Column 6</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column6" [(ngModel)]="mdMultiSql.v_measurable_column6" #v_measurable_column6>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 7 || mdMultiSql.v_measurable_column7">
+          <td width="5%"><input [disabled]="calculativeCount >= 8" type="button" value="+" (click)="incrementCalculative(8)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 8" type="button" value="-" (click)="decrementCalculative(6)"></td>
+        <td width="20%">
+          <b>Column 7</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column7" [(ngModel)]="mdMultiSql.v_measurable_column7" #v_measurable_column7>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 8 || mdMultiSql.v_measurable_column8">
+          <td width="5%"><input [disabled]="calculativeCount >= 9" type="button" value="+" (click)="incrementCalculative(9)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 9" type="button" value="-" (click)="decrementCalculative(7)"></td>
+        <td width="20%">
+          <b>Column 8</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column8" [(ngModel)]="mdMultiSql.v_measurable_column8" #v_measurable_column8>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 9 || mdMultiSql.v_measurable_column9">
+          <td width="5%"><input [disabled]="calculativeCount >= 10" type="button" value="+" (click)="incrementCalculative(10)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 10" type="button" value="-" (click)="decrementCalculative(8)"></td>
+        <td width="20%">
+          <b>Column 9</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column9" [(ngModel)]="mdMultiSql.v_measurable_column9" #v_measurable_column9>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 10 || mdMultiSql.v_measurable_column10">
+          <td width="5%"><input [disabled]="calculativeCount >= 11" type="button" value="+" (click)="incrementCalculative(11)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 11" type="button" value="-" (click)="decrementCalculative(9)"></td>
+        <td width="20%">
+          <b>Column 10</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column10" [(ngModel)]="mdMultiSql.v_measurable_column10" #v_measurable_column10>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 11 || mdMultiSql.v_measurable_column11">
+          <td width="5%"><input [disabled]="calculativeCount >= 12" type="button" value="+" (click)="incrementCalculative(12)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 12" type="button" value="-" (click)="decrementCalculative(10)"></td>
+        <td width="20%">
+          <b>Column 11</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column11" [(ngModel)]="mdMultiSql.v_measurable_column11" #v_measurable_column11>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 12 || mdMultiSql.v_measurable_column12">
+          <td width="5%"><input [disabled]="calculativeCount >= 13" type="button" value="+" (click)="incrementCalculative(13)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 13" type="button" value="-" (click)="decrementCalculative(11)"></td>
+        <td width="20%">
+          <b>Column 12</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column12" [(ngModel)]="mdMultiSql.v_measurable_column12" #v_measurable_column12>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 13 || mdMultiSql.v_measurable_column13">
+          <td width="5%"><input [disabled]="calculativeCount >= 14" type="button" value="+" (click)="incrementCalculative(14)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 14" type="button" value="-" (click)="decrementCalculative(12)"></td>
+        <td width="20%">
+          <b>Column 13</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column13" [(ngModel)]="mdMultiSql.v_measurable_column13" #v_measurable_column13>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 14 || mdMultiSql.v_measurable_column14">
+          <td width="5%"><input [disabled]="calculativeCount >= 15" type="button" value="+" (click)="incrementCalculative(15)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 15" type="button" value="-" (click)="decrementCalculative(13)"></td>
+        <td width="20%">
+          <b>Column 14</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column14" [(ngModel)]="mdMultiSql.v_measurable_column14" #v_measurable_column14>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 15 || mdMultiSql.v_measurable_column15">
+          <td width="5%"><input [disabled]="calculativeCount >= 16" type="button" value="+" (click)="incrementCalculative(16)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 16" type="button" value="-" (click)="decrementCalculative(14)"></td>
+        <td width="20%">
+          <b>Column 15</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column15" [(ngModel)]="mdMultiSql.v_measurable_column15" #v_measurable_column15>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 16 || mdMultiSql.v_measurable_column16">
+          <td width="5%"><input [disabled]="calculativeCount >= 17" type="button" value="+" (click)="incrementCalculative(17)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 17" type="button" value="-" (click)="decrementCalculative(15)"></td>
+        <td width="20%">
+          <b>Column 16</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column16" [(ngModel)]="mdMultiSql.v_measurable_column16" #v_measurable_column16>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 17 || mdMultiSql.v_measurable_column17">
+          <td width="5%"><input [disabled]="calculativeCount >= 18" type="button" value="+" (click)="incrementCalculative(18)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 18" type="button" value="-" (click)="decrementCalculative(16)"></td>
+        <td width="20%">
+          <b>Column 17</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column17" [(ngModel)]="mdMultiSql.v_measurable_column17" #v_measurable_column17>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 18 || mdMultiSql.v_measurable_column18">
+          <td width="5%"><input [disabled]="calculativeCount >= 19" type="button" value="+" (click)="incrementCalculative(19)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 19" type="button" value="-" (click)="decrementCalculative(17)"></td>
+        <td width="20%">
+          <b>Column 18</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column18" [(ngModel)]="mdMultiSql.v_measurable_column18" #v_measurable_column18>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 19 || mdMultiSql.v_measurable_column19">
+          <td width="5%"><input [disabled]="calculativeCount >= 20" type="button" value="+" (click)="incrementCalculative(20)"></td>
+          <td width="5%" ><input [disabled]="calculativeCount >= 20" type="button" value="-" (click)="decrementCalculative(18)"></td>
+        <td width="20%">
+          <b>Column 19</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column19" [(ngModel)]="mdMultiSql.v_measurable_column19" #v_measurable_column19>
+        </td>
+      </tr>
+      <tr *ngIf="calculativeCount >= 20">
+          <td width="5%"><input disabled type="button" value="+" (click)="incrementCalculative(20)"></td>
+          <td width="5%" ><input  type="button" value="-" (click)="decrementCalculative(19)"></td>
+        <td width="20%">
+          <b>Column 20</b>
+        </td>
+        <td width="80%">
+          <input type="text" name="v_measurable_column20" [(ngModel)]="mdMultiSql.v_measurable_column20" #v_measurable_column20>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <table align="center" cellpadding="8" cellspacing="8">
+      <!-- <tr>
+        <td> <a href="javascript:void(0);"><input type="button" value="+ Add Column" (click)="incrementCalculative()"></a></td>
+        <td> <a href="javascript:void(0);"><input type="button" value="- Remove Column" (click)="decrementCalculative()"></a></td>
+      </tr> -->
+      <tr>
+        <td>
+          <div class="btn-effcts">
+            <button type="submit" class="hvr-push btn btn-success" [disabled]="status">Save</button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="button" class="hvr-push btn btn-danger" (click)="cancel()">Cancel</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

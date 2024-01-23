@@ -1,0 +1,115 @@
+<app-home></app-home>
+
+<div class="card  border-0 ">
+  <div class="card  border-0 media" id="auth">
+    <!-- <div class="card-header col-sm-6 text-md-center bg-transparent ">
+      Modify External System
+    </div> -->
+    <div class="header">
+      <h6 class="headOne" >
+      
+      </h6>
+      <h6 class="headAlt">
+       
+       </h6>
+       <h4 class="headTwo">
+        Modify External System
+      </h4>
+    </div>
+    <div class="line"></div>
+    <div class="card  border-0 col-sm-10">
+      <div class="card-body  border-0 col-sm-8 ">
+        <mat-card class="bg-transparent border-0">
+          <form>
+            <h3 style="color: red;">{{responseError}}</h3>
+            <div class="form-group" hidden>
+              <label for="id">id</label>
+              <input type="text" class="form-control col-sm-3" id="id" required [(ngModel)]="formData.id" name="id">
+            </div>
+            <div class="form-group" style="text-align: center;">
+              <label class="serif" for="extSysCode">External System Code</label>
+              &nbsp;
+              <mat-form-field>
+                <input type="text"  class="form-control text-md-center mat-field-flex" id="extSysCode" required
+                  [(ngModel)]="formData.extSysCode" name="extSysCode" [disabled]=is_edit matInput readonly>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group" style="text-align: center;">
+              <label style="text-align: center;" class="serif" for="extSysName">External System Name</label>
+              &nbsp;
+              <mat-form-field>
+                <input type="text" class="form-control text-md-center mat-field-flex" id="extSysName" required
+                  [(ngModel)]="formData.extSysName" name="extSysName" [disabled]=is_edit matInput>
+              </mat-form-field>
+            </div>
+            <div style="text-align: center;">
+            <button type="submit" class="btn-md hvr-push btn btn-danger text-white save-btn" *ngIf="editFunction"
+              (click)="onSubmit(formData)">Update</button>&nbsp;
+            <!-- <button type="reset" class="btn-md text-white" style="background: #A93226;">Reset</button>&nbsp; -->
+            <button type="text" id="5" class="btn-md hvr-push  btn-danger btn text-white edit-btn" 
+              (click)="changeStatus()" *ngIf="poovar">Edit</button>&nbsp;
+            <button type="submit" class="btn-md hvr-push btn-danger text-white btn exit-btn btn-danger" [routerLink]="'/excelExtSysSummary'"
+              >Exit</button>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+      <!-- audit log-->
+      <div fxLayout="row" class="rowupdte">
+        <div fxFlex></div>
+        <div fxFlex="95">
+           <mat-card>
+            <mat-card-title>
+      
+            </mat-card-title>
+            <mat-card-content>
+              <div fxLayout="row">
+      
+                <table id="audittrail">
+                  <tr>
+                    <th>Created By:</th>
+                    <td>
+                        <mat-chip>{{auditdata.creatorId}}</mat-chip>
+                    </td>
+                    <th>Creation Date:</th>
+                    <td>
+                        <mat-chip>{{auditdata.creatorDtStamp | date:'short'}}</mat-chip>
+                    </td>                     
+                  </tr>
+                  <tr>
+                    <th>Verified Id:</th>
+                    <td>
+                        <mat-chip>{{auditdata.verifierId}}</mat-chip>
+                    </td>
+                    <th>Verified Date:</th>
+                    <td>
+                        <mat-chip>{{auditdata.verifierDtStamp | date:'short'}}</mat-chip>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Modification No:</th>
+                    <td>
+                        <mat-chip>{{auditdata.versionNo}}</mat-chip>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </mat-card-content>
+          </mat-card> 
+        </div>
+        <div fxFlex></div>
+      </div>
+    
+      <!--end of audit log-->
+  </div>
+
+</div>
+
+<!-- </div> -->
+
+<!-- <div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <button class="btn btn-success" (click)="newCustomer()">Add</button>
+</div> -->

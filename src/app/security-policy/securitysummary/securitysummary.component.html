@@ -1,0 +1,57 @@
+<div style="height: 100%;">
+  <div class="header">
+  <h4 class="headTwo">
+    Security Policy
+  </h4>
+</div>
+  <div class="line"></div>
+  <div>
+      <mat-card>
+         <button class="hvr-push btn btn-danger reset-btn" (click)="onCancelingTheRecord()">Exit</button>
+          <br>
+
+          <table>
+              <tr>
+                  <th>Max Invalid Logins</th>
+                  <th>Max Pswd Length</th>
+                  <th>Min Pswd Length</th>
+                  <th>Password Expiry</th>
+                  <th>Pswd Expiry In Days</th>
+                  <th>Pswd Reuse Aft</th>
+
+                  <th>Pswd LowerCase</th>
+                  <th>Pswd Number</th>
+                  <th>Pswd Spl. char</th>
+                  <th>Pswd UpperCase</th>
+
+                  <th>Auth Status</th>
+                  <th>Modified By</th>
+                  <th>Modified Time</th>
+                  
+                  <th>Action</th>
+              </tr>
+              <tr>                    
+                  <td>{{securityDto.max_inv_logins}}</td>
+                  <td>{{securityDto.max_pswd_length}}</td>
+                  <td>{{securityDto.min_pswd_length}}</td>
+                  <td>{{securityDto.pswd_expiry}}</td>
+                  <td>{{securityDto.notify_password_expiry_in_days}}</td>
+                  <td>{{securityDto.pswd_reuse_aft}}</td>
+
+                  <td>{{securityDto.pswd_complex_lcase}}</td>
+                  <td>{{securityDto.pswd_complex_num}}</td>
+                  <td>{{securityDto.pswd_complex_splc}}</td>
+                  <td>{{securityDto.pswd_complex_ucase}}</td>
+
+                  <td>{{securityDto.auth_status}}</td>
+                  <td>{{securityDto.modified_by}}</td>
+                  <td>{{securityDto.modified_time}}</td>
+                  
+                  <td><button class="hvr-push btn btn-sucess submit-btn" (click)="onClickOfAuth()">Auth</button></td>
+                  <!-- <td> <app-buttons [buttonConfig]="textBtnConfig" [buttonslist]="enablebuttons"
+                      (authBtnClickEmt)="onClickOfAuth()"></app-buttons></td> -->
+              </tr>
+          </table>
+      </mat-card>
+  </div>
+</div>

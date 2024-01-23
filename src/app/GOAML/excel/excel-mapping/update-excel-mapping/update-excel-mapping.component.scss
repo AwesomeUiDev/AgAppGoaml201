@@ -1,0 +1,40 @@
+
+
+td{
+   // width:80px !important;
+    text-align: inherit;
+}
+
+table {
+    width: 100%;
+  }
+  
+  th{
+    /* text-align: center;
+     */
+  align-content: flex-end;
+  }
+  table td {
+     padding-right: 5px;
+  }
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+  

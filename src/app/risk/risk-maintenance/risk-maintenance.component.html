@@ -1,0 +1,86 @@
+
+<div>
+  <h4>Risk Maintenance</h4>
+  <div class="line"></div>
+  <form>
+  <table align="center" cellpadding="8" cellspacing="8">
+    <tr>
+      <td><b>Department</b></td>
+      <td>
+        <select name="">
+          <option disabled>Select</option>
+          <option>RISK</option>
+        </select>
+      </td>
+
+      <td>
+        <div class="btn-effcts">
+          <button type="submit" class="hvr-push">Query</button>
+        </div>
+      </td>
+    </tr>
+    <!-- <tr>
+  <td></td><td></td>
+</tr> -->
+    <!-- </table>
+
+<br>
+<br>
+<form method="POST">
+  <table align="center" cellpadding="8" cellspacing="8"> -->
+    <tr>
+      <td><b>Execution Date</b></td>
+      <td>
+        <input type="date" name="" />
+      </td>
+      <td>
+        <div class="btn-effcts">
+          <button type="submit" class="hvr-push">Save</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+  </form>
+  <br>
+  <br>
+  <br>
+  <table align="center" cellpadding="8" cellspacing="8">
+    <tr *ngIf="">
+      <th width="100px">+</th>
+      <th width="100px">Type</th>
+      <th width="100px">Table Name</th>
+      <th width="100px">Column Name</th>
+      <th width="100px">Operator</th>
+      <th width="100px">Value</th>
+    </tr>
+    <tr *ngFor="">
+      <td width="100px">{{delete}}</td>
+      <td width="100px">
+        <select *ngFor="">
+          <option></option>
+          <option>
+        </select>
+      </td>
+      <td width="100px">
+        <select *ngFor="">
+          <option></option>
+          <option>
+        </select>
+      </td>
+      <td width="100px">
+        <select *ngFor="">
+          <option></option>
+          <option>
+        </select>
+      </td>
+      <td width="100px">
+        <select *ngFor="">
+          <option></option>
+        </select>
+      </td>
+      <td>
+        <input type="text">
+      </td>
+    </tr>
+  </table>
+</div>

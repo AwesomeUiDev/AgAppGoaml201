@@ -1,0 +1,41 @@
+.wdt{
+    width: 100%;
+
+}
+.btn{
+    border-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+    border-bottom-right-radius: 6px !important;
+    color: white !important;
+    /* font-weight: bold !important; */
+}
+label{
+    font-weight: bold !important;
+}
+.mnbtm10{
+    margin-bottom: 10px;
+
+}
+.btn-group{
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+#reportType{
+    border: 1px solid #ced4da;
+  }
+  .border{
+    border-radius: 5px;
+  }
+  .btn-group
+  {
+    padding-top: 15px;
+    padding-bottom: 5px;
+  }
+  .page{
+    text-align: center;
+  }
+.btnwdth{
+    width: 32%;
+    padding-left: 4px;
+}

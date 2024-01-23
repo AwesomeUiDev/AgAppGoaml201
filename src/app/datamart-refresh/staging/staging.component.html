@@ -1,0 +1,435 @@
+
+<div>
+    <div class="header">
+            <h6 class="headOne" >
+                    {{dateMsg}}
+                   </h6>
+        <h6 class="headOne" >
+         {{response}}
+        </h6>
+        <h6 class="headAlt">
+         {{validationResponse}}
+         <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+         </h6>
+        <h4 class="headTwo">
+            STAGING
+        </h4>
+      </div>
+    <div class="line"></div>
+    <form (ngSubmit)="staging(exe_date.value,branch.value)">
+        <table align="center" cellpadding="8">
+            <tr>
+                <td>
+                    <h6>Last Execution Date: {{lastExecDate}}</h6>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Execution Date</b></td>
+                <td>
+                    <input type="date" name="exe_date" ngModel #exe_date required="required">
+                </td>
+                <td><b>Branch</b></td>
+                <td>
+                    <select ngModel #branch name="branch" required="required">
+                        <option disabled>Select</option>
+                        <option>ALL</option>
+                    </select>
+                </td>
+                <td>
+                    <div class="btn-effcts">
+                        <button type="submit" class="hvr-push btn btn-success" [disabled]="tvDatamart">submit</button>
+                    </div>
+                </td>
+               
+            </tr>
+        </table>
+    </form>
+    <br>
+    <br>
+    <div  *ngIf="tvDatamart">
+    <table align="center" cellpadding="8" cellspacing="8" >
+        <tr *ngIf="tvDatamart">
+            <th>Module</th>
+            <th>Module Description</th>
+            <th>Progress</th>
+            <th >Status</th>
+        </tr>
+        <tr *ngFor="let tvData of tvDatamart">
+            <td>{{tvData.modules}}</td>
+            <td>{{tvData.module_desc}}</td>
+            <td width="250px" *ngIf="tvData.status=='F'">
+                <div class="progress">
+                    <div class="progress-bar bg-danger progress-bar-striped" style="width:100%">Failed</div>
+                  </div></td>
+                        <td width="250px" *ngIf="tvData.status=='C'">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped" style="width:100%">Processed</div>
+                              </div>
+            </td>
+            <td width="250px" *ngIf="tvData.status=='W'">
+                <div class="progress">
+                    <div class="progress-bar bg-warning progress-bar-striped" style="width:100%">Processing...</div>
+                  </div>
+</td>
+            <td *ngIf="tvData.status=='C'">Completed</td>
+           <td *ngIf="tvData.status=='W'">  <!-- <div class="btn-effcts">
+                <button type="submit" (click)="stagingRefreshButton(tvData.exec_date)" class="hvr-push">Refresh</button>
+            </div>--></td> 
+            <td  *ngIf="tvData.status=='F'">
+            <div class="btn-effcts">
+                <button type="submit" (click)="stagingRetry(tvData.exec_date,tvData.modules)" class="hvr-push btnSize">Retry</button>
+            </div></td>
+            <td width="250px" *ngIf="tvData.status==null">
+                    <div class="progress">
+                        <div class="progress-bar bg-info" style="width:100%">Monthly Module</div>
+                      </div></td>
+        </tr>
+
+        </table>
+
+    </div>
+         <!-- display table -->
+
+    <div *ngIf="!tvDatamart">
+        <table align="center" cellpadding="8" cellspacing="8">
+            <tr *ngIf="tmModExtractionDetails">
+                <th>Module</th>
+                <th>Module Description</th>
+                <th>Progress</th>
+                <th>Status</th>
+            </tr>
+            <tr *ngFor="let tmMod of tmModExtractionDetails | async">
+                <td>{{tmMod.module_id}}</td>
+                <td>{{tmMod.module_desc}}</td>
+
+                <td width="250px" *ngIf="response == null">
+                    <div class="progress">
+                        <div class="progress-bar bg-info" style="width:100%"></div>
+                      </div>
+                </td>
+                <td *ngIf="response == 'Processing...'" width="250px"> <div class="progress">
+                    <div class="progress-bar bg-warning progress-bar-striped" style="width:100%">Processing...</div>
+                  </div></td>
+            </tr>
+        </table>
+
+    </div>
+
+
+        <!-- <tr>
+            <td>BRN</td>
+            <td>Branch Details</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>CCY</td>
+            <td>Currency Rates</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr >
+            <td>GL</td>
+            <td>GL Balances</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>GLDET</td>
+            <td>GL Details</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>CAS</td>
+            <td>CASA Details</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>CSJN</td>
+            <td>CASA Joint Account</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>LC</td>
+            <td>Letter Of Credit</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>MM</td>
+            <td>Money Market</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>BC</td>
+            <td>Bills & Collections</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>LON</td>
+            <td>Financing</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>CIF</td>
+            <td>Customer Details</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>COL</td>
+            <td>Collateral Details</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>ELCM</td>
+            <td>Facility Details</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>ACC_TXN</td>
+            <td>Transaction Based Account Balances</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>GL_TXN</td>
+            <td>Transaction Based GL Balances</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>MIS_CUST</td>
+            <td>Customer MIS</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>MIS_CONT</td>
+            <td>Contract MIS</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>CIPRV</td>
+            <td>Provisioning Summary (Monthly)</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>GLMIS</td>
+            <td>GL MIS Balances (Monthly)</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>CIPRV2</td>
+            <td>Provisioning Details (Monthly)</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr>
+        <tr>
+            <td>CC</td>
+            <td>Credit Card (Monthly)</td>
+            <td width="250px">
+                <div class="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                            style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{response}}</td>
+        </tr> -->
+   
+</div>

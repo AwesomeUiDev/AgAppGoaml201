@@ -1,0 +1,200 @@
+<!-- <p>
+  download works!
+</p> -->
+<div class="card bg-transparent border-0 " style="width: 900px;">
+  <div class="card bg-transparent border-0 media" id="auth">
+    <div class="header">
+       <h4 class="headTwo"> Reports</h4>  
+    </div>
+    <div class="line"></div>
+   <!-- <div class="card-header col-sm-6 text-md-center bg-transparent">
+      Reports
+    </div> -->
+    <div class='row mrg50'>
+    <div class="col-sm-3"></div>
+    <div class="card bg-transparent border-0 col-sm-6">
+      <div class="card-body table-bordered  border-0 col-sm-10 bxshdw padtp">
+
+        <!-- <form #generate="ngForm" class='frmcls'>-->
+        <!-- <div class='row wdt'>
+            <div class='row wdt mnbtm10'>
+            <div class='col-md-6 xol-xs-6 col-sm-6 fntbld fltrt'><label for="reportType">Type Of Report</label></div>
+            <div class='col-md-6 col-xs-6 col-sm-6 col-lg-6 '>
+              <select id="reportType" name="reportType" [(ngModel)]="reportdata.report_type"
+              class="custom-select-sm wdt">
+              <option>--Select--</option>
+              <option *ngFor="let report of reportTypeData;" value="{{report}}">{{report}}</option>
+            </select>
+            </div>
+          </div>  -->
+          <!--from date -->
+
+          <!-- <div class="type text-white">
+            &nbsp;&nbsp;
+            <label for="reportType">Type Of Report</label>&nbsp;&nbsp;
+            <select id="reportType" name="reportType" [(ngModel)]="authorize.reportType"
+              class="custom-select-sm col-sm-2">
+              <option>--Select--</option>
+              <option *ngFor="let report of reportTypeData;" value="{{report}}">{{report}}</option>
+            </select>
+          </div>  -->
+
+          <div class='row wdt mnbtm10'>
+            <div class='col-md-12 col-xs-12 col-sm-12 fntbld '><label for="reportType">Report Date &nbsp;&nbsp;&nbsp;&nbsp; </label></div>
+            <div class='col-md-12 col-xs-12 col-sm-12 col-lg-12 '>
+              <input type="date" class="form-control" name="fromDate" id="fromDate"
+              [(ngModel)]="dateData.fromDate">
+            </div>
+          </div>
+          <!--end of from date-->
+          <!--to date-->
+          <!-- <div class='row wdt mnbtm10'>
+            <div class='col-md-6 xol-xs-6 col-sm-6 fntbld fltrt'><label for="reportType">To Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label></div>
+            <div class='col-md-6 col-xs-6 col-sm-6 col-lg-6 '>
+              <input type="date" name="todate" id="toDate" class="form-control"
+              [(ngModel)]="dateData.toDate">
+            </div>
+          </div> -->
+          <!--end of to date-->
+          <div class="btn-group ">
+            &nbsp;&nbsp;
+            <!-- <button class="hvr-push btn btn-success apply-btn dfbt" 
+              (click)="getRecordTrn()" type="submit">&nbsp;&nbsp;View&nbsp;&nbsp;</button>
+            &nbsp;&nbsp;
+            <button class="hvr-push btn reset-btn dfbt" type="reset" 
+              (click)="tableHide()">&nbsp;&nbsp;Reset&nbsp;&nbsp;</button>
+            &nbsp;&nbsp;
+            <button class="hvr-push btn download-btn dfbt" (click)="downloadData()">Download
+            </button> -->
+<button class="hvr-push btn btn-success apply-btn dfbt " (click)="getData()" >
+  Fetch
+</button>
+          </div>
+          </div>
+         <!-- <table class="table table-striped table-responsive-md">
+            <tr class="border-bottom-0" style="height: 10px;">
+
+              <div class="type text-white">
+                &nbsp;&nbsp;
+                <label for="reportType">Type Of Report</label>&nbsp;&nbsp;
+                <select id="reportType" name="reportType" [(ngModel)]="dateData.reportType"
+                  class="custom-select-sm col-sm-2">
+                  <option>--Select--</option>
+                  <option *ngFor="let report of reportTypeData;" value="{{report}}">{{report}}</option>
+                </select>
+              </div>
+
+            </tr>
+
+            <tr class="border-0 ">
+              <td class="border-0 " style="padding: 0%;">
+                <div class="clearfix " style="margin-top:30px;">
+                  <div class="float-left col-sm-6">
+                    <div class="input-group  ">
+                      <span class="input-group-text col-sm-6 text-white border-0">From Date : </span>
+                      <input type="date" class="form-control col-sm-6 " name="fromDate" id="fromDate"
+                        [(ngModel)]="dateData.fromDate">
+                    </div>
+                  </div>
+                  <div class="float-md-left col-sm-6">
+                    <div class="input-group ">
+                      <span class="input-group-text col-sm-6 text-white border-0">To Date : </span>
+                      <input type="date" name="todate" id="toDate" class="form-control col-sm-6 "
+                        [(ngModel)]="dateData.toDate">
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr class="border-0 bg-transparent" style="padding:0%;">
+              <td class="border-0 bg-transparent" style="padding:0%;">
+
+                <div class="btn-group ">
+                  &nbsp;&nbsp;
+                  <button class="btn-md text-white" style="width: 100px; background: #229954;"
+                    (click)="getRecordTrn()" type="submit">View</button>
+                  &nbsp;&nbsp;
+                  <button class="btn-md text-white" type="reset" style="background: #A93226;"
+                    (click)="tableHide()">Reset</button>
+                  &nbsp;&nbsp;
+                  <button class="btn-md text-white" (click)="downloadData()" style="background: #1A5276  ;">Download
+                  </button>
+
+                </div>
+              </td>
+            </tr>
+          </table> -->
+        <!-- </form> -->
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+  <div>
+
+    
+</div>
+<div class='row align' >
+<div class="mat-elevation-z8" *ngIf="datafortable">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="filter" #input>
+  </mat-form-field>
+      <!-- <div class="card-body table-bordered bxshdw border-0 col-sm-10 "> -->
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" class="bg-transparent" matSort>
+
+           
+
+            <!-- <ng-container matColumnDef="reportId">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> ReportId </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.reportId}} </td>
+            </ng-container> -->
+
+            <ng-container matColumnDef="reportName">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> ReportName </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.reportName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="reportType">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> ReportType </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.reportType}} </td>
+            </ng-container>
+
+            
+            <ng-container matColumnDef="makerId">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> MakerId </th>
+              <td mat-cell *matCellDef="let element" class="text-md-center "> {{element.makerId}} </td>
+            </ng-container>
+            <!-- Position Column -->
+          
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef
+                class="bg-light text-md-center font-weight-bold text-black border-bottom-0 " style="font-size: 16px;height:55px;box-shadow: none;"> Action </th>
+              <td mat-cell *matCellDef="let element " class="text-md-center "> 
+                <button class="hvr-push btn download-btn dfbt" 
+                (click)="downloadData(element)">Download
+                </button> 
+                <!-- <a
+                  [href]="fileUrl" download="test.xml">
+                </a> -->
+                 </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+        <!-- <button class="hvr-push btn download-btn dfbt" (click)="downloadData()">Download
+        </button>  -->
+      </div>
+</div>
+
+
+
+<!-- <button  class="btn btn-success"  (click)="exportAsXLSX()">Export As Excel</button> -->

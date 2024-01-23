@@ -1,0 +1,88 @@
+<div>
+  <div class="header">
+    <h6 class="headOne" >
+     {{responseMsg}}
+    </h6>
+    <h6 class="headAlt">
+     {{responseError}}
+     <!-- <p *ngIf="!validationResponse">{{response}}</p> -->
+     </h6>
+    <h4 class="headTwo">
+      Upload
+    </h4>
+  </div>
+  <div class="line"></div>
+  <form #reportName="ngForm"  >
+    <table align="center" cellpadding="8" cellspacing="8">
+        <tr >
+            <td><b>MIS Date</b></td>
+            <td>
+              <input type="date" name="Exec_Date" ngModel #Exec_Date required="required"/>
+            </td>
+            
+          </tr>
+          <tr>
+            <td><b>Department</b></td>
+              <td>
+                  <!-- <input type="text" name="dept" ngModel #dept readonly value="{{userDept}}"/> -->
+                  <select ngModel name="dept" #dept (change)="reportNameList(dept.value)">
+                    <option aria-readonly="true" value="">Select Dept</option>
+                    <option *ngFor="let list of deptList">{{list}}</option>
+                  </select>
+                </td>
+          </tr>
+      <tr>
+        <td>
+          <b>Report name</b>
+        </td>
+        <td>
+          <select ngModel name="reportName" #reportName (change)="columnNames(reportName.value)">
+            <option aria-readonly="true" value="">Select Report</option>
+            <option *ngFor="let list of rList">{{list}}</option>
+          </select>
+        </td>
+        <!-- <td> <div class="btn-effcts"> <button (click)="tableToExcel('template', 'Template')" class="hrv-push">Download Template</button></div></td> -->
+      <td><a (click)="tableToExcel('template', 'Template')" href="javascript:void(0);">Download Template</a></td>
+      </tr>
+    <!-- </table>
+  </form >
+  <form >
+    <table> -->
+      <tr>
+        <td>
+          <b>Excel File</b>
+        </td>
+        <td>
+          <input type="file" name="" accept=".xls,.csv,.xlsx" (change)="selectFile($event)">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="btn-effcts">
+            <button type="submit" class="hvr-push btn btn-success" [disabled]="!selectedFiles" (click)="financeUpload(Exec_Date.value)">Upload</button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-effcts">
+            <button type="reset" class="hvr-push btn btn-danger" (click)="reset()">Cancel</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <br>
+  <br>
+  <table align="center" cellpadding="8" cellspacing="8" style="display:none" id="template">
+    <colgroup align="center"></colgroup>
+        <colgroup align="left"></colgroup>
+        <colgroup span="2" align="center"></colgroup>
+        <colgroup span="3" align="center"></colgroup>
+        <thead valign="top">
+            <tr style="background-color: #ff6a00; color: #fff">
+               <td *ngFor="let column of columnNameList"> {{column}}</td>
+            </tr>
+
+        </thead>
+        <tbody></tbody>
+  </table>
+</div>

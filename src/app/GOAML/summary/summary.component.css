@@ -1,0 +1,141 @@
+.card-header {
+  /* margin-left: 400px; */
+  font-size: 30px;
+  letter-spacing: 1px;
+  font-weight: 900 bold;
+  color: #A93226;
+  /* font-family: 'Shojumaru', cursive; */
+  border-bottom: 2px solid #A93226;
+  margin: auto;
+  width: 50%;
+  /* border: 3px solid green; */
+  padding: 10px;
+}
+
+.card.fom {
+  margin: auto;
+  left: auto;
+  margin-left: 200px;
+  width: 90%;
+}
+
+span {
+  letter-spacing: 1px;
+}
+
+.card-body {
+  /* margin-left: 300px; */
+  margin: auto;
+  top: 20px;
+  left: auto;
+  width: 100%;
+  /* border: 3px solid green; */
+  padding: 10px;
+  /* background-color: #F08080; */
+  box-shadow: 5px 10px 15px black;
+}
+
+.input-group {
+  margin: 10px;
+}
+
+.btn-lg {
+  width: 100%;
+  letter-spacing: 1px;
+  font-size: 13px;
+  box-shadow: 5px 10px 15px black;
+}
+
+thead {
+  font-size: 30px;
+  /* box-shadow: 5px 10px 15px black; */
+  /* border: 0px solid black; */
+  background-color: #1B2631;
+}
+
+th {
+  border: 0px;
+  /* box-shadow: 3px 3px 3px black; */
+  margin-bottom: 90px;
+  font-size: 16px;
+}
+
+td {
+  border: 0px solid black;
+  /* border-left: 0px;
+    border-right: 0px solid black; */
+  font-size: 16px;
+  font-weight: 900px;
+}
+
+tr {
+  border: 0px solid black;
+}
+.headTwo {
+  display: inline-block;
+  width: 100%;
+}
+.line{
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 0px 0;
+  margin-bottom: 30px;
+}
+.mgntp
+{
+  margin-top:10px;
+}
+.bckbtn
+{
+  background-color: #2D323E;
+  background-color: #2D323E;
+  width:100px;
+  color:white;
+  box-shadow: none;
+}
+.btnwdth{
+  width: 88px;
+}
+.mat-header-cell {
+  color: rgba(0,0,0,.54);
+}
+th.mat-header-cell {
+  border-bottom-color: rgba(0,0,0,.12);
+}
+.mat-header-cell {
+  font-size: 12px;
+  font-weight: 500;
+}
+th.mat-header-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+  border-bottom-color: rgba(0,0,0,.12);
+}
+table[_ngcontent-c13] {
+  text-align: center;
+  width: 100%;
+}
+.mat-cell, .mat-footer-cell {
+  font-size: 14px;
+}
+.rw{
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.algn{
+  margin-left: auto;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+}

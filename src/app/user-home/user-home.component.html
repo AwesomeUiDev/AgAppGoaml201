@@ -1,0 +1,460 @@
+<div class="wrapper" id='wrapperelement'>
+    <!-- Sidebar Holder -->
+    <nav id="sidebar" *ngIf="enablenavbar">
+        <!-- <div class="sidebar-header">
+            <h3><b><i>SIAS</i></b></h3>
+            <img width ='30' and height='10' title="Home" alt="Home" src='src\assets\images\user.jpg'/>
+ 
+        </div> -->
+        <div class="user">
+          <img alt class="center" height="50%" width="50%" src="assets\images\user.jpg">
+        </div>
+  
+        <ul class="list-unstyled components">
+            <p class="username">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;WELCOME {{username}}!</p>
+            <!-- <p class="username">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;Last Login: {{lastLogin}}!</p> -->
+            <!-- <li class="">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">FCD</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a [routerLink]="'/fcdRefresh'">Refresh</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="'/fcdManualValuesInput'">Manual Values Input</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="'/fcdFileUpload'">File Upload</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="'/fcdMaintenance'">Maintenance</a>
+                </li>
+                <li>
+                  <a [routerLink]="'/fcdSubsidaryFileUpload'">Subsidary File Upload</a>
+              </li>
+                </ul>
+            </li> -->
+            <!-- &nbsp; &nbsp; &nbsp; -->
+            <!-- <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">RISK</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a [routerLink]="'/riskRefresh'">Refresh</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="'/riskManualValuesInput'">Manual Values Input</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="'/riskMaintenance'">Risk Maintenance</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="'/riskCarMaintenance'">Car Maintenance</a>
+                </li>
+                <li>
+                  <a [routerLink]="'/riskAdjustmentValue'">Adjustment Value</a>
+              </li>
+              <li>
+                <a [routerLink]="'/riskSfInvestmentFilter'">SF Investment Filter</a>
+            </li>
+                </ul>
+            </li> -->
+            <!-- &nbsp; &nbsp; &nbsp; -->
+            <!-- <li>
+              <a href="#ibCapital" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">IB-Capital</a>
+              <ul class="collapse list-unstyled" id="ibCapital">
+                  <li>
+                      <a [routerLink]="'/ibCapitalFileUpload'">File Upload</a>
+                  </li>
+                  <li>
+                      <a [routerLink]="'/ibCapitalRefresh'">Refresh</a>
+                  </li>
+              </ul>
+            </li> -->
+            <!-- &nbsp; &nbsp; &nbsp;  DATAMART REFRESH-->
+           <!-- <li *ngIf="roleInfo.indexOf('DRS') > -1 || roleInfo.indexOf('DRM') > -1 || roleInfo.indexOf('DRE') > -1 || roleInfo.indexOf('DRERR') > -1 || roleInfo.indexOf('DRMS') > -1">
+              <a href="#datamartRefresh" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Datamart Refresh</a>
+              <ul class="collapse list-unstyled" id="datamartRefresh">
+                  <li *ngIf="roleInfo.indexOf('DRS') > -1">
+                      <a [routerLink]="'/datamartRefreshStaging'">Staging</a>
+                  </li>
+                  <li  *ngIf="roleInfo.indexOf('DRM') > -1">
+                      <a [routerLink]="'/datamartRefreshMaster'">Master</a>
+                  </li>
+                  !-- <li *ngIf="roleInfo.indexOf('DRRR') > -1">
+                      <a [routerLink]="'/datamartRefresh'">Report-Refresh</a>
+                  </li>--
+                  <li  *ngIf="roleInfo.indexOf('DRERR') > -1">
+                      <a [routerLink]="'/eodReportRefresh'">Eod Refresh</a>
+                  </li > 
+                  <li *ngIf="roleInfo.indexOf('DRMS') > -1">
+                          <a [routerLink]="'/datamartRefreshMaintenance'">Maintenance</a>
+                      </li>
+                  <li  *ngIf="roleInfo.indexOf('DRE') > -1">
+                    <a [routerLink]="'/datamartRefreshError'">Error</a>
+                </li>
+              </ul>
+            </li> -->
+            &nbsp; &nbsp; &nbsp;
+            <!-- <li *ngIf="roleInfo.indexOf('DRRR') > -1">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                      <li *ngIf="roleInfo.indexOf('DRRR') > -1">
+                              <a [routerLink]="'/datamartRefresh'">MIS-Refresh</a>
+                          </li>
+                          !-- <li  *ngIf="roleInfo.indexOf('DRERR') > -1">
+                                  <a [routerLink]="'/eodReportRefresh'">Eod Refresh</a>
+                              </li > 
+              </ul>
+          </li>  -->
+        <!-- UPLOAD MIS DOWNLOAD MIS    &nbsp; &nbsp; &nbsp; -->
+            <!-- <li *ngIf="roleInfo.indexOf('FUM')  > -1 || roleInfo.indexOf('FDM') > -1">
+              <a href="#finance" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">File Processing</a>
+              <ul class="collapse list-unstyled" id="finance">
+                  <li *ngIf="roleInfo.indexOf('FUM') > -1">
+                      <a [routerLink]="'/financeUpload'">Upload</a>
+                  </li>
+                  <li *ngIf="roleInfo.indexOf('FDM') > -1">
+                          <a [routerLink]="'/financeDownload'">Download</a>
+                      </li>
+                       <li *ngIf="roleInfo.indexOf('FAV') > -1">
+                          <a [routerLink]="'/financeAdjustmentValue'">Adjustment Value</a>
+                      </li> 
+                   <li >
+                      <a [routerLink]="'/financeBudget'">Budget</a>
+                  </li> 
+              </ul>
+            </li>  -->
+         <!-- ADJUSTMENT VALUE  &nbsp; &nbsp; &nbsp;-->
+            <!-- <li *ngIf="roleInfo.indexOf('FAV') > -1">
+                  <a href="#adj" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Adjustment Screen</a>
+                  <ul class="collapse list-unstyled" id="adj">
+                          <li *ngIf="roleInfo.indexOf('FAV') > -1">
+                              <a [routerLink]="'/financeAdjustmentValue'">Adjustment Value</a>
+                          </li>
+                  </ul>
+                </li> 
+                &nbsp; &nbsp; &nbsp;
+            <li *ngIf="roleInfo.indexOf('RMCR') > -1 || roleInfo.indexOf('RMVR') > -1">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Role Management</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                  <li *ngIf="roleInfo.indexOf('RMCR') > -1">
+                      <a [routerLink]="'/createRole'">Create Role</a>
+                  </li>
+                  <li *ngIf="roleInfo.indexOf('RMVR') > -1">
+                      <a [routerLink]="'/viewRole'">View Role</a>
+                  </li>
+              </ul>
+          </li> -->
+          &nbsp; &nbsp; &nbsp;
+          <li *ngIf="roleInfo.indexOf('UMCU') > -1 || roleInfo.indexOf('UMVU') > -1">
+                
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">User Management</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                  <li *ngIf="roleInfo.indexOf('UMCU') > -1">
+                      <a [routerLink]="'/createUser'">Create User</a>
+                  </li>
+                  <li *ngIf="roleInfo.indexOf('UMVU') > -1">
+                      <a [routerLink]="'/viewUser'">View User</a>
+                  </li>
+              </ul>
+          </li>
+          &nbsp; &nbsp; &nbsp;
+          <li><a href="#System" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" *ngIf="screenpermissions.indexOf('Role') > -1 || screenpermissions.indexOf('Security Policy') > -1 || screenpermissions.indexOf('User') > -1">SYSTEM MAINTENANCE</a>
+            <ul class="collapse list-unstyled" id="System">
+                    <li *ngIf="screenpermissions.indexOf('Role') > -1">
+                    <a [routerLink]="'/roles'">Roles</a>
+                 </li>
+                 <li *ngIf="screenpermissions.indexOf('Security Policy') > -1">
+                  <a [routerLink]="'/securityPolicy'"  >Security Policy</a>
+                 </li>
+                 <li *ngIf="screenpermissions.indexOf('User') > -1">
+                  <a [routerLink]="'/summary'"  >User</a>
+                 </li>
+           </ul>
+           </li>
+           &nbsp; &nbsp; &nbsp;
+          <!-- <li *ngIf="roleInfo.indexOf('MDAF') > -1 || roleInfo.indexOf('MDAM') > -1 || roleInfo.indexOf('MDAV') > -1"> -->
+             <!-- <li><a href="#Mda" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">MDA</a>
+              <ul class="collapse list-unstyled" id="Mda">
+                  <!-- <li *ngIf="roleInfo.indexOf('MDAF') > -1"> -->
+                    <!--  <li>
+                      <a [routerLink]="'/mdaFetching'">Fetching</a>
+                  </li>
+                  <!-- <li >
+                    <a [routerLink]="'/roles'">Roles</a>
+                </li> -->
+                <!-- <li >
+                  <a [routerLink]="'/securityPolicy'"  >Security Policy</a>
+              </li> -->
+                  <!-- <li *ngIf="roleInfo.indexOf('MDAM') > -1"> -->
+                  <!--  <li>
+                      <a [routerLink]="'/mdaModificationProcess'">Modification Process</a>
+                  </li>
+                  <!-- <li *ngIf="roleInfo.indexOf('MDAV') > -1"> -->
+                  <!--  <li>
+                    <a [routerLink]="'/mdaVerification'">Verification</a>
+                  </li>
+              </ul>
+            </li> -->
+  
+            &nbsp; &nbsp; &nbsp;
+            <!-- <li *ngIf="roleInfo.indexOf('IFRSF') > -1 || roleInfo.indexOf('IFRSP') > -1 || roleInfo.indexOf('IFRSVF') > -1 || roleInfo.indexOf('IFRSVC') > -1"> -->
+             <!--   <li>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">IFRS</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                  <!-- <li *ngIf="roleInfo.indexOf('IFRSF') > -1"> -->
+                  <!--  <li> 
+                    <a [routerLink]="'/ifrsFetching'">Fetching</a>
+                  </li>
+                  <!-- <li  *ngIf="roleInfo.indexOf('IFRSP') > -1"> -->
+                  <!--  <li>
+                      <a [routerLink]="'/ifrsProcess'">Process</a>
+                  </li>
+                  <!-- <li  *ngIf="roleInfo.indexOf('IFRSVF') > -1"> -->
+                   <!-- <li>
+                      <a [routerLink]="'/verificationFinance'">Verification Finance</a>
+                  </li>
+                  <!-- <li  *ngIf="roleInfo.indexOf('IFRSVC') > -1"> -->
+                  <!--  <li>
+                      <a [routerLink]="'/verificationCredit'">Verification Credit</a>
+                  </li>
+              </ul>
+          </li>  -->
+          &nbsp; &nbsp; &nbsp;
+  <li>
+      <a href="#homeGoaml" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+      *ngIf="screenpermissions.indexOf('Data Extraction') > -1 || screenpermissions.indexOf('Authorize XML') > -1|| screenpermissions.indexOf('Download') > -1||
+       screenpermissions.indexOf('Generate XML') > -1 || screenpermissions.indexOf('Message') > -1 || screenpermissions.indexOf('Report') > -1">GOAML</a>
+      <ul class="collapse list-unstyled" id="homeGoaml">
+          <li class="nav-item" *ngIf="screenpermissions.indexOf('Data Extraction') > -1">
+              <a class="nav-link" [routerLink]="'/dataext'">Data Extraction</a>
+            </li>
+            <!-- *ngIf="role=='U'" 1-->
+        <li class="nav-item" *ngIf="screenpermissions.indexOf('Generate XML') > -1">
+          <a class="nav-link" [routerLink]="'/generateXml'">Generate XML</a>
+        </li>
+        <!-- *ngIf="role=='V'" 1-->
+        <li class="nav-item" *ngIf="screenpermissions.indexOf('Authorize XML') > -1">
+          <a class="nav-link" [routerLink]="'/authorizeXml'">Authorize XML</a>
+        </li>
+    
+      <!-- *ngIf="role=='U' || role=='V'" 1 -->
+        <li class="nav-item" *ngIf="screenpermissions.indexOf('Message') > -1">
+          <a class="nav-link" [routerLink]="'/message'">
+            Message</a>
+        </li>
+       
+       <!-- *ngIf="role=='I'" 1 -->
+        <!-- <li class="nav-item dropdown" >
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            User Maintenance
+          </a>
+          <div class="dropdown-menu">
+            <a class="nav-link" [routerLink]="'/user'">Register User</a>
+            <a class="nav-link" [routerLink]="'/forgetpassword'">Change User Password</a>
+          </div>
+        </li> -->
+    <!-- *ngIf="role=='I'" 1 -->
+        <!-- <li class="nav-item dropdown" >
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Admin
+          </a>
+          <div class="dropdown-menu">
+            <a class="nav-link" [routerLink]="'/systemConfig'">System Configuration</a>
+            <a class="nav-link" [routerLink]="'/reportingMaintenance'">Reporting Maintenance</a>
+            <a class="nav-link" [routerLink]="'/errorstack'">Error Monitoring</a>
+          </div>
+        </li> -->
+  
+        <li>
+          <!-- <li  *ngIf="screenpermissions.indexOf('Reports') > -1">
+            <a [routerLink]="'/reports'">Reports</a>
+        </li> -->
+          <a href="#Admin" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" *ngIf="screenpermissions.indexOf('System Configuration') > -1 || screenpermissions.indexOf('Reporting maintenance') > -1 ">Admin</a>
+          <ul class="collapse list-unstyled" id="Admin">
+          <li *ngIf="screenpermissions.indexOf('System Configuration') > -1">
+          <a [routerLink]="'/SystemconfigurationSummary'">System Configuration</a>
+          </li>
+          <li *ngIf="screenpermissions.indexOf('Reporting maintenance') > -1">
+          <a [routerLink]="'/ReportmainteinanceSummary'">Reporting Maintenance</a>
+          </li>
+          <!-- <li *ngIf="screenpermissions.indexOf('Error Monitoring') > -1">
+          <a [routerLink]="'/errorstack'">Error Monitoring</a>
+          </li> -->
+          </ul>
+      
+       
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            MTS Maintenance
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="nav-link" [routerLink]="'/externalsystemlist'">External System Maintenance</a>
+            <a class="nav-link" [routerLink]="'/excelExtSysSummary'">External System Summary</a>
+            <a class="nav-link" [routerLink]="'/excelMapping'">Excel Mapping</a>
+          </div>
+        </li> -->
+  
+        <!-- <li >
+  
+          <a href="#MTSM" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">MTS Maintenance</a>
+          <ul class="collapse list-unstyled" id="MTSM">
+          <li *ngIf="screenpermissions.indexOf('External System Maintenance') > -1">
+          <a  [routerLink]="'/externalsystemlist'">External System Maintenance</a> 
+    
+          </li>
+          <li *ngIf="screenpermissions.indexOf('External System Summary') > -1">
+          <a [routerLink]="'/excelExtSysSummary'">External System Summary</a>
+          </li>
+          <li *ngIf="screenpermissions.indexOf('Excel Mapping') > -1">
+          <a [routerLink]="'/excelMapping'">Excel Mapping</a>
+          </li>
+          </ul>
+          </li>
+   -->
+        <!-- *ngIf="role=='U'" 1-->
+        <!-- <li class="nav-item dropdown"  >
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              MTS
+            </a>
+            <div class="dropdown-menu">
+                <a class="nav-link" [routerLink]="'/excelUploading'">MTS Upload</a>
+              <a class="nav-link" [routerLink]="'/excelsummary'">Mts Upload Summary</a>
+            </div>
+          </li> -->
+          <!-- <li >
+              <a href="#MTS" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">MTS</a>
+              <ul class="collapse list-unstyled" id="MTS">
+              <li *ngIf="screenpermissions.indexOf('MTS Upload') > -1">
+              <a [routerLink]="'/excelUploading'">MTS Upload</a>
+              </li>
+              <li *ngIf="screenpermissions.indexOf('MTS  Upload Summary') > -1">
+              <a [routerLink]="'/excelsummary'">MTS Upload Summary</a>
+              </li>
+              </ul>
+              </li>   -->
+              
+            
+       <!-- *ngIf="role=='U'" 1 -->
+        <!-- <li class="nav-item" *ngIf="screenpermissions.indexOf('STR') > -1" >
+            <a class="nav-link" [routerLink]="'/str'">STR</a>
+          </li> -->
+          <li class="nav-item" *ngIf="screenpermissions.indexOf('Report') > -1">
+            <a class="nav-link" [routerLink]="'/reports'">Reports</a>
+          </li>
+
+          <li class="nav-item"  *ngIf="screenpermissions.indexOf('Download') > -1">
+            <a class="nav-link" [routerLink]="'/download'">Download</a>
+          </li>
+
+          <!-- <li class="nav-item"  >
+            <a class="nav-link" [routerLink]="'/NewScreen'">NewScreen</a>
+          </li> -->
+          <!-- <li class="nav-item" >
+                path: 'NewScreen',
+
+            download
+            <a class="nav-link" [routerLink]="'/userforgotpassword'">
+              Reset Password</a>
+          </li> -->
+      </ul>
+  </li>
+  &nbsp; &nbsp; &nbsp;
+  <!-- <li> -->
+    <!-- <li *ngIf="roleInfo.indexOf('MDAF') > -1 || roleInfo.indexOf('MDAM') > -1 || roleInfo.indexOf('MDAV') > -1"> -->
+    <!-- <a [routerLink]="'/securityPolicy'"  >Security Policy</a>
+  </li> -->
+  <!-- </li> -->
+             
+        </ul>
+  
+      
+  
+        <!-- <ul class="list-unstyled CTAs">
+            <li>
+                <a href="" class="download">Download source</a>
+            </li>
+            <li>
+                <a href="" class="article">Back to article</a>
+            </li>
+        </ul> -->
+    </nav>
+  
+    <!-- Page Content Holder -->
+    <div id="content">
+  
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="enablenavbar">
+            <div class="container-fluid">
+  
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+  
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <!-- <ul id="usernameTag">   
+                  &nbsp; &nbsp; &nbsp;
+                      &nbsp; &nbsp; &nbsp;
+                      <li class="nav-item">Hello {{username}}!</li>
+                  </ul>  -->
+                    <ul class="nav navbar-nav ml-auto">
+                         
+                          <!-- <li class="nav-item">
+                                  <a class="nav-link" id="navBarFont" href="#"><b>Last Login: {{lastLogin}}</b></a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" id="navBarFont" href="#"><b></b></a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" id="navBarFont" href="#"><b></b></a>
+                              </li> -->
+                              <li class="nav-item" *ngIf="screenpermissions.indexOf('Message') > -1">
+                                <a class="nav-link" id="navBarFont" [routerLink]="'/message'" *ngIf="countForMessage"><b>
+                                  <img width ='30' and height='30' title="Home" alt="Home" src='assets/images/icons/messages.png'/><sup>{{countForMessage}}</sup>
+                                </b></a>
+                            </li>
+                            &nbsp; &nbsp; &nbsp;
+                        <li class="nav-item">
+                            <a class="nav-link" id="navBarFont" [routerLink]="'/about'"><b>
+                              <img width ='30' and height='30' title="Home" alt="Home" src='assets/images/icons/home.png'/>
+                            </b></a>
+                        </li>
+                        &nbsp; &nbsp; &nbsp;
+                        <li class="nav-item">
+                            <a class="nav-link" id="navBarFont" [routerLink]="'/changePassword'"><b>
+                                <img width ='30' height='30' title="Change Password" alt="Change Password" src='assets/images/icons/change_password.png'/> 
+                          </b></a>
+                        </li>
+                        &nbsp; &nbsp; &nbsp;
+                        <li class="nav-item">
+                            <a class="nav-link" id="navBarFont" #navBarFont  href="#" (click)="logout('#')"><b>
+                                <img width ='30' and height='30' title="Logout" alt="Logout" src='assets/images/icons/log_out.png'/> 
+                          </b></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- <h2>{{title}}</h2>
+       
+        <div class="line"></div> -->
+        <router-outlet></router-outlet>
+        <!-- <h2>Lorem Ipsum Dolor</h2> -->
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+  
+        <!-- <div class="line"></div> -->
+  
+        <!-- <h2>Lorem Ipsum Dolor</h2> -->
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+  
+        <!-- <div class="line"></div> -->
+  
+        <!-- <h3>Lorem Ipsum Dolor</h3> -->
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+    </div>
+  </div>

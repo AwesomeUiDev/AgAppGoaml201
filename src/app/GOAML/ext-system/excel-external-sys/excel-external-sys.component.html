@@ -1,0 +1,71 @@
+<app-home></app-home>
+
+<div class="card bg-transparent border-0 ">
+  <div class="card bg-transparent border-0 media" id="auth">
+    <!-- <div class="card-header col-sm-6 text-md-center bg-transparent ">
+      New External System
+    </div> -->
+    <h4 class="headTwo">
+      New External System
+    </h4>
+    <div class="card bg-transparent border-0 col-sm-10">
+      <div class="card-body bg-transparent border-0 col-sm-8 bxshdwborder bxshdw">
+        <mat-card class="bg-transparent border-bottom-0 noshdw">
+
+          <form class="form bg-transparent border-bottom-0 ">
+            <h3 style="color: red;">{{responseError}}</h3>
+            <div class="form-group" style="text-align: center;">
+              <label for="extSysCode">External System Code</label>
+              &nbsp;
+              <mat-form-field>
+                <input type="text" class=" mat-field-flex col-sm-3" id="extSysCode" required
+                  [(ngModel)]="excelExt.extSysCode" name="extSysCode" #error1="ngModel" matInput
+                  >
+
+              </mat-form-field>
+              <div class=" alert alert-danger  border-0 text-black" *ngIf="error1.touched && !error1.valid">
+                <p *ngIf="error1.errors.required">enter external system code</p>
+              </div>
+            </div>
+
+            <div class="form-group" style="text-align: center;">
+              <label for="extSysName">External System Name</label>
+              &nbsp;
+              <mat-form-field>
+                <input type="text" class="mat-field-flex col-sm-3" id="extSysName" required
+                  [(ngModel)]="excelExt.extSysName" name="extSysName" #error2="ngModel" matInput
+                  >
+
+              </mat-form-field>
+              <div class=" alert alert-danger  border-0 text-black" *ngIf="error2.touched && !error2.valid">
+                <p *ngIf="error2.errors.required">enter external system name</p>
+              </div>
+            </div>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <div style="text-align: center;">
+            <button type="submit" class="hvr-push btn btn-sucess submit-btn" 
+              (click)="onSubmit()">Submit</button>&nbsp;
+            <button type="reset"  #resetSubmitbtn  class="hvr-push btn btn-danger reset-btn" >Reset</button>&nbsp;
+            <button type="submit" class="hvr-push btn exit-btn" [routerLink]="'/excelExtSysSummary'"
+             >Exit</button></div>
+          </form>
+
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!-- <mat-toolbar> New External System</mat-toolbar>
+<div class="container">
+
+</div> -->
+
+
+<!-- </div> -->
+
+<!-- <div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <button class="btn btn-success" (click)="newCustomer()">Add</button>
+</div> -->
